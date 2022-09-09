@@ -1,0 +1,29 @@
+/* ----------------- one page scroll ---------------*/
+
+.main{
+    display: block !important;
+}
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+.one-page-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    display: none;
+}
+.our-artisan-wrap{
+    // margin-top: 215px;
+    margin-bottom: 30px;
+    &.mr-top{
+        margin-top: 215px;
+    }
+}
+.fp-watermark{
+    display: none;
+}

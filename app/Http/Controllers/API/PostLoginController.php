@@ -1,0 +1,1228 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Helpers\commonHelper;
+use DB; 
+use Validator;
+use App\Models\Event;
+use Hash;
+
+class PostLoginController extends Controller
+{
+
+    public function changePassword(Request $request){
+
+		$rules = [ 
+			'old_password'=>'required|min:8',
+			'password'=>'required',
+			"confirm_password"=>"required|same:password|min:8"       
+		];   
+ 
+		$messages = array(
+			'old_password.required' => "Old Password is required",
+			'password.required' => "Password is required",
+			'confirm_password.required' => "Confirm Password is required",
+			'confirm_password.same' => "Password and confirm password must be same",
+			'confirm_password.min' => "Password must be atleast min 8 digits"
+		);
+		
+		
+		$validator = Validator::make($request->json()->all(), $rules, $messages);
+		
+		if ($validator->fails()){
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+		}else{
+			
+			try{
+				
+				if(Hash::check($request->json()->get('old_password'),$request->user()->password)==false){
+					
+					return response(array('message'=>"Old password doesn't match.Please try again."),403);
+					
+				}else{
+					
+					\App\models\User::where('id',$request->user()->id)
+						->update(array('password'=>Hash::make($request->json()->get('password'))));
+						
+					return response(array('message'=>"Password updated successfully."),200);
+				}
+				
+			}catch (\Exception $e){
+				
+				return response(array("message" => "Something went wrong.please try again"),403); 
+				
+			}
+	   }
+		 
+	}
+	
+	function userProfile(Request $request){
+		
+		
+		$data=[
+			'id'=>$request->user()->id,
+			'name'=>ucfirst($request->user()->name),
+			'mobile'=>$request->user()->mobile,
+			'email'=>$request->user()->email,
+			'gender'=>$request->user()->gender,
+			'designation_id'=>$request->user()->designation_id,
+			'user_type'=>$request->user()->user_type,
+			'country_id'=>$request->user()->country_id,
+		];
+		
+		
+		return response(array('message'=>"Profile data fetched successfully..","data"=>$data),200);
+		
+		
+	}
+	
+	public function addAddress(Request $request){
+
+		$rules = [ 
+			'id'=>'required|numeric',  
+		];   
+
+		if($request->json()->get('id') == '0'){
+
+			if($request->json()->get('country_id')=='101'){
+
+				$rules['pincode']="required|digits:6";
+	
+			}else{
+	
+				$rules['pincode']="required|digits:5";
+			}
+
+			if($request->json()->get('type')=='2'){
+
+				$rules['phone_code']='required|in:1,2';
+				$rules['country_id']='required|exists:countries,id';
+				$rules['state_id']='required|exists:states,id';
+				$rules['city_id']='required|exists:cities,id';
+			}
+
+			$rules['first_name']='required|string';
+			$rules['last_name']='required|string';
+			$rules['email']='required|email';
+			$rules['country_id']='required|exists:countries,id';
+			$rules['state_id']='required|exists:states,id';
+			$rules['city_id']='required|exists:cities,id';
+			$rules['mobile']='required';
+			$rules['address_line1']='required';
+
+			if($request->json()->get('billing_first_name') != '' && $request->json()->get('billing_last_name') != ''){
+
+				$rules['billing_first_name']='required|string';
+				$rules['billing_last_name']='required|string';
+				$rules['billing_email']='required|email';
+				$rules['billing_country_id']='required|exists:countries,id';
+				$rules['billing_state_id']='required|exists:states,id';
+				$rules['billing_city_id']='required|exists:cities,id';
+				$rules['billing_mobile']='required';
+				$rules['billing_address1']='required';
+				$rules['billing_pin_code']='required';
+			}
+			
+		}
+
+
+		$validator = Validator::make($request->json()->all(), $rules);
+		
+		if ($validator->fails()){
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+		}else{
+			
+			try{
+		
+				if($request->json()->get('id')>0){
+
+					$address= \App\Models\Addressbook::find($request->json()->get('id'));
+
+				}else{
+					
+					$address= new \App\Models\Addressbook();
+				}
+				
+
+				$address->user_id=$request->user()->id;
+				
+				$address->name = $request->json()->get('first_name').' '.$request->json()->get('last_name');
+				$address->email = $request->json()->get('email');
+				$address->mobile = $request->json()->get('mobile');
+				$address->phone_code = $request->json()->get('phone_code') ?? '';
+				$address->country_id = $request->json()->get('country_id');
+				$address->state_id = $request->json()->get('state_id');
+				$address->city_id = $request->json()->get('city_id');
+				$address->address_line1 = $request->json()->get('address_line1');
+				$address->address_line2 = $request->json()->get('address_line2');
+				$address->pincode = $request->json()->get('pincode');
+				$address->type= '1';
+				$address->save();
+
+				
+				if($request->json()->get('billing_name') != ''){
+
+					$address->billing_name=$request->json()->get('billing_name');
+					$address->billing_email=$request->json()->get('billing_email');
+					$address->billing_mobile=$request->json()->get('billing_mobile');
+					$address->billing_country_id=$request->json()->get('billing_country_id');
+					$address->billing_state_id=$request->json()->get('billing_state_id');
+					$address->billing_city_id=$request->json()->get('billing_city_id');
+					$address->billing_address_line1=$request->json()->get('billing_address1');
+					$address->billing_pin_code=$request->json()->get('billing_pin_code');
+
+				}
+				
+				if($request->json()->get('id')>0){
+					
+					return response(array('message'=>'Address updated successfully.'),200);
+				}else{
+					
+					return response(array('message'=>'Address added successfully.'),200);
+				}
+
+			}catch (\Exception $e){
+				
+				return response(array("message" => "Something went wrong.please try again"),403); 
+				
+			}
+	   }
+		 
+	}
+
+	public function updateProfile(Request $request){
+	
+		try{
+			
+				$user= \App\Models\User::find($request->user()->id);
+
+				$user->name=$request->json()->get('name');
+				$user->gender=$request->json()->get('gender');
+				$user->save();
+				
+				return response(array('message'=>'Profile updated successfully.'),200);
+				
+			
+		}catch (\Exception $e){
+			
+			return response(array("message" => "Something went wrong.please try again"),403); 
+			
+		}
+	}
+	
+	public function deleteAddress(Request $request){
+
+		$rules = [ 
+			'id'=>'required|numeric'      
+		];   
+
+		$validator = Validator::make($request->json()->all(), $rules);
+		
+		if ($validator->fails()){
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+		}else{
+			
+			try{
+				
+				$address= \App\Models\Addressbook::where([
+														['id','=',$request->json()->get('id')],						
+														['user_id','=',$request->user()->id],						
+														['recyclebin_status','=','0']						
+														])->first();
+
+				if(!$address){
+
+					return response(array("message" => "invalid address id."),403); 
+
+				}else{
+					
+					\App\Models\Addressbook::where('id',$request->json()->get('id'))->update(['recyclebin_status'=>'1','recyclebin_datetime'=>date('Y-m-d H:i:s')]);
+					
+					return response(array("message" => "Address deleted successfully."),200); 
+				}
+				
+			}catch (\Exception $e){
+				
+				return response(array("message" => "Something went wrong.please try again"),403); 
+				
+			}
+	   }
+		 
+	}
+	
+	public function addressList(Request $request){
+
+		try{
+				
+			$address= \App\Models\Addressbook::where([						
+													['user_id','=',$request->user()->id],						
+													['recyclebin_status','=','0']						
+													])->get();
+
+			if(!$address){
+
+				return response(array("message" => "Result not found."),404); 
+
+			}else{
+				
+				$result=[];
+
+				foreach($address as $raw){
+				
+					$result[]=[
+						'id'=>$raw['id'],
+						'name'=>ucfirst($raw['name']),
+						'mobile'=>$raw['mobile'],
+						'email'=>$raw['email'],
+						'address_line1'=>$raw['address_line1'],
+						'address_line2'=>$raw['address_line2'],
+						'country_id'=>$raw['country_id'],
+						'state_id'=>$raw['state_id'],
+						'city_id'=>$raw['city_id'],
+						'pincode'=>$raw['pincode'],
+						'type'=>$raw['type'],
+					];
+				}
+				
+				return response(array("message" => "Address fetched successfully.","result"=>$result),200); 
+			}
+			
+		}catch (\Exception $e){
+			
+			return response(array("message" => "Something went wrong.please try again"),403); 
+			
+		}
+		 
+	}
+	
+	public function order(Request $request){
+
+		try{
+				
+			$sales= \App\Models\Sales::where([
+				['user_id','=',$request->user()->id]
+				])->orderBy('id','desc')->get();
+
+			if(!$sales){
+
+				return response(array("message" => "Result not found."),404); 
+
+			}else{
+				
+				$result=[];
+
+				foreach($sales as $raw){
+					
+					if($raw['payment_type'] == '1'){
+						$paymentType = 'Online';
+
+					}else{
+						$paymentType = 'COD';
+					}
+					$result[]=[
+						'id'=>$raw['id'],
+						'order_id'=>$raw['order_id'],
+						'name'=>$raw['name'],
+						'email'=>$raw['email'],
+						'paymentType'=>$paymentType,
+						'sub_total'=>$raw['subtotal'],
+						'discount'=>$raw['discount'],
+						'shipping'=>$raw['shipping'],
+						'amount'=>$raw['net_amount'],
+						'couponcode_amount'=>$raw['couponcode_amount'],
+						'created_at'=>date('F d, Y', strtotime($raw['created_at'])),
+					];
+				}
+				
+				return response(array("message" => "Orders fetched successfully.","result"=>$result),200); 
+			}
+			
+		}catch (\Exception $e){
+			
+			return response(array("message" => "Something went wrong.please try again"),403); 
+			
+		}
+		 
+	}
+	
+	
+	public function addToCart(Request $request){
+
+		$rules = [ 
+			'product_id'=>'required|exists:variantproducts,id',
+			'qty'=>'required|numeric',
+			'add_type'=>'required|in:add,update'
+		];   
+
+		$variantProductResult=\App\Models\Variantproduct::where('id',$request->json()->get('product_id'))->first();
+		
+		$variantAttributeArray=explode(',',$variantProductResult->variant_attributes);
+
+		if(in_array('17',$variantAttributeArray) || in_array('18',$variantAttributeArray) || in_array('19',$variantAttributeArray)){
+
+			$rules['remark']='required';
+		}
+
+		$messages['remark.required']="Custom Remark Field is required";
+
+		$validator = Validator::make($request->json()->all(), $rules,$messages);
+		
+		if ($validator->fails()){
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+		}else{
+			
+			try{
+				
+				
+				$cart= \App\Models\Addtocart::where([				
+														['user_id','=',$request->user()->id],						
+														['product_id','=',$request->json()->get('product_id')]						
+														])->first();
+
+				
+				if(!$cart){
+					$cart=new \App\Models\Addtocart();
+					$cart->user_id=$request->user()->id;
+					$cart->product_id=$request->json()->get('product_id');
+					$cart->qty=$request->json()->get('qty');
+					$cart->remark=$request->json()->get('remark');
+
+				}else{
+					
+					if($request->json()->get('add_type')=='add'){
+
+						$cart->qty+=$request->json()->get('qty');
+
+					}else{
+
+						$cart->qty=$request->json()->get('qty');
+					}
+					
+					$cart->remark=$request->json()->get('remark');
+				}
+				
+				$cart->save();
+				
+				if($request->json()->get('id')>0){
+					
+					return response(array("message" => "Cart updated successfully."),200); 
+				}else{
+					
+					return response(array("message" => "Product successfully added into cart."),200); 
+				}
+				
+			}catch (\Exception $e){
+				
+				return response(array("message" => "Something went wrong.please try again."),403); 
+				
+			}
+	   }
+		 
+	}
+	
+	
+	public function deleteCart(Request $request){
+
+		$rules = [ 
+			'id'=>'required|numeric'
+		];   
+
+		$validator = Validator::make($request->json()->all(), $rules);
+		
+		if ($validator->fails()){
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+		}else{
+			
+			try{
+				
+				
+				\App\Models\Addtocart::where([
+											['user_id','=',$request->user()->id],
+											['id','=',$request->json()->get('id')]
+											])->delete();
+				
+				return response(array("message" => "Cart Product Delete successfully."),200); 
+				
+			}catch (\Exception $e){
+				
+				return response(array("message" => "Something went wrong.please try again"),403); 
+				
+			}
+	   }
+		 
+	}
+	
+	public function deleteCompleteCart(Request $request){
+
+		try{
+				
+				
+			\App\Models\Addtocart::where([
+										['user_id','=',$request->user()->id]
+										])->delete();
+			
+			return response(array("message" => "User Cart delete successfully."),200); 
+			
+		}catch (\Exception $e){
+			
+			return response(array("message" => "Something went wrong.please try again"),403); 
+			
+		}
+		 
+	}
+	
+	public function cartList(Request $request){
+
+		try{ 	
+				
+			$result=\App\Models\Addtocart::select('addtocarts.id as cartid','products.name','addtocarts.qty','addtocarts.remark','variantproducts.sale_price','variantproducts.canada_stock','variantproducts.usa_stock','variantproducts.india_stock','variantproducts.id','variantproducts.discount_type','variantproducts.discount_amount','variantproducts.images','products.short_description','variantproducts.package_length','variantproducts.package_breadth','variantproducts.package_height','variantproducts.package_weight')->where([
+										['addtocarts.user_id','=',$request->user()->id]
+										])->join('variantproducts','variantproducts.id','=','addtocarts.product_id')->join('products','products.id','=','variantproducts.product_id')->get();
+	
+			if($result->count()==0){
+				
+				return response(array("message" => "Cart list is empty."),404);
+				
+			}else{
+				
+				$data=[];
+				
+				foreach($result as $value){
+					
+					$imagesArray=explode(',',$value->images);
+
+					$data[]=array(
+						'id'=>$value->cartid,
+						'product_id'=>$value->id,
+						'product_name'=>ucfirst($value->name),
+						'qty'=>$value->qty,
+						'sale_price'=>$value->sale_price,
+						'discount_amount'=>$value->discount_amount,
+						'offer_price'=>\App\Helpers\commonHelper::getOfferProductPrice($value->sale_price,$value->discount_type,$value->discount_amount),
+						'package_length'=>$value->package_length,
+						'package_breadth'=>$value->package_breadth,
+						'package_height'=>$value->package_height,
+						'package_weight'=>$value->package_weight,
+						'image'=>asset('uploads/products/'.$imagesArray[0]),
+						'short_description'=>$value->short_description,
+						'remark'=>$value->remark
+					);
+					
+				}
+				
+				return response(array("message" => "Cart list data fetched successfully.","result"=>$data),200); 
+				
+			} 
+		}catch (\Exception $e){
+			
+			return response(array("message" => "Something went wrong.please try again"),403); 
+			
+		}
+		
+	}
+
+	
+	public function checkout(Request $request){
+
+		
+		$rules['currency_id']='numeric|Exists:currency_values,id';
+		$rules['coupon_id']='numeric';
+		$rules['shipping_id']='numeric';
+		$rules['address_id']='required|numeric';
+		$rules['payment_type']='required|numeric|in:1,2';
+		
+		$validator = Validator::make($request->json()->all(), $rules);
+		
+		if ($validator->fails()){
+			
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+			
+		}else{
+			
+			// try{
+				
+				$totalSales =  \App\Models\Sales::count();
+
+				$sales=new \App\Models\Sales();
+				
+				$orderId="VLA-".rand(11,99).str_pad(($totalSales+1), 3, "0", STR_PAD_LEFT);
+
+				$sales->order_id=$orderId;
+
+				$addressResult=\App\Models\Addressbook::where('id',$request->json()->get('address_id'))->first();
+		
+				if(\App\Helpers\commonHelper::checkUserCountry($request->json()->get('currency_id'),$addressResult->country_id)){
+			
+						return response(array('message'=>'Currency not match'),403);
+						
+				}
+
+				$sales->user_id=$request->user()->id; 
+				$sales->checkout_type='2';
+				$sales->name=$addressResult->name;
+				$sales->email=$addressResult->email;
+				$sales->mobile=$addressResult->phone_code.' '.$addressResult->mobile;
+				$sales->currency_id=$request->json()->get('currency_id');
+				$sales->country_id=$addressResult->country_id;
+				$sales->state_id=$addressResult->state_id;
+				$sales->city_id=$addressResult->city_id;
+				$sales->address_line1=$addressResult->address_line1;
+				$sales->address_line2=$addressResult->address_line2;
+				$sales->pincode=$addressResult->pincode;
+				$sales->type=$addressResult->type;
+
+				if($addressResult->billing_name != null){
+					$sales->billing_name=$addressResult->billing_name;
+					$sales->billing_email=$addressResult->billing_email;
+					$sales->billing_mobile=$addressResult->phone_code.' '.$addressResult->billing_mobile;
+					$sales->billing_country_id=$addressResult->billing_country_id;
+					$sales->billing_state_id=$addressResult->billing_state_id;
+					$sales->billing_city_id=$addressResult->billing_city_id;
+					$sales->billing_address_line1=$addressResult->billing_address1;
+					$sales->billing_address_line2=$addressResult->address_line2;
+					$sales->billing_pincode=$addressResult->billing_pin_code;
+					
+				}else{
+					$sales->billing_name=$addressResult->name;
+					$sales->billing_email=$addressResult->email;
+					$sales->billing_mobile=$addressResult->phone_code.' '.$addressResult->mobile;
+					$sales->billing_country_id=$addressResult->country_id;
+					$sales->billing_state_id=$addressResult->state_id;
+					$sales->billing_city_id=$addressResult->city_id;
+					$sales->billing_address_line1=$addressResult->address_line1;
+					$sales->billing_address_line2=$addressResult->address_line2;
+					$sales->billing_pincode=$addressResult->pincode;
+					
+				}
+				
+				if($request->user()->designation_id == 3){
+					$userType = 'B2B';
+				}else{
+					$userType = 'Retail';
+				}
+				
+				$sales->user_type=$userType;
+
+				$cartData=\App\Models\Addtocart::where('user_id',$request->user()->id)->get();
+	
+				$sales->payment_type=$request->json()->get('payment_type');
+
+				$subTotal=0; $totalShipping=0; $discount=0; $couponId=0; $couponAmount=0; $netAmount=0;
+
+				if(!empty($cartData)){
+					
+					foreach($cartData as $cart){
+						
+						$productResult= \App\Models\Product::select('products.name','variantproducts.*')->where('variantproducts.id',$cart['product_id'])
+											->join('variantproducts','variantproducts.product_id','=','products.id')->first();
+						
+						if($productResult){
+
+							$registeredCountry = \App\Helpers\commonHelper::getAddressCountryType($addressResult->country_id);
+
+							if($registeredCountry == '3' && $productResult->canada_stock == 'NA'){
+								return response(array("message" => "This ".$productResult->name." not available in selected country"),403);
+								
+							}else if($registeredCountry == '2' && $productResult->usa_stock == 'NA'){
+								return response(array("message" => "This ".$productResult->name." not available in selected country"),403);
+								
+							}else if($registeredCountry == '1' && $productResult->india_stock == 'NA'){
+								return response(array("message" => "This ".$productResult->name." not available in selected country"),403);
+								
+							}
+
+							if($registeredCountry == '3' && $productResult->canada_stock == 0){
+								return response(array("message" => "This ".$productResult->name." out of stock"),403);
+
+							}elseif($registeredCountry == '2' && $productResult->usa_stock == 0){
+								return response(array("message" => "This ".$productResult->name." out of stock"),403);
+
+							}elseif($registeredCountry == '1' && $productResult->india_stock == 0){
+								return response(array("message" => "This ".$productResult->name." out of stock"),403);
+
+							}
+						}
+						
+						$offerPrice=\App\Helpers\commonHelper::getOfferProductPrice($productResult->sale_price,$productResult->discount_type,$productResult->discount_amount);
+ 
+						$shippingAmount=\App\Helpers\commonHelper::getShippingAmount($productResult['package_length'],$productResult['package_breadth'],$productResult['package_height'],$productResult['package_weight'],$sales->country_id,$request->json()->get('shipping_id'));
+
+						$subTotal+=($productResult['sale_price']*$cart['qty']);
+
+						$totalShipping+=($shippingAmount*$cart['qty']);
+
+						$discount+=(($productResult['sale_price']-$offerPrice)*$cart['qty']);
+					}
+
+					$netAmount=($subTotal)-$discount;
+
+				}
+
+				//calculation of coupon code amount
+
+				if($request->json()->get('coupon_id') >0 && $request->json()->get('coupon_code') != ''){
+
+					$amountForCoupon=($subTotal-$discount);
+
+					//send OTP on mail
+					$couponData=\App\Models\Coupon::where('coupon_code',$request->json()->get('coupon_code'))->first();
+					if(!$couponData){
+
+						$couponData=\App\Models\BusinessCoupon::where('business_type',$request->user()->user_type)->first();
+					}
+					$couponResult=\App\Helpers\commonHelper::checkCouponCode($request->user()->id,$couponData['coupon_code'],$amountForCoupon);
+
+					if($couponResult['status']==200){
+				
+						if($couponResult['discount_type']=='1'){
+
+							$couponAmount=round((($amountForCoupon*$couponResult['discount_amount'])/100),2);
+				
+						}else if($couponResult['discount_type']=='2'){
+				
+							$couponAmount=round($couponResult['discount_amount'],2);
+				
+						}
+						
+						\App\Models\Coupon::where('coupon_code',$request->json()->get('coupon_code'))->update(['used_status'=>'1']);
+
+						$couponId=$couponResult['coupon_id'];
+						$netAmount-=$couponAmount;
+
+					}else{
+
+						return response(array("message" => $couponResult['message']),$couponResult['status']); 
+
+					}
+				}
+				
+
+				$netAmount+=$totalShipping;
+
+				$sales->subtotal= \App\Helpers\commonHelper::getPriceAmountByCountryId($subTotal,$request->json()->get('currency_id'));
+				$sales->shipping=\App\Helpers\commonHelper::getPriceAmountByCountryId($totalShipping,$request->json()->get('currency_id'));
+				$sales->couponcode_id=$couponId;
+				$sales->couponcode_amount=\App\Helpers\commonHelper::getPriceAmountByCountryId($couponAmount,$request->json()->get('currency_id'));
+				$sales->discount=\App\Helpers\commonHelper::getPriceAmountByCountryId($discount,$request->json()->get('currency_id'));
+				$sales->net_amount=\App\Helpers\commonHelper::getPriceAmountByCountryId($netAmount,$request->json()->get('currency_id'));
+				
+				$sales->save();
+
+				$saleId=$sales->id;
+
+				if(!empty($cartData)){
+
+					foreach($cartData as $cart){
+
+						$salesDetail=new \App\Models\Sales_detail();
+
+						$productResult=\App\Models\Product::select('products.name','variantproducts.*')->where('variantproducts.id',$cart['product_id'])
+															->join('variantproducts','variantproducts.product_id','=','products.id')->first();
+						
+						$imagesArray=explode(',',$productResult->images);
+
+						$offerPrice=\App\Helpers\commonHelper::getOfferProductPrice($productResult->sale_price,$productResult->discount_type,$productResult->discount_amount);
+
+						// if($request->json()->get('type')=='2'){
+						// 	$salesDetail->user_id=$request->user()->id; 
+						// }
+						$salesDetail->user_id=$request->user()->id; 
+						$salesDetail->sale_id=$saleId;
+						$salesDetail->order_id=$orderId;
+						$salesDetail->currency_id=$request->json()->get('currency_id');
+						$salesDetail->shipping_id=$request->json()->get('shipping_id');
+						$salesDetail->product_id=$productResult->id;
+						$salesDetail->product_name=$productResult->name;
+						$salesDetail->product_image=asset('uploads/products/'.$imagesArray[0]);
+						$salesDetail->qty=$cart['qty'];
+						$salesDetail->remark=$cart['remark'];
+						$salesDetail->sub_total=\App\Helpers\commonHelper::getPriceAmountByCountryId(($productResult->sale_price*$cart['qty']),$request->json()->get('currency_id'));
+						$salesDetail->discount=\App\Helpers\commonHelper::getPriceAmountByCountryId(((($productResult->sale_price)-$offerPrice)*$cart['qty']),$request->json()->get('currency_id'));
+						$salesDetail->amount=\App\Helpers\commonHelper::getPriceAmountByCountryId(($offerPrice*$cart['qty']),$request->json()->get('currency_id'));
+						$salesDetail->order_status='1';
+						$salesDetail->payment_status='0';
+
+						$salesDetail->save();
+
+					}
+				}
+
+				$transactionId=strtotime("now").rand(11,99);
+
+				$payment=new \App\Models\Transaction();
+
+				$payment->user_id=$request->user()->id ?? null;
+				$payment->order_id=$orderId;
+				$payment->currency_id=$request->json()->get('currency_id');
+				$payment->transaction_id=$transactionId;
+				$payment->amount=\App\Helpers\commonHelper::getPriceAmountByCountryId($netAmount,$request->json()->get('currency_id'));
+				$payment->payment_status='0';
+				$payment->save();
+
+				$registeredCountry = \App\Helpers\commonHelper::getAddressCountryType($addressResult->country_id);
+
+
+				if($registeredCountry == '2'){
+					$currency = "USD";
+				}elseif($registeredCountry == '3'){
+					$currency = "CAD";
+				}else{
+					$currency = "INR";
+				}
+
+				// Enter Your Stripe Secret
+				\Stripe\Stripe::setApiKey(env("STRIPE_SECRET"));
+
+				$amount = \App\Helpers\commonHelper::getPriceAmountByCountryId($netAmount,$request->json()->get('currency_id'));
+				$amount *= 100;
+				$amount = (int) $amount;
+				
+				$stripe = new \Stripe\StripeClient(env("STRIPE_SECRET"));
+				$customer = $stripe->customers->create(
+					[
+					  'name' => $addressResult->name,
+					  'address' => [
+						'line1' => $addressResult->address_line1.' '.$addressResult->address_line2,
+						'postal_code' => $addressResult->pincode,
+						'city' => \App\Helpers\commonHelper::getCityNameById($addressResult->city_id),
+						'state' => \App\Helpers\commonHelper::getStateNameById($addressResult->state_id),
+						'country' => \App\Helpers\commonHelper::getCountryNameById($addressResult->country_id),
+						],
+					]
+				  );
+
+				$payment_intent = \Stripe\PaymentIntent::create([
+					'customer'  => $customer['id'], 
+					'description' => 'Stripe Test Payment',
+					'shipping' => [	
+						'name' => $addressResult->name,
+						'address' => [
+							'line1' => $addressResult->address_line1.' '.$addressResult->address_line2,
+							'postal_code' => $addressResult->pincode,
+							'city' => \App\Helpers\commonHelper::getCityNameById($addressResult->city_id),
+							'state' => \App\Helpers\commonHelper::getStateNameById($addressResult->state_id),
+							'country' => \App\Helpers\commonHelper::getCountryNameById($addressResult->country_id),
+						],
+					],
+					'amount' => $amount,
+					'currency' => $currency,
+					"metadata" => ["order_id" => $orderId],
+					'capture_method' => 'automatic',
+					'confirmation_method' => 'automatic',
+				]);
+				
+				$intent = $payment_intent->client_secret;
+				
+				return response(array("message" => "Checkout successfully.","order_id"=>$orderId,"intent"=>$intent),200); 
+				
+			// }catch (\Exception $e){
+				
+			// 	return response(array("message" => "Something went wrong.please try again"),403); 
+				
+			// }
+		}
+		
+	}
+
+	public function getAddressById(Request $request){
+
+		$address=\App\Models\Addressbook::where('id',$request->get('id'))->first();
+
+		if(!$address){
+
+			return response(array('message'=>'Invalid Address id'),404);
+
+		}else{
+
+			$result=[
+				'id'=>$address->id,
+				'name'=>$address->name,
+				'mobile'=>$address->mobile,
+				'email'=>$address->email,
+				'phone_code'=>$address->phone_code,
+				'address_line1'=>$address->address_line1,
+				'address_line2'=>$address->address_line2,
+				'country_id'=>(string) $address->country_id,
+				'state_id'=>(string) $address->state_id,
+				'city_id'=>(string) $address->city_id,
+				'pincode'=>$address->pincode,
+				'type'=>$address->type
+			];
+
+			return response(array('message'=>'Address fetched successfully.','result'=>$result),200);
+		}
+
+	}
+
+	public function logout(Request $request){
+
+		$request->user()->token()->revoke();
+
+		return response(array('message'=>'Logout successfully.'),200);
+	}
+
+	public function wishlistProduct(Request $request){
+
+		$rules['product_id']='numeric|required|exists:variantproducts,id';
+
+		$validator = Validator::make($request->json()->all(), $rules);
+		
+		if ($validator->fails()){
+			
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+			
+		}else{
+			
+			try{
+
+				$result=\App\Models\Variantproduct::where('id',$request->json()->get('product_id'))->where('status','1')->first();
+
+				if($result){
+
+					$checkWishlist=\App\Models\Wishlist::where([
+																['product_id',$request->json()->get('product_id')],
+																['user_id',$request->user()->id],
+																])->first();
+
+					if($checkWishlist){
+
+						\App\Models\Wishlist::where('id',$checkWishlist->id)->delete();
+
+						$wishlistResult=\App\Models\Wishlist::select('product_id')->where('user_id',$request->user()->id)->pluck('product_id')->toArray();
+
+						return response(array("message" => "Product successfully removed from wishlist.","wishlistid"=>$wishlistResult),200);
+
+					}else{	
+						
+						$wishlist=new \App\Models\Wishlist();
+						$wishlist->user_id=$request->user()->id;
+						$wishlist->product_id=$request->json()->get('product_id');
+						$wishlist->save();
+
+						$wishlistResult=\App\Models\Wishlist::select('product_id')->where('user_id',$request->user()->id)->pluck('product_id')->toArray();
+
+						return response(array("message" => "Product Wishlisted successfully.","wishlistid"=>$wishlistResult),200); 
+					}
+
+				}else{
+
+					return response(array("message" => "Product Not Found. Please try again"),403); 
+
+				}
+			}catch (\Exception $e){
+				
+				return response(array("message" => "Something went wrong.please try again"),403); 
+				
+			}
+		}
+
+	}
+
+	public function wishlistProductList(Request $request){
+
+		try{
+			
+			$result=\App\Models\Wishlist::Select('wishlists.id as wishlistid','products.name','variantproducts.id','variantproducts.sale_price','variantproducts.discount_type','variantproducts.discount_amount','variantproducts.slug','variantproducts.images')
+								->join('variantproducts','variantproducts.id','=','wishlists.product_id')
+								->join('products','products.id','=','variantproducts.product_id')
+								->where([
+									['products.status','=','1'],
+									['variantproducts.status','=','1'],
+									['wishlists.user_id','=',$request->user()->id]
+								])->get();
+		
+		
+			if($result->count()==0){
+				
+				return response(array("message" => 'Products Not Found.'),404); 
+
+			}else{
+				
+				$products=[];
+				foreach($result as $value){
+					
+					$imagesArray=explode(',',$value->images);
+
+					$products[]=[
+						'wishlistid'=>$value['wishlistid'],
+						'variant_productid'=>$value['id'],
+						'name'=>ucfirst($value['name']),
+						'sale_price'=>$value['sale_price'],
+						'discount_amount'=>$value['discount_amount'],
+						'offer_price'=>\App\Helpers\commonHelper::getOfferProductPrice($value['sale_price'],$value['discount_type'],$value['discount_amount']),
+						'first_image'=>asset('uploads/products/'.$imagesArray[0]),
+						'slug'=>$value['slug']
+					];
+				}
+				
+				return response(array("message" => 'Wishlist Product fetched successfully.','result'=>$products),200); 
+			}
+		
+		}catch (\Exception $e){
+			
+			return response(array("message" => $e->getMessage()),403); 
+		
+		} 
+
+	}
+
+	public function deleteWishlistProduct(Request $request){
+
+		$rules['wishlist_id']='numeric|required|exists:wishlists,id';
+
+		$validator = Validator::make($request->json()->all(), $rules);
+		
+		if ($validator->fails()){
+			
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+			
+		}else{
+
+			\App\Models\Wishlist::where('id',$request->json()->get('wishlist_id'))->delete();
+
+			return response(array('message'=>'Product Successfully Removed From Saved Products.'),200);
+
+		}
+
+	}
+
+
+	public function failedOrder(Request $request){
+
+		$rules['order_id']='required|exists:sales_details,order_id';
+
+		$validator = Validator::make($request->json()->all(), $rules);
+		
+		if ($validator->fails()){
+			
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+			
+		}else{
+			
+			try{
+
+				\App\Models\Sales_detail::where('order_id',$request->json()->get('order_id'))->update(array('order_status'=>'0','payment_status'=>'1'));	
+				\App\Models\Transaction::where('order_id',$request->json()->get('order_id'))->update(array('payment_status'=>'1'));				
+
+				return response(array("message" => "Order Failed successfully."),200); 
+
+				
+			}catch (\Exception $e){
+				
+				return response(array("message" => "Something went wrong.please try again"),403); 
+				
+			}
+		}
+
+	}
+
+
+
+	public function checkCouponCode(Request $request){
+
+		$rules['coupon_code']='required|exists:coupons,coupon_code';
+		$rules['order_amount']='required|numeric';
+
+		$validator = Validator::make($request->json()->all(), $rules);
+		
+		if ($validator->fails()){
+			
+			$message = "";
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+		}else{
+
+			$couponResult=\App\Helpers\commonHelper::checkCouponCode($request->user()->id,$request->json()->get('coupon_code'),$request->json()->get('order_amount'));
+		
+			if($couponResult['status']==200){
+
+				return response(array('message'=>$couponResult['message'],'coupon_id'=>$couponResult['coupon_id'],'discount_type'=>$couponResult['discount_type'],'discount_amount'=>$couponResult['discount_amount']),$couponResult['status']);
+
+			}else{
+
+				return response(array('message'=>$couponResult['message']),$couponResult['status']);
+			}
+		}
+	}
+
+	public function ondemandEnquiry(Request $request){
+		
+		$rules = [
+
+            'product_id' => 'required|numeric|exists:variantproducts,id',
+            'description' => 'required|min:3',
+		];
+
+
+		$validator = Validator::make($request->json()->all(), $rules);
+		 
+		if ($validator->fails()) {
+			$message = [];
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+		}else{
+
+			try{
+					
+				$data=new \App\Models\ProductQuery();
+				$data->user_id=$request->user()->id;				
+				$data->sales_admin_id=\App\Helpers\commonHelper::getSalesAdministrationId($request->user()->used_reference_code);
+				$data->product_id=$request->json()->get('product_id');
+				$data->message=$request->json()->get('description');
+				$data->save();
+
+				
+				$notification = new \App\Models\Notification();
+				$notification->user_id = \App\Helpers\commonHelper::getSalesAdministrationId($request->user()->used_reference_code);
+				$notification->title = 'Product Enquiry by user '.$request->user()->name;
+				$notification->message = $request->json()->get('description');
+				$notification->save();
+				
+				return response(array('message'=>'Thank you, your enquiry has been submitted successfully'),200);
+				
+			}catch (\Exception $e){
+				
+				return response(array("error" 
+						=> true, "message" => $e->getMessage()),403); 
+			
+			}
+		}
+    }
+
+	public function productCustomizations(Request $request){
+		
+		$rules = [
+
+            'product_id' => 'required|numeric|exists:variantproducts,id',
+            'description' => 'required|min:3',
+		];
+
+
+		$validator = Validator::make($request->json()->all(), $rules);
+		 
+		if ($validator->fails()) {
+			$message = [];
+			$messages_l = json_decode(json_encode($validator->messages()), true);
+			foreach ($messages_l as $msg) {
+				$message= $msg[0];
+				break;
+			}
+			
+			return response(array('message'=>$message),403);
+			
+		}else{
+
+			try{
+					
+				$data=new \App\Models\ProductCustomization();
+				$data->user_id=$request->user()->id;
+				$data->sales_admin_id=\App\Helpers\commonHelper::getSalesAdministrationId($request->user()->used_reference_code);
+				$data->product_id=$request->json()->get('product_id');
+				$data->message=$request->json()->get('description');
+				$data->save();
+
+				$notification = new \App\Models\Notification();
+				$notification->user_id = \App\Helpers\commonHelper::getSalesAdministrationId($request->user()->used_reference_code);
+				$notification->title = 'Product Enquiry by user '.$request->user()->name;
+				$notification->message = $request->json()->get('description');
+				$notification->save();
+				
+				return response(array('message'=>'Thank you, your enquiry has been submitted successfully'),200);
+				
+			}catch (\Exception $e){
+				
+				return response(array("error" 
+						=> true, "message" => $e->getMessage()),403); 
+			
+			}
+		}
+    }
+
+}

@@ -1,0 +1,40 @@
+#my-carousel .item img {
+  width: 100%;
+}
+.owl-next,
+.owl-prev {
+  width: 22px;
+  height: 40px;
+  margin-top: -20px;
+  position: absolute;
+  top: 50%;
+}
+.owl-prev {
+  left: 10px;
+}
+.owl-next {
+  right: 10px;
+}
+.navigation-img-wrapper {
+  margin-top: 4px;
+  text-align: center;
+}
+.navigation-img-wrapper .navigator {
+  display: inline-block;
+  width: 150px;
+  height: 100px;
+  text-align: center;
+  background-color: pink;
+  line-height: 100px;
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.navigation-img-wrapper .navigator img{
+  width: 100%;
+}
+.navigation-img-wrapper .navigator.active {
+  color: white;
+  background: red;
+}
