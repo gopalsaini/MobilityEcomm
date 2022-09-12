@@ -989,11 +989,8 @@ class PreLoginController extends Controller
  
 		try{
 
-			$country = $_GET['country_id'];
-
 			$sliderResult=\App\Models\Slider::where([
 													['status','=','1'],
-													['country','=',$country],
 													['recyclebin_status','=','0'],
 													])->orderBy('sort_order','ASC')->get();
 			
@@ -1319,8 +1316,6 @@ class PreLoginController extends Controller
 		
 		try{
 
-			$country = $_GET['country_id'];
-
 			$query=\App\Models\Product::select('variantproducts.*','products.name','products.category_id')->where([
 													['products.top_selling','=','1'],
 													['products.status','=','1'],
@@ -1329,14 +1324,7 @@ class PreLoginController extends Controller
 													['variantproducts.recyclebin_status','=','0']
 												])->join('variantproducts','variantproducts.product_id','=','products.id');
 		
-			if($country == '3'){
-				$query->where('variantproducts.canada_stock','!=','NA');
-			}else if($country == '2'){
-				$query->where('variantproducts.usa_stock','!=','NA');
-			}else{
-				$query->where('variantproducts.india_stock','!=','NA');
-			}
-
+			
 			$result = $query->groupBy('variantproducts.product_id')->inRandomOrder()->limit(3)->get();
 
 			if($result->count()==0){
@@ -2305,8 +2293,6 @@ class PreLoginController extends Controller
 		
 		try{
 
-			$country = $_GET['country_id'];
-
 			$query=\App\Models\Product::select('variantproducts.*','products.name','products.category_id')->where([
 													['products.status','=','1'],
 													['products.recyclebin_status','=','0'],
@@ -2314,14 +2300,7 @@ class PreLoginController extends Controller
 													['variantproducts.recyclebin_status','=','0']
 												])->join('variantproducts','variantproducts.product_id','=','products.id');
 		
-			if($country == '3'){
-				$query->where('variantproducts.canada_stock','!=','NA');
-			}else if($country == '2'){
-				$query->where('variantproducts.usa_stock','!=','NA');
-			}else{
-				$query->where('variantproducts.india_stock','!=','NA');
-			}
-
+			
 			$collection = '4';
 			$query->where(function($query1) use($collection){
 

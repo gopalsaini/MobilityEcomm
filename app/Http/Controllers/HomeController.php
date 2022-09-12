@@ -34,56 +34,10 @@ class HomeController extends Controller
 	 
     public function index(Request $request){
         
-        if(Session::has('country_id') || Session::has('country_type')){
+        Session::put('country_id','1');
+        Session::put('country_type','1');
 
-            if($request->ajax()){
-                
-                if($request->post('currency')){
-
-                    
-                    if($request->post('currency') != '1'){
-                        
-                        Session::put('country_type', $request->post('currency'));
-                    }
-                    Session::put('country_id', $request->post('currency'));
-
-                }elseif($request->post('country_type')){
-
-                    Session::put('country_id', $request->post('country_type'));
-                    Session::put('country_type', $request->post('country_type'));
-                }
-                return response(array('reset'=>true));
-            }
-
-        }else{
-
-            if($request->ajax()){
-                
-                if($request->post('currency')){
-
-                    
-                    if($request->post('currency') != '1'){
-                        
-                        Session::put('country_type', $request->post('currency'));
-                    }
-                    Session::put('country_id', $request->post('currency'));
-
-                }elseif($request->post('country_type')){
-
-                    Session::put('country_id', $request->post('country_type'));
-                    Session::put('country_type', $request->post('country_type'));
-                }
-                return response(array('reset'=>true));
-            }
-            return view('landing_page');
-
-            Session::put('country_id','2');
-            Session::put('country_type','2');
-
-        }
-
-
-		$slider=\App\Helpers\commonHelper::callAPI('GET','/slider-list?country_id='.Session::get('country_type'));
+		$slider=\App\Helpers\commonHelper::callAPI('GET','/slider-list');
         
 		$testimonial=\App\Helpers\commonHelper::callAPI('GET','/testimonial-list');
         
@@ -91,18 +45,16 @@ class HomeController extends Controller
 		
 		$topCategory=\App\Helpers\commonHelper::callAPI('GET','/toprated-category');
 		
-		$topSelling=\App\Helpers\commonHelper::callAPI('GET','/topselling-product?country_id='.Session::get('country_type'));
+		$topSelling=\App\Helpers\commonHelper::callAPI('GET','/topselling-product');
 		
-        $newProduct=\App\Helpers\commonHelper::callAPI('GET','/new-product?country_id='.Session::get('country_type'));
-
+        $newProduct=\App\Helpers\commonHelper::callAPI('GET','/new-product');
+        
         $wishlist=[];
 
         if(Session::has('wishlist_user')){
 
             $wishlist=Session::get('wishlist_user');
         }
-
-        
 
         $seoResult=\App\Models\Seo::where('id','1')->first();
 

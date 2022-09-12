@@ -8,475 +8,559 @@
 
 @section('content')
 	
-	@if($slider->status==200)
-		@php
-			$sliderResult=(json_decode(($slider->content),true));
-			
-		@endphp
 
-		<div class="va-banner-wrapper">
-       
-			<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
-				@foreach($sliderResult['result'] as $key=>$slider)
-					<div data-src="{{ $slider['image'] }}">
-						
-						<div class="camera_caption fadeFromBottom">
-							<p> <a style="color:#fff" target="_blank" href="{{ $slider['href'] }}">{{ $slider['title'] }}</a></p>
-						</div>
-						
-					</div>
-					
-				@endforeach
+<main class="main__content_wrapper">
+        <!-- Start slider section -->
+		@if($slider->status==200)
+			@php
+				$sliderResult=(json_decode(($slider->content),true));
 				
-			</div>
-		</div>
-
-	@endif
-	
-	<div class="va-freedom-main-wrapper">
-		<div class="freedom-text">
-		<h3>Empowering women and bringing dignified work to men</h3>
-		<div class="title-heading">
-			<h2>FREEDOM BUSINESS</h2>
-			<a class="line-btn" href="{{url('product-listing?collection=1')}}">
-				See Whole Collection 
-				<span>
-					<svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M13.8065 13.5436L20.0565 7.2936C20.1729 7.1765 20.2383 7.01809 20.2383 6.85298C20.2383 6.68786 20.1729 6.52946 20.0565 6.41235L13.8065 0.162353L12.9253 1.0436L18.1065 6.22485L0.237785 6.22485L0.237785 7.47485L18.1065 7.47485L12.9253 12.6561L13.8065 13.5436Z" fill=""/>
-					</svg>
-				</span>
-			</a>
-		</div>
-		</div>
-		<div class="circle-img">
-		<img src="{{ asset('assets/images/circle.png')}}" alt="img">
-		</div>
-	</div>
-	<div class="va-mordern-main-wraaper">
-		<div class="va-img-sec-wrapper">
-		<h3>Modern Meets</h3>
-		<span>Tradition</span>
-		<a class="line-btn" href="{{url('product-listing?collection=2')}}">
-			See Whole Collection 
-			<span>
-				<svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M13.8065 13.5436L20.0565 7.2936C20.1729 7.1765 20.2383 7.01809 20.2383 6.85298C20.2383 6.68786 20.1729 6.52946 20.0565 6.41235L13.8065 0.162353L12.9253 1.0436L18.1065 6.22485L0.237785 6.22485L0.237785 7.47485L18.1065 7.47485L12.9253 12.6561L13.8065 13.5436Z" fill=""/>
-				</svg>
-			</span>
-		</a>
-		<div class="modern-img">
-			<img src="{{ asset('assets/images/modern-slider1.webp')}}" alt="img">
-		</div>
-		</div>
-		<div class="va-modern-slider-wrapper">
-		<div class="modern-slider">
-			<div class="owl-carousel owl-theme">
-				<div class="item">
-					<div class="va-item">
-					<img src="{{ asset('assets/images/modern-slider2.webp')}}" alt="img">
-					<div class="modern-caption">
-						<h3>Uzma</h3>
-						<span>Rising to new levels</span>
+			@endphp
+			<section class="hero__slider--section">
+				<div class="hero__slider--inner hero__slider--activation swiper">
+					<div class="hero__slider--wrapper swiper-wrapper">
+						@foreach($sliderResult['result'] as $key=>$slider)
+							<div class="swiper-slide ">
+								<div class="hero__slider--items hero__slider--bg slider1" style="background:url('{{ $slider['image'] }}')">
+									<div class="container-fluid">
+										<div class="hero__slider--items__inner">
+											<div class="row row-cols-1">
+												<div class="col">
+													<div class="slider__content">
+														<p class="slider__content--desc desc1 text-white mb-15">Discover our best furniture collection from home</p>
+														<h2 class="slider__content--maintitle text-white h1">{{ $slider['title'] }}</h2>
+														<a class="slider__content--btn primary__btn" href="{{ $slider['href'] }}">Start to Buying</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						@endforeach
 					</div>
-					<div class="bottom-img">
-						<p>Meet the artisans</p>
-					</div>
-					</div>
+					<div class="swiper__nav--btn swiper-button-next"></div>
+					<div class="swiper__nav--btn swiper-button-prev"></div>
 				</div>
-				<div class="item">
-					<div class="va-item">
-					<img src="{{ asset('assets/images/modern-slider3.webp')}}" alt="img">
-					<div class="modern-caption">
-						<h3>Uzma</h3>
-						<span>Rising to new levels</span>
-					</div>
-					<div class="bottom-img">
-						<p>Meet the artisans</p>
-					</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="va-item">
-					<img src="{{ asset('assets/images/modern-slider4.webp')}}" alt="img">
-					<div class="modern-caption">
-						<h3>Uzma</h3>
-						<span>Rising to new levels</span>
-					</div>
-					<div class="bottom-img">
-						<p>Meet the artisans</p>
-					</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="va-item">
-					<img src="{{ asset('assets/images/modern-slider3.webp')}}" alt="img">
-					<div class="modern-caption">
-						<h3>Uzma</h3>
-						<span>Rising to new levels</span>
-					</div>
-					<div class="bottom-img">
-						<p>Meet the artisans</p>
-					</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
+			</section>
+		@endif
+        
+		<section class="banner__section section--padding pt-20">
+            <div class="container-fluid">
+                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1 mb--n28">
+                    <div class="col mb-28">
+                        <div class="banner__items">
+                            <a class="banner__items--thumbnail position__relative" href="shop.html"><img class="banner__items--thumbnail__img" src="assets/img/banner/banner6.webp" alt="banner-img">
+                                <div class="banner__items--content__style2 right">
+                                    <h2 class="banner__items--content__style2--title">Single Stylish <br>
+                                        Mini Chair </h2>
+                                    <span class="banner__items--content__link primary__btn style2">Order Now</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col mb-28">
+                        <div class="banner__items">
+                            <a class="banner__items--thumbnail position__relative" href="shop.html"><img class="banner__items--thumbnail__img" src="assets/img/banner/banner7.webp" alt="banner-img">
+                                <div class="banner__items--content__style2 right">
+                                    <h2 class="banner__items--content__style2--title">New Furniture <br>
+                                        Tree Planet </h2>
+                                    <span class="banner__items--content__link primary__btn style2">Order Now</span>  
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col mb-28">
+                        <div class="banner__items">
+                            <a class="banner__items--thumbnail position__relative" href="shop.html"><img class="banner__items--thumbnail__img" src="assets/img/banner/banner8.webp" alt="banner-img">
+                                <div class="banner__items--content__style2">
+                                    <h2 class="banner__items--content__style2--title">Single Stylish <br>
+                                        Mini Chair </h2>
+                                    <span class="banner__items--content__link primary__btn style2">Order Now</span>   
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 		
-	</div>
-   
-   <div class="va-blog-main-wrapper">
-	  <div class="va-blog-main-box">
-		 <div class="va-blog-text">
-			<h3>Elegant and Stylish Look</h3>
-			<span>Handcrafted Housewares</span>
-			<p>From city centres into distant rural villages come our unique, handcrafted housewares. Each purchase supports the artisans and their families whose hands made built this collection.</p>
-			<a class="va_btn" href="{{url('product-listing?collection=3')}}">Shop Now</a>
-		 </div>
-		 <div class="va-blog-img">
-			<img src="{{ asset('assets/images/blog1.png')}}" alt="img">
-		 </div>
-	  </div>
-	  <div class="va-blog-main-box">
-		 <div class="va-blog-img">
-			<img src="{{ asset('assets/images/blog2.png')}}" alt="img">
-		 </div>
-		 <div class="va-blog-text">
-			<h3>Elegant and Stylish Look</h3>
-			<span>Handcrafted Housewares</span>
-			<p>From city centres into distant rural villages come our unique, handcrafted housewares. Each purchase supports the artisans and their families whose hands made built this collection.</p>
-			<a class="va_btn" href="{{url('product-listing?collection=3')}}">Shop Now</a>
-		 </div>
-	  </div>
-   </div>
-   @if($newProduct->status==200)
-		@php
-			$newProduct=(json_decode(($newProduct->content),true));
-		@endphp
-		<div class="va-product-main-wrapper">
-			<h3>New Products</h3>
-			<span>Quality that can be felt</span>
-			<a class="line-btn" href="{{url('product-listing?collection=4')}}">
-				See Whole Collection 
-				<span>
-					<svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M13.8065 13.5436L20.0565 7.2936C20.1729 7.1765 20.2383 7.01809 20.2383 6.85298C20.2383 6.68786 20.1729 6.52946 20.0565 6.41235L13.8065 0.162353L12.9253 1.0436L18.1065 6.22485L0.237785 6.22485L0.237785 7.47485L18.1065 7.47485L12.9253 12.6561L13.8065 13.5436Z" fill=""/>
-					</svg>
-				</span>
-			</a>
-
-			<div class="va-product-main-box ">
-				
-				<input type="hidden" id="number" class="qty" value="1" />
-				@foreach($newProduct['result'] as $topselling)
-					<div class="product-box">
+		@if($newProduct->status==200)
+			@php
+				$newProduct=(json_decode(($newProduct->content),true));
+			@endphp
+			<section class="product__section section--padding pt-0">
+				<div class="container-fluid">
+					<div class="section__heading text-center mb-30">
+						<h2 class="section__heading--maintitle">Most Popular Items</h2>
+					</div>
 					
-						<div class="product-img">
-							<img src="{{ $topselling['first_image'] }}" alt="img">
-							<div class="social-icon">
-								<a href="javascript:;" class="getProductDetail" data-slug="{{ $topselling['slug']}}">
-									<span class="IconCart">
-										<svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M11.9036 21.0002C13.9745 20.9997 15.9856 20.3065 17.6168 19.0308L22.7455 24.1595L24.3951 22.5098L19.2665 17.3812C20.5428 15.7498 21.2365 13.7382 21.237 11.6668C21.237 6.52066 17.0498 2.3335 11.9036 2.3335C6.75748 2.3335 2.57031 6.52066 2.57031 11.6668C2.57031 16.813 6.75748 21.0002 11.9036 21.0002ZM11.9036 4.66683C15.7641 4.66683 18.9036 7.80633 18.9036 11.6668C18.9036 15.5273 15.7641 18.6668 11.9036 18.6668C8.04315 18.6668 4.90365 15.5273 4.90365 11.6668C4.90365 7.80633 8.04315 4.66683 11.9036 4.66683Z" fill="#A56852"/>
-										<path d="M13.5498 10.0171C13.992 10.4604 14.2358 11.0461 14.2358 11.6668H16.5691C16.5702 11.0536 16.4497 10.4463 16.2146 9.88C15.9795 9.31369 15.6345 8.7996 15.1995 8.36743C13.4331 6.60343 10.3706 6.60343 8.60547 8.36743L10.2528 10.0194C11.1395 9.1351 12.6678 9.13743 13.5498 10.0171Z" fill="#A56852"/>
-										</svg>
-									</span>&nbsp;<pre class="spinner-border spinner-border-sm loaderView" style="color:#a56852;font-size: 100%;position:relative;margin:0;display:none"></pre>
-								</a>
-								<a href="javascript:;" class="addtocart" data-type="addtocart" data-product_id="{{ $topselling['variant_productid'] }}">
-									<span class="IconCart">
-										<svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M25.8531 5.03765C25.5921 4.70052 25.2565 4.42854 24.8726 4.24309C24.4886 4.05764 24.0669 3.96378 23.6406 3.9689H7.81563L6.44688 1.48452C6.22602 1.09614 5.90524 0.773955 5.51783 0.551402C5.13042 0.328848 4.69051 0.214041 4.24375 0.218898H1.04688C0.798235 0.218898 0.559778 0.31767 0.383962 0.493486C0.208147 0.669301 0.109375 0.907757 0.109375 1.1564C0.109375 1.40504 0.208147 1.64349 0.383962 1.81931C0.559778 1.99513 0.798235 2.0939 1.04688 2.0939H4.24375C4.3547 2.08915 4.46497 2.11347 4.56363 2.16444C4.66229 2.21542 4.74593 2.29128 4.80625 2.38452L6.35313 5.19702L7.15938 13.9345C7.26744 14.8392 7.7145 15.6692 8.41042 16.2573C9.10634 16.8454 9.99935 17.1477 10.9094 17.1033H20.6313C21.4352 17.1236 22.2235 16.8797 22.8755 16.4089C23.5275 15.9381 24.007 15.2665 24.2406 14.497L26.275 7.16577C26.3752 6.8027 26.3893 6.42123 26.3161 6.05176C26.2428 5.68229 26.0843 5.33503 25.8531 5.03765ZM24.4844 6.65015L22.45 13.9908C22.3233 14.3665 22.0767 14.6902 21.7481 14.912C21.4195 15.1339 21.0271 15.2417 20.6313 15.2189H10.8719C10.4336 15.251 9.99909 15.1191 9.65261 14.8489C9.30612 14.5786 9.07242 14.1893 8.99687 13.7564L8.29375 5.8439H23.6406C23.7776 5.84252 23.9132 5.87119 24.038 5.92788C24.1627 5.98457 24.2735 6.06791 24.3625 6.17202C24.4184 6.23685 24.4586 6.31377 24.4797 6.39674C24.5009 6.47971 24.5025 6.56646 24.4844 6.65015Z" fill="#A56852"/>
-										<path d="M11.3594 21.7814C12.3949 21.7814 13.2344 20.9419 13.2344 19.9064C13.2344 18.8709 12.3949 18.0314 11.3594 18.0314C10.3238 18.0314 9.48438 18.8709 9.48438 19.9064C9.48438 20.9419 10.3238 21.7814 11.3594 21.7814Z" fill="#A56852"/>
-										<path d="M20.7344 21.7814C21.7699 21.7814 22.6094 20.9419 22.6094 19.9064C22.6094 18.8709 21.7699 18.0314 20.7344 18.0314C19.6988 18.0314 18.8594 18.8709 18.8594 19.9064C18.8594 20.9419 19.6988 21.7814 20.7344 21.7814Z" fill="#A56852"/>
-										</svg>
-									</span> &nbsp;
-									<pre class="spinner-border spinner-border-sm loader" style="color:#a56852;font-size: 100%;position:relative;margin:0;display:none"></pre>
-								</a>
-								<a href="{{ url('product-detail/'.$topselling['slug'] )}}">
-									<span>
-										<svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M23.2646 11.8755C23.7781 12.5472 23.7781 13.4539 23.2646 14.1245C21.6471 16.2359 17.7666 20.5833 13.2361 20.5833C8.70564 20.5833 4.82514 16.2359 3.20772 14.1245C2.95789 13.8029 2.82227 13.4072 2.82227 13C2.82227 12.5927 2.95789 12.1971 3.20772 11.8755C4.82514 9.76407 8.70564 5.41666 13.2361 5.41666C17.7666 5.41666 21.6471 9.76407 23.2646 11.8755V11.8755Z" stroke="#A56852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M13.2363 16.25C15.0313 16.25 16.4863 14.7949 16.4863 13C16.4863 11.2051 15.0313 9.75 13.2363 9.75C11.4414 9.75 9.98633 11.2051 9.98633 13C9.98633 14.7949 11.4414 16.25 13.2363 16.25Z" stroke="#A56852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-										</svg>
-									</span>
-								</a>
+					<div class="tab_content">
+						<div id="chair" class="tab_pane active show">
+							<div class="product__section--inner">
+								<div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2 mb--n30">
+									<input type="hidden" id="number" class="qty" value="1" />
+									@foreach($newProduct['result'] as $topselling)
+										<div class="col mb-30">
+											<div class="product__items ">
+												<div class="product__items--thumbnail">
+													<a class="product__items--link" href="{{ url('product-detail/'.$topselling['slug'] )}}">
+														<img class="product__items--img product__primary--img" src="{{ $topselling['first_image'] }}" alt="product-img">
+														<img class="product__items--img product__secondary--img" src="{{ $topselling['first_image'] }}" alt="product-img">
+													</a>
+													<div class="product__badge">
+														<span class="product__badge--items sale">New</span>
+													</div>
+													<ul class="product__items--action d-flex justify-content-center">
+														<li class="product__items--action__list">
+															<a class="product__items--action__btn" class="getProductDetail" data-slug="{{ $topselling['slug']}}" href="javascript:void(0)">
+																<svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg"  width="20.51" height="19.443" viewBox="0 0 512 512"><path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
+																<span class="visually-hidden">Quick View</span>
+															</a>
+														</li>
+														<li class="product__items--action__list">
+															<a class="product__items--action__btn" href="wishlist.html">
+																<svg class="product__items--action__btn--svg"  xmlns="http://www.w3.org/2000/svg" width="17.51" height="15.443" viewBox="0 0 24.526 21.82">
+																	<path  d="M12.263,21.82a1.438,1.438,0,0,1-.948-.356c-.991-.866-1.946-1.681-2.789-2.4l0,0a51.865,51.865,0,0,1-6.089-5.715A9.129,9.129,0,0,1,0,7.371,7.666,7.666,0,0,1,1.946,2.135,6.6,6.6,0,0,1,6.852,0a6.169,6.169,0,0,1,3.854,1.33,7.884,7.884,0,0,1,1.558,1.627A7.885,7.885,0,0,1,13.821,1.33,6.169,6.169,0,0,1,17.675,0,6.6,6.6,0,0,1,22.58,2.135a7.665,7.665,0,0,1,1.945,5.235,9.128,9.128,0,0,1-2.432,5.975,51.86,51.86,0,0,1-6.089,5.715c-.844.719-1.8,1.535-2.794,2.4a1.439,1.439,0,0,1-.948.356ZM6.852,1.437A5.174,5.174,0,0,0,3,3.109,6.236,6.236,0,0,0,1.437,7.371a7.681,7.681,0,0,0,2.1,5.059,51.039,51.039,0,0,0,5.915,5.539l0,0c.846.721,1.8,1.538,2.8,2.411,1-.874,1.965-1.693,2.812-2.415a51.052,51.052,0,0,0,5.914-5.538,7.682,7.682,0,0,0,2.1-5.059,6.236,6.236,0,0,0-1.565-4.262,5.174,5.174,0,0,0-3.85-1.672A4.765,4.765,0,0,0,14.7,2.467a6.971,6.971,0,0,0-1.658,1.918.907.907,0,0,1-1.558,0A6.965,6.965,0,0,0,9.826,2.467a4.765,4.765,0,0,0-2.975-1.03Zm0,0" transform="translate(0 0)" fill="currentColor"></path>
+																</svg>
+																<span class="visually-hidden">Wishlist</span>
+															</a>
+														</li>
+														<li class="product__items--action__list">
+															<a class="product__items--action__btn" href="compare.html">
+																<svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="16.47" height="13.088" viewBox="0 0 15.47 11.088">
+																	<g  transform="translate(0 -72.508)">
+																	<path  data-name="Path 114" d="M15.359,80.9l-2.011-2.011a.525.525,0,0,0-.374-.155H11.291a.287.287,0,0,0-.2.49l1.106,1.106H10.576L8.3,78.052l2.273-2.274h1.618l-1.106,1.106a.287.287,0,0,0,.2.49h1.683a.531.531,0,0,0,.374-.155l2.011-2.011a.38.38,0,0,0,0-.535l-.859-.859a.227.227,0,1,0-.32.321l.806.806L13.027,76.9a.075.075,0,0,1-.053.022H11.692l1.054-1.054a.317.317,0,0,0-.224-.542h-2.04a.227.227,0,0,0-.16.066l-2.34,2.34-.544-.544,2.519-2.519a.382.382,0,0,1,.272-.112h2.293a.317.317,0,0,0,.225-.542l-1.054-1.054h1.282a.076.076,0,0,1,.053.022l.4.4a.227.227,0,1,0,.32-.321l-.4-.4a.531.531,0,0,0-.374-.155H11.291a.287.287,0,0,0-.2.49L12.194,74.1H10.229a.832.832,0,0,0-.592.245L7.118,76.867,4.6,74.349a.832.832,0,0,0-.592-.245H.378A.378.378,0,0,0,0,74.481v.92a.378.378,0,0,0,.378.378H3.66l2.273,2.274L3.66,80.326H.378A.378.378,0,0,0,0,80.7v.92A.378.378,0,0,0,.378,82H4.007a.835.835,0,0,0,.592-.245l2.519-2.519.8.8a.227.227,0,1,0,.32-.32L3.914,75.392a.227.227,0,0,0-.16-.066H.453v-.769H4.007a.382.382,0,0,1,.272.113l6.043,6.043a.227.227,0,0,0,.16.066h2.04a.317.317,0,0,0,.224-.542l-1.054-1.054h1.282a.075.075,0,0,1,.053.022l1.958,1.958-1.958,1.958a.075.075,0,0,1-.053.022H11.692l1.054-1.054a.317.317,0,0,0-.224-.542H10.229a.383.383,0,0,1-.272-.113l-.968-.968a.227.227,0,0,0-.32.32l.968.968a.833.833,0,0,0,.592.245h1.965l-1.105,1.105a.287.287,0,0,0,.2.49h1.683a.525.525,0,0,0,.374-.155l2.011-2.011A.379.379,0,0,0,15.359,80.9Zm-11.08.539a.389.389,0,0,1-.272.113H.453v-.769h3.3a.226.226,0,0,0,.16-.066l2.34-2.34.543.544Z" transform="translate(0 0)" fill="currentColor"/>
+																	</g>
+																</svg>
+																<span class="visually-hidden">Compare</span>
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="product__items--content text-center">
+													{{ $topselling['category'] }}
+
+													<h3 class="product__items--content__title h4"><a href="{{ url('product-detail/'.$topselling['slug'] )}}">{{ $topselling['name'] }}</a></h3>
+													<div class="product__items--price">
+														@if($topselling['discount_amount']>0)
+															<span class="current__price">{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['sale_price']) }}</span>
+															<span class="old__price">{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['offer_price']) }}</span>
+														@else
+															<span class="current__price">{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['sale_price']) }}</span>
+														@endif
+													</div>
+													<a class="product__items--action__cart--btn primary__btn addtocart" href="javascript:void(0)" data-type="addtocart" data-product_id="{{ $topselling['variant_productid'] }}">
+														<svg class="product__items--action__cart--btn__icon" xmlns="http://www.w3.org/2000/svg" width="13.897" height="14.565" viewBox="0 0 18.897 21.565">
+															<path  d="M16.84,8.082V6.091a4.725,4.725,0,1,0-9.449,0v4.725a.675.675,0,0,0,1.35,0V9.432h5.4V8.082h-5.4V6.091a3.375,3.375,0,0,1,6.75,0v4.691a.675.675,0,1,0,1.35,0V9.433h3.374V21.581H4.017V9.432H6.041V8.082H2.667V21.641a1.289,1.289,0,0,0,1.289,1.29h16.32a1.289,1.289,0,0,0,1.289-1.29V8.082Z" transform="translate(-2.667 -1.366)" fill="currentColor"></path>
+														</svg>
+														<span class="add__to--cart__text"> Add to cart</span>
+													</a>
+												</div>
+											</div>
+										</div>
+									@endforeach
+								</div>
 							</div>
 						</div>
-						<div class="product-text">
-							<span>{{ $topselling['category'] }}</span>
-							<a href="{{ url('product-detail/'.$topselling['slug'] )}}">{{ $topselling['name'] }}</a>
-							<h5><small>
-								@if($topselling['discount_amount']>0)
-									<del>{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['sale_price']) }}</del>{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['offer_price']) }}
-								@else
-									{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['sale_price']) }}
-								@endif
-							</small> </h5>
-						</div>
 					</div>
-				@endforeach
-				
-			</div>
-		</div>
+				</div>
+			</section>
+			
+		@endif
+        
+        
+        <!-- Start banner section -->
+        <div class="banner__video--section">
+            <div class="container-fluid">
+                <div class="banner__video--thumbnail position__relative">
+                    <img class="banner__video--thumbnail__img display-block" src="assets/img/banner/banner-bg1.webp" alt="banner-bideo-thumbnail">
+                    <div class="bideo__play">
+                        <a class="bideo__play--icon glightbox" href="https://vimeo.com/115041822" data-gallery="video">
+                            <svg id="play" xmlns="http://www.w3.org/2000/svg" width="46.302" height="46.302" viewBox="0 0 46.302 46.302">
+                                <g id="Group_193" data-name="Group 193" transform="translate(0 0)">
+                                <path id="Path_116" data-name="Path 116" d="M39.521,6.781a23.151,23.151,0,0,0-32.74,32.74,23.151,23.151,0,0,0,32.74-32.74ZM23.151,44.457A21.306,21.306,0,1,1,44.457,23.151,21.33,21.33,0,0,1,23.151,44.457Z" fill="currentColor"/>
+                                <g id="Group_188" data-name="Group 188" transform="translate(15.588 11.19)">
+                                    <g id="Group_187" data-name="Group 187">
+                                    <path id="Path_117" data-name="Path 117" d="M190.3,133.213l-13.256-8.964a3,3,0,0,0-4.674,2.482v17.929a2.994,2.994,0,0,0,4.674,2.481l13.256-8.964a3,3,0,0,0,0-4.963Zm-1.033,3.435-13.256,8.964a1.151,1.151,0,0,1-1.8-.953V126.73a1.134,1.134,0,0,1,.611-1.017,1.134,1.134,0,0,1,1.185.063l13.256,8.964a1.151,1.151,0,0,1,0,1.907Z" transform="translate(-172.366 -123.734)" fill="currentColor"/>
+                                    </g>
+                                </g>
+                                <g id="Group_190" data-name="Group 190" transform="translate(28.593 5.401)">
+                                    <g id="Group_189" data-name="Group 189">
+                                    <path id="Path_118" data-name="Path 118" d="M328.31,70.492a18.965,18.965,0,0,0-10.886-10.708.922.922,0,1,0-.653,1.725,17.117,17.117,0,0,1,9.825,9.664.922.922,0,1,0,1.714-.682Z" transform="translate(-316.174 -59.724)" fill="currentColor"/>
+                                    </g>
+                                </g>
+                                <g id="Group_192" data-name="Group 192" transform="translate(22.228 4.243)">
+                                    <g id="Group_191" data-name="Group 191">
+                                    <path id="Path_119" data-name="Path 119" d="M249.922,47.187a19.08,19.08,0,0,0-3.2-.27.922.922,0,0,0,0,1.845,17.245,17.245,0,0,1,2.889.243.922.922,0,1,0,.31-1.818Z" transform="translate(-245.801 -46.917)" fill="currentColor"/>
+                                    </g>
+                                </g>
+                                </g>
+                            </svg>
+                            <span class="visually-hidden">Play</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End banner section -->
 
-	@endif
-   <div class="va-our-story-main-wrapper">
-	  <h3>The Heart Of Va</h3>
-	  <span>Our Story</span>
-	  <div class="left-img">
-		 <img src="{{ asset('assets/images/circle.png')}}" alt="img">
-	  </div>
-	  <div class="right-img">
-		 <img src="{{ asset('assets/images/circle.png')}}" alt="img">
-	  </div>
-   </div>
-   <div class="vedio-main-wrapper">
-	  <div class="vedio-img">
-		 <img src="http://img.youtube.com/vi/_YvE9D6eozM/maxresdefault.jpg" alt="img">
-		 <div class="play-btn">
-			<div class="wrapper">
-			   <span class="waves"></span>
-			   <span class="wave-1"></span>
-			   <span class="wave-2"></span>
-			   <span class="wave-3"></span>
-			</div>
-			<a class="test-popup-link popup-youtube" href="https://www.youtube.com/watch?v=_YvE9D6eozM"><i class="fas fa-play"></i></a>
-		 </div>
-	  </div>
-	  <p class="vedio-text">
-		 Trade handmade ethically sourced quality goods
-	  </p>
-	  <p class="vedio-text-right">
-		 fair trade handmade ethically sourced qual
-	  </p>
-   </div>
-   <div class="va-post-banner-main-wrapper">
-	  <div class="post-text">
-		 <div class="post-icon">
-			<span>
-			   <svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-				  <path d="M4.57096 35.5832V12.6665H37.9043V19.5207C39.4043 19.979 40.821 20.6457 42.071 21.5415V12.6665C42.071 10.354 40.2168 8.49984 37.9043 8.49984H29.571V4.33317C29.571 2.02067 27.7168 0.166504 25.4043 0.166504H17.071C14.7585 0.166504 12.9043 2.02067 12.9043 4.33317V8.49984H4.57096C2.25846 8.49984 0.42513 10.354 0.42513 12.6665L0.404297 35.5832C0.404297 37.8957 2.25846 39.7498 4.57096 39.7498H20.571C19.946 38.4582 19.5293 37.0623 19.321 35.5832H4.57096ZM17.071 4.33317H25.4043V8.49984H17.071V4.33317Z" fill="#296769"/>
-				  <path d="M33.735 23.0835C27.985 23.0835 23.3184 27.7502 23.3184 33.5002C23.3184 39.2502 27.985 43.9168 33.735 43.9168C39.485 43.9168 44.1517 39.2502 44.1517 33.5002C44.1517 27.7502 39.485 23.0835 33.735 23.0835ZM37.1725 38.396L32.6934 33.9168V27.2502H34.7767V33.0627L38.6309 36.9168L37.1725 38.396Z" fill="#296769"/>
-			   </svg>
-			</span>
-			<h4>Collaberation Touches <br> The Heart of What We Do</h4>
-		 </div>
-		 <p>Through wholesale partnerships we're able to keep our commitment to provide streams of consistent work and opportunity to our artisans and their communities.</p>
-		 <a class="va_btn" href="javascript:;">See all Stories</a>
-	  </div>
-	  <div class="post-img">
-		 <img src="{{ asset('assets/images/post.png')}}" alt="post">
-	  </div>
-   </div>
-   <div class="va-service-main-wrapper">
-	  <div class="va-service-box-wrapper">
-		 <div class="service-box">
-			<span> <img src="{{ asset('assets/images/service1.png')}}" alt="img"> </span>
-			<a href="{{url('wholesale/small-business-owners')}}">Small Business <br> Owners</a>
-		 </div>
-		 <div class="service-box">
-			<span> <img src="{{ asset('assets/images/service2.png')}}" alt="img"> </span>
-			<a href="{{url('wholesale/custom-merchandise')}}">Custom <br> Merchandise</a>
-		 </div>
-		 <div class="service-box">
-			<span> <img src="{{ asset('assets/images/service3.png')}}" alt="img"> </span>
-			<a href="{{url('wholesale/large-distributors')}}">Whole <br> Sale</a>
-		 </div>
-		 <div class="service-box">
-			<span> <img src="{{ asset('assets/images/service4.png')}}" alt="img"> </span>
-			<a href="{{url('wholesale/faire')}}">Faire</a>
-		 </div>
-		 <div class="service-box">
-			<span> <img src="{{ asset('assets/images/service5.png')}}" alt="img"> </span>
-			<a href="{{url('wholesale/interior-design-studio')}}">Interior Design <br> Studio</a>
-		 </div>
-	  </div>
-   </div>
-   @if($testimonial->status==200)
+        <!-- Start shipping section -->
+        <section class="shipping__section shipping_mt position__relative section--padding pt-0">
+            <div class="container">
+                <div class="shipping__section--inner border-radius-10 d-flex justify-content-center">
+                    <div class="shipping__items text-center">
+                        <div class="shipping__items--icon">
+                            <svg id="Group_118" data-name="Group 118" xmlns="http://www.w3.org/2000/svg" width="38.02" height="41.512" viewBox="0 0 38.02 41.512">
+                                <path id="Path_81" data-name="Path 81" d="M51.769,17.16h-.1V14.642a14.642,14.642,0,1,0-29.284,0V17.16h-.616a4.184,4.184,0,0,0-4.007,4.316V27.9a4.059,4.059,0,0,0,3.954,4.16h3.855a.976.976,0,0,0,.929-1.021c0-.019,0-.039,0-.058V18.393c0-.616-.36-1.233-.925-1.233h-1.13V14.642a12.587,12.587,0,0,1,25.174,0V17.16h-1.13c-.565,0-.925.616-.925,1.233V30.98a.976.976,0,0,0,.867,1.074l.058,0h1.182l-.1.154a8.117,8.117,0,0,1-6.525,3.237,5.086,5.086,0,0,0-10.07.976A5.138,5.138,0,0,0,38.1,41.512a5.292,5.292,0,0,0,3.7-1.593,4.521,4.521,0,0,0,1.233-2.466A10.172,10.172,0,0,0,51.2,33.394l.976-1.439a3.5,3.5,0,0,0,3.6-3.545V21.989C55.776,19.78,54.132,17.16,51.769,17.16ZM24.437,30H21.765a2,2,0,0,1-1.954-2.052c0-.018,0-.036,0-.055V21.475a2.13,2.13,0,0,1,1.952-2.261h2.672Zm15.875,8.477a3.031,3.031,0,0,1-2.209.976,3.134,3.134,0,0,1-3.083-3.031,3.031,3.031,0,0,1,6.062,0v0A2.723,2.723,0,0,1,40.312,38.481Zm13.409-10.07C53.721,29.8,52.385,30,51.769,30H49.611V19.215h2.158c1.13,0,1.952,1.593,1.952,2.774Z" transform="translate(-17.756)" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="shipping__items--content">
+                            <h3 class="shipping__items--content__title">24/7 Support</h3>
+                        </div>
+                    </div>
+                    <div class="shipping__items text-center">
+                        <div class="shipping__items--icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35.402" height="41.512" viewBox="0 0 35.402 41.512">
+                                <g id="secure-shield" transform="translate(-37.681 0)">
+                                  <g id="Group_117" data-name="Group 117" transform="translate(37.681 0)">
+                                    <g id="Group_116" data-name="Group 116" transform="translate(0 0)">
+                                      <path id="Path_75" data-name="Path 75" d="M72.44,7.168A69.052,69.052,0,0,1,55.826.121a.873.873,0,0,0-.888,0A67.162,67.162,0,0,1,38.323,7.168a.873.873,0,0,0-.642.842v8.922a25.668,25.668,0,0,0,7.795,18.754c3.828,3.751,8.287,5.825,9.906,5.825s6.078-2.074,9.906-5.825a25.668,25.668,0,0,0,7.794-18.754V8.01A.873.873,0,0,0,72.44,7.168Zm-1.1,9.764a23.956,23.956,0,0,1-7.27,17.506c-3.765,3.689-7.789,5.326-8.684,5.326s-4.92-1.638-8.684-5.326a23.956,23.956,0,0,1-7.27-17.506V8.673A68.771,68.771,0,0,0,55.382,1.885,70.947,70.947,0,0,0,71.336,8.673Z" transform="translate(-37.681 0)" fill="currentColor"/>
+                                      <path id="Path_76" data-name="Path 76" d="M86.83,99.5A.873.873,0,0,0,85.7,99c-1.56.615-3.161,1.18-4.759,1.682a.873.873,0,0,0-.612.833v3.372a.873.873,0,1,0,1.746,0v-2.734c1.433-.464,2.865-.977,4.265-1.528A.873.873,0,0,0,86.83,99.5Z" transform="translate(-76.869 -90.921)" fill="currentColor"/>
+                                      <path id="Path_77" data-name="Path 77" d="M171.078,87.957a.874.874,0,0,0,.35-.073l.016-.007a.873.873,0,1,0-.705-1.6l-.014.006a.873.873,0,0,0,.353,1.672Z" transform="translate(-159.458 -79.216)" fill="currentColor"/>
+                                      <path id="Path_78" data-name="Path 78" d="M309.9,345.67a.873.873,0,0,0-1.209.253,21.256,21.256,0,0,1-2.509,3.134,22.316,22.316,0,0,1-2.5,2.228.873.873,0,1,0,1.059,1.389,24.077,24.077,0,0,0,2.7-2.4,22.985,22.985,0,0,0,2.716-3.393A.873.873,0,0,0,309.9,345.67Z" transform="translate(-281.793 -317.514)" fill="currentColor"/>
+                                      <path id="Path_79" data-name="Path 79" d="M277.049,432.086l-.05.029a.873.873,0,1,0,.875,1.511l.058-.034a.873.873,0,1,0-.883-1.507Z" transform="translate(-257.195 -396.943)" fill="currentColor"/>
+                                      <path id="Path_80" data-name="Path 80" d="M127.667,161.038a2.84,2.84,0,0,0-4.016,4.016l5.156,5.156a2.84,2.84,0,0,0,4.016,0l10.764-10.764a2.84,2.84,0,0,0-4.016-4.016l-8.756,8.756Zm13.139-4.373a1.093,1.093,0,1,1,1.546,1.546l-10.764,10.764a1.094,1.094,0,0,1-1.546,0l-5.156-5.156a1.093,1.093,0,0,1,1.546-1.546l3.766,3.766a.873.873,0,0,0,1.235,0Z" transform="translate(-115.918 -142.064)" fill="currentColor"/>
+                                    </g>
+                                  </g>
+                                </g>
+                              </svg>
+
+                        </div>
+                        <div class="shipping__items--content">
+                            <h3 class="shipping__items--content__title">Secure Shopping</h3>
+                        </div>
+                    </div>
+                    <div class="shipping__items text-center">
+                        <div class="shipping__items--icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="54.164" height="41.512" viewBox="0 0 54.164 41.512">
+                                <g id="fast-delivery" transform="translate(0 -59.798)">
+                                  <g id="Group_120" data-name="Group 120" transform="translate(10.138 69.954)">
+                                    <g id="Group_119" data-name="Group 119" transform="translate(0 0)">
+                                      <path id="Path_103" data-name="Path 103" d="M99.3,162.978l-1.846-1.823-.03-4.569a.793.793,0,0,0-.793-.788h-.005a.793.793,0,0,0-.788.8l.032,4.9a.793.793,0,0,0,.236.559l2.079,2.054a.793.793,0,0,0,1.115-1.129Z" transform="translate(-95.834 -155.798)" fill="currentColor"/>
+                                    </g>
+                                  </g>
+                                  <g id="Group_122" data-name="Group 122" transform="translate(20.893 78.609)">
+                                    <g id="Group_121" data-name="Group 121" transform="translate(0 0)">
+                                      <path id="Path_104" data-name="Path 104" d="M211.589,242.262c0-.007,0-.013,0-.02,0-.022-.006-.043-.011-.064l-.006-.022c0-.02-.01-.04-.017-.059l-.008-.023c-.007-.018-.014-.037-.022-.055l-.012-.024q-.013-.025-.027-.05l-.015-.024c-.01-.016-.021-.031-.032-.046l-.017-.023c-.013-.016-.027-.031-.041-.046l-.014-.016a.777.777,0,0,0-.062-.057h0l-4.836-3.943a.793.793,0,0,0-1,1.23l3.109,2.535H198.294a.793.793,0,0,0,0,1.587h10.277l-3.109,2.535a.793.793,0,1,0,1,1.23l4.836-3.943h0a.806.806,0,0,0,.062-.057l.014-.016c.014-.015.028-.03.041-.047l.017-.022c.011-.015.022-.03.032-.046l.015-.024q.014-.024.027-.049l.012-.024c.008-.018.015-.036.022-.054l.008-.023c.006-.019.012-.039.017-.059l.006-.022c0-.021.008-.043.011-.064,0-.007,0-.013,0-.02a.793.793,0,0,0,0-.086A.812.812,0,0,0,211.589,242.262Z" transform="translate(-197.501 -237.611)" fill="currentColor"/>
+                                    </g>
+                                  </g>
+                                  <g id="Group_124" data-name="Group 124" transform="translate(0 59.798)">
+                                    <g id="Group_123" data-name="Group 123" transform="translate(0 0)">
+                                      <path id="Path_105" data-name="Path 105" d="M18.678,67.855a11.127,11.127,0,0,0-1.17-1.007l1.13-1.37a.793.793,0,0,0-1.224-1.01l-1.253,1.519a10.87,10.87,0,0,0-4.405-1.277v-.715h1.6a1.473,1.473,0,0,0,1.471-1.471V61.269A1.473,1.473,0,0,0,13.352,59.8H8.51a1.473,1.473,0,0,0-1.471,1.471v1.254A1.473,1.473,0,0,0,8.51,63.994h1.66v.716a10.874,10.874,0,0,0-4.449,1.3L4.447,64.468a.793.793,0,0,0-1.224,1.01l1.155,1.4a11.128,11.128,0,0,0-1.2,1.053,10.963,10.963,0,0,0,7.788,18.678h.054a10.963,10.963,0,0,0,7.662-18.753ZM8.626,62.407V61.385h4.611v1.023Zm9,19.836a9.315,9.315,0,0,1-6.617,2.778h-.046a9.376,9.376,0,0,1-.044-18.753h.046a9.376,9.376,0,0,1,6.661,15.975Z" transform="translate(0 -59.798)" fill="currentColor"/>
+                                    </g>
+                                  </g>
+                                  <g id="Group_126" data-name="Group 126" transform="translate(2.546 67.228)">
+                                    <g id="Group_125" data-name="Group 125" transform="translate(0 0)">
+                                      <path id="Path_106" data-name="Path 106" d="M32.49,130.033h-.041a8.417,8.417,0,0,0,.039,16.833h.042a8.417,8.417,0,0,0-.04-16.833Zm4.852,13.223a6.785,6.785,0,0,1-4.82,2.024h-.034a6.83,6.83,0,0,1-.032-13.66h.033a6.83,6.83,0,0,1,4.852,11.636Z" transform="translate(-24.073 -130.033)" fill="currentColor"/>
+                                    </g>
+                                  </g>
+                                  <g id="Group_128" data-name="Group 128" transform="translate(11.428 93.479)">
+                                    <g id="Group_127" data-name="Group 127" transform="translate(0 0)">
+                                      <path id="Path_107" data-name="Path 107" d="M111.468,378.335a2.388,2.388,0,0,0-1.95.12,2.733,2.733,0,0,0-1.31,1.479,2.574,2.574,0,0,0,1.382,3.358,2.347,2.347,0,0,0,.834.153,2.458,2.458,0,0,0,1.117-.274,2.733,2.733,0,0,0,1.31-1.479A2.573,2.573,0,0,0,111.468,378.335Zm-.1,2.8a1.15,1.15,0,0,1-.546.627.821.821,0,0,1-.669.051.992.992,0,0,1-.461-1.312,1.15,1.15,0,0,1,.546-.627.881.881,0,0,1,.4-.1.757.757,0,0,1,.27.049A.992.992,0,0,1,111.366,381.131Z" transform="translate(-108.024 -378.181)" fill="currentColor"/>
+                                    </g>
+                                  </g>
+                                  <g id="Group_130" data-name="Group 130" transform="translate(41.995 93.481)">
+                                    <g id="Group_129" data-name="Group 129">
+                                      <path id="Path_108" data-name="Path 108" d="M400.413,378.352a2.656,2.656,0,0,0-1.878,4.957,2.346,2.346,0,0,0,.834.153,2.458,2.458,0,0,0,1.117-.274,2.734,2.734,0,0,0,1.31-1.479A2.573,2.573,0,0,0,400.413,378.352Zm-.1,2.8a1.15,1.15,0,0,1-.545.627.821.821,0,0,1-.669.051.992.992,0,0,1-.461-1.312,1.063,1.063,0,0,1,.943-.727.761.761,0,0,1,.272.05A.991.991,0,0,1,400.311,381.148Z" transform="translate(-396.97 -378.2)" fill="currentColor"/>
+                                    </g>
+                                  </g>
+                                  <g id="Group_132" data-name="Group 132" transform="translate(5.371 71.8)">
+                                    <g id="Group_131" data-name="Group 131" transform="translate(0 0)">
+                                      <path id="Path_109" data-name="Path 109" d="M99.059,183.88h0c-1.162-1.316-2.362-2.688-3.667-4.194a2.1,2.1,0,0,0-1.591-.707l-6.669-.009c.2-1.255.4-2.5.578-3.727a1.708,1.708,0,0,0-1.718-1.979c-5.553,0-8.517,0-13.222-.007l-3,0h0a.793.793,0,0,0,0,1.587l3,0c4.706,0,7.669,0,13.223.007a.163.163,0,0,1,.124.042.16.16,0,0,1,.024.123c-.385,2.619-.843,5.364-1.292,8.036-.654,3.856-1.323,7.81-1.827,11.667l-.006.047H79.4l-1.4,0h-.55l-1.626,0H75.5l-3.811-.007h-.162l-3.937-.009-4.017-.009a4.61,4.61,0,0,0-1.613-1.693L61.894,193l-.108-.062-.094-.051-.095-.048-.123-.058-.076-.035c-.068-.03-.137-.058-.207-.085s-.144-.052-.217-.076l-.12-.036-.094-.027c-.055-.015-.111-.028-.166-.041l-.044-.01c-.067-.015-.134-.027-.2-.039h-.006a4.6,4.6,0,0,0-2.173.158l-.006,0c-.057.018-.114.038-.17.058l-.066.024-.132.052-.056.022-.054.024-.08.035q-.08.036-.158.076l-.037.018-.01.005q-.1.05-.192.1l-.079.046-.105.063-.106.068-.062.042a5.388,5.388,0,0,0-1.473,1.49h-.839l-1.876,0c.147-.906.391-2.412.68-4.2a.793.793,0,1,0-1.566-.254c-.475,2.937-.829,5.117-.829,5.117s0,0,0,.006v.006l-.159,1.079a2.043,2.043,0,0,0,2.021,2.341h1.711a5.236,5.236,0,0,0,.278.97,4.631,4.631,0,0,0,2.672,2.684,4.488,4.488,0,0,0,1.594.292,5.241,5.241,0,0,0,4.791-3.48c.057-.151.107-.3.151-.457l17.262.022,2.147,0h0c.511,0,1.024,0,1.535,0H85.1a5.232,5.232,0,0,0,.271.935,4.631,4.631,0,0,0,2.672,2.684,4.519,4.519,0,0,0,1.6.295,4.789,4.789,0,0,0,2.175-.534,5.446,5.446,0,0,0,2.606-2.949c.052-.139.1-.279.14-.419h.989a2.371,2.371,0,0,0,2.306-1.959c.586-3.814,1.2-7.833,1.684-11.369A2.074,2.074,0,0,0,99.059,183.88ZM54.65,196.324c-.009.032-.017.064-.025.1-.012.047-.025.094-.036.141s-.018.08-.026.12-.016.075-.023.113-.018.1-.026.15c0,.026-.009.052-.012.077-.009.062-.017.123-.024.185,0,.008,0,.015,0,.023H52.816a.457.457,0,0,1-.452-.524l.059-.4,2.121,0h.11Zm7.942,1.582s0,.009,0,.013a4.119,4.119,0,0,1-.214.8,3.477,3.477,0,0,1-4.339,2.267A3.062,3.062,0,0,1,56.28,199.2a3.688,3.688,0,0,1-.251-1.182c0-.01,0-.02,0-.03a3.946,3.946,0,0,1,.022-.6v0c.007-.059.015-.118.025-.177l.006-.036c.008-.048.018-.1.028-.145,0-.018.008-.037.012-.056.01-.043.02-.085.031-.127.006-.021.011-.043.017-.065.012-.042.024-.084.037-.126.006-.02.012-.041.019-.061.02-.062.041-.123.065-.184v0c.03-.079.063-.157.1-.234l.022-.049c.037-.078.075-.156.116-.231l.01-.017a3.527,3.527,0,0,1,3.451-1.893l.078.011.1.018c.064.013.128.027.191.044l.045.013c.076.022.151.046.225.074.049.018.1.038.144.059l.088.042.05.024c.04.02.079.042.118.064l.014.008a3.112,3.112,0,0,1,1.3,1.495A3.761,3.761,0,0,1,62.592,197.906Zm20.119-.645-1.436,0-17.047-.022a5.356,5.356,0,0,0-.087-.917l3.443.008,7.125.015h.576l1.11,0h6.42Q82.762,196.807,82.711,197.26Zm10.443.677s0,.006,0,.01a4.124,4.124,0,0,1-.209.772,3.862,3.862,0,0,1-1.841,2.1,3,3,0,0,1-4.255-1.612,3.684,3.684,0,0,1-.25-1.165c0-.006,0-.011,0-.017a3.931,3.931,0,0,1,.018-.6c0-.01,0-.02,0-.03q.009-.077.021-.154l.01-.06c.007-.042.015-.083.023-.125.005-.025.01-.049.016-.074s.018-.076.028-.114.013-.052.02-.077.023-.08.036-.12c.007-.023.013-.045.021-.068.02-.062.042-.124.065-.186a3.862,3.862,0,0,1,1.841-2.1c.055-.028.111-.054.166-.079l.054-.023.114-.047.064-.023.107-.037.067-.021.108-.03.065-.017.116-.025.057-.011q.076-.014.153-.023l.02,0c.058-.007.116-.012.174-.016l.047,0,.126,0h.044c.079,0,.157,0,.235.011h.006c.079.007.158.018.236.032l.042.007q.113.021.225.052l.041.012c.077.022.154.047.23.075.046.018.092.036.137.056l.082.038.045.022A3.431,3.431,0,0,1,93.154,197.937Zm4.819-12.617c-.482,3.523-1.094,7.535-1.68,11.341a.794.794,0,0,1-.737.614H94.8a5.286,5.286,0,0,0-.366-1.93,4.654,4.654,0,0,0-2.3-2.52l-.092-.044-.086-.039c-.065-.028-.131-.056-.2-.081a4.582,4.582,0,0,0-3.318.033q-.233.091-.461.207a5.446,5.446,0,0,0-2.606,2.949c-.039.1-.073.205-.106.309-.01.03-.018.06-.027.09q-.037.126-.069.252c-.005.022-.012.044-.017.066q-.037.157-.064.315c0,.022-.007.044-.011.066q-.024.144-.04.289c0,.009,0,.018,0,.026h-.727c.062-.538.127-1.082.163-1.384.013-.1.025-.209.039-.315.492-3.846,1.172-7.9,1.831-11.825l.066-.4.022-.133q.227-1.339.448-2.655l6.92.009a.51.51,0,0,1,.394.16c1.309,1.51,2.512,2.885,3.677,4.205A.481.481,0,0,1,97.974,185.32Z" transform="translate(-50.773 -173.254)" fill="currentColor"/>
+                                    </g>
+                                  </g>
+                                  <g id="Group_134" data-name="Group 134" transform="translate(41.126 80.198)">
+                                    <g id="Group_133" data-name="Group 133" transform="translate(0 0)">
+                                      <path id="Path_110" data-name="Path 110" d="M398.762,256.326c-.956-1.09-1.9-2.176-2.812-3.229a1.334,1.334,0,0,0-1.011-.454l-3.778-.005h0a1.545,1.545,0,0,0-1.5,1.266l-.114.7c-.257,1.581-.524,3.216-.777,4.826h0a1.312,1.312,0,0,0,.292,1.059,1.339,1.339,0,0,0,1.023.461l7.155.005h0a1.533,1.533,0,0,0,1.5-1.281c.133-.916.2-1.374.33-2.29A1.317,1.317,0,0,0,398.762,256.326Zm-1.581,3.042-6.792-.005c.238-1.5.486-3.028.727-4.5l.1-.634,3.613,0c.86.994,1.751,2.017,2.652,3.044C397.367,258.089,397.3,258.542,397.181,259.368Z" transform="translate(-388.755 -252.638)" fill="currentColor"/>
+                                    </g>
+                                  </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="shipping__items--content">
+                            <h3 class="shipping__items--content__title">Free Shipping</h3>
+                        </div>
+                    </div>
+                    <div class="shipping__items text-center">
+                        <div class="shipping__items--icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35.354" height="41.512" viewBox="0 0 35.354 41.512">
+                                <g id="refund" transform="translate(-37.974)">
+                                  <path id="Path_100" data-name="Path 100" d="M155.7,167.836h1.122a.406.406,0,1,1,0,.813h-1.778a.608.608,0,0,0,0,1.216h.7v.283a.608.608,0,0,0,1.216,0v-.289a1.623,1.623,0,0,0-.143-3.239H155.7a.407.407,0,1,1,0-.813h1.778a.608.608,0,0,0,0-1.216h-.514v-.283a.608.608,0,0,0-1.216,0v.283H155.7a1.623,1.623,0,1,0,0,3.245Z" transform="translate(-106.693 -150.428)" fill="currentColor"/>
+                                  <path id="Path_101" data-name="Path 101" d="M122.2,137.92a4.665,4.665,0,0,0,3.725-2.029,8.2,8.2,0,0,0,0-9.354,4.434,4.434,0,0,0-7.45,0,8.2,8.2,0,0,0,0,9.354A4.664,4.664,0,0,0,122.2,137.92Zm-3.972-6.706c0-3.027,1.782-5.49,3.972-5.49s3.973,2.463,3.973,5.49-1.782,5.49-3.973,5.49S118.232,134.241,118.232,131.214Z" transform="translate(-72.633 -114.413)" fill="currentColor"/>
+                                  <path id="Path_102" data-name="Path 102" d="M64.646,13.772h-.761V12.23a.894.894,0,0,0-1.417-.726l-1.3.936V7.507L67.789,9.27a5.465,5.465,0,0,0,3.439,5.907.608.608,0,0,0,1.2.147l.812-3.05A2.717,2.717,0,0,0,71.311,8.95l-2.653-.707h0L61.169,6.248V2.716A2.719,2.719,0,0,0,58.452,0H40.69a2.719,2.719,0,0,0-2.716,2.716V8.391a.608.608,0,1,0,1.216,0V6.036a5.472,5.472,0,0,0,4.82-4.82H55.132a5.472,5.472,0,0,0,4.82,4.82v7.28l-3.345,2.409a1.375,1.375,0,0,0,0,2.232l3.345,2.409v7.2a5.472,5.472,0,0,0-4.82,4.82H44.01a5.472,5.472,0,0,0-4.82-4.82V10.824a.608.608,0,0,0-1.216,0V30.885A2.715,2.715,0,0,0,40.69,33.6h2.864a2.7,2.7,0,0,0,.293,1.983,2.727,2.727,0,0,0,.426.557l.047.046.024.023a2.7,2.7,0,0,0,1.154.636l2.653.707.021.005,14.49,3.86q.132.035.265.057a2.717,2.717,0,0,0,3.058-1.982l.707-2.653,0-.013,1.059-3.974a.608.608,0,0,0-1.175-.313l-.914,3.432a5.465,5.465,0,0,0-5.9,3.417L49.02,36.527a5.46,5.46,0,0,0-.366-2.925h9.8a2.715,2.715,0,0,0,2.716-2.716V21.241l1.3.936a.894.894,0,0,0,1.417-.726V19.909h.761a3.391,3.391,0,0,1,2.736,1.506,5.879,5.879,0,0,1,1.084,3.422,5.065,5.065,0,0,1-5.3,5.06.639.639,0,0,0-.154,1.265,8.457,8.457,0,0,0,7.041-1.788,8.8,8.8,0,0,0,3.207-6.828A8.705,8.705,0,0,0,64.646,13.772Zm4.328-4.186L71,10.125a1.5,1.5,0,0,1,1.064,1.835l-.539,2.024A4.255,4.255,0,0,1,68.974,9.586ZM39.19,4.81V2.716a1.5,1.5,0,0,1,1.5-1.5h2.094A4.256,4.256,0,0,1,39.19,4.81Zm20.762,0a4.256,4.256,0,0,1-3.594-3.594h2.133a1.5,1.5,0,0,1,1.461,1.5ZM40.69,32.385a1.5,1.5,0,0,1-1.5-1.5V28.791a4.256,4.256,0,0,1,3.594,3.594H40.69Zm7.145,3.826-2.023-.539a1.5,1.5,0,0,1-1.063-1.835l.063-.236H47.3A4.247,4.247,0,0,1,47.835,36.211ZM62.728,37.7a4.212,4.212,0,0,1,2.622-.544l-.539,2.025a1.488,1.488,0,0,1-.7.911,1.489,1.489,0,0,1-1.138.152L60.952,39.7A4.214,4.214,0,0,1,62.728,37.7Zm-2.776-6.815a1.5,1.5,0,0,1-1.5,1.5H56.358a4.256,4.256,0,0,1,3.594-3.594v2.094Zm9.33-2.451a7.4,7.4,0,0,1-1.61,1.009l.065-.061a6.226,6.226,0,0,0,1.946-4.546c0-2.955-1.925-6.144-5.036-6.144h-.839a1.139,1.139,0,0,0-1.138,1.138v.992l-1.755-1.264,0,0L57.318,16.97a.159.159,0,0,1,0-.259l3.59-2.585.017-.012,1.745-1.257v.993a1.139,1.139,0,0,0,1.138,1.138h.839a7.488,7.488,0,0,1,7.4,7.558A7.586,7.586,0,0,1,69.282,28.435Z" transform="translate(0)" fill="currentColor"/>
+                                </g>
+                              </svg>
+
+                        </div>
+                        <div class="shipping__items--content">
+                            <h3 class="shipping__items--content__title">Money Return</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End shipping section -->
+
+        @if($testimonial->status==200)
 		@php
 			$testimonialResult=(json_decode(($testimonial->content),true));
 		@endphp
-		<div class="va-testimonial-main-wrapper">
-			<h3>OUR TESTIMONIALS</h3>
-			<span>FROM OUR BUYERS</span>
-			<div class="testimonial-slider">
-				<div class="owl-carousel owl-theme">
-					@foreach($testimonialResult['result'] as $key=>$testimonial)
-						<div class="item">
-							<div class="testi-box">
-								<div class="testi-img">
-									<img src="{{ $testimonial['image'] }}" alt="img">
-								</div>
-								<div class="testi-text">
-									<a href="javascript:;">{{ $testimonial['name'] }}</a>
-									<!-- <ul class="star">
-										<li> <span> <i class="fas fa-star"></i> </span> </li>
-										<li> <span> <i class="fas fa-star"></i> </span> </li>
-										<li> <span> <i class="fas fa-star"></i> </span> </li>
-										<li> <span> <i class="fas fa-star"></i> </span> </li>
-										<li> <span> <i class="far fa-star"></i> </span> </li>
-									</ul> -->
-									<p>{{ $testimonial['description'] }}
-									</p>
-								</div>
+			<section class="testimonial__section section--padding pt-0">
+				<div class="container-fluid">
+					<div class="row row-cols-xl-2 row-cols-1">
+						<div class="col col-lg-order">
+							<div class="testimonial__banner--thumbnail">
+								<a class="display-block" href="shop.html"><img class="testimonial__banner--thumbnail__img display-block" src="assets/img/banner/banner10.webp" alt="banner-img"></a>
 							</div>
 						</div>
-					@endforeach
-				</div>
-			</div>
-		</div>
-   
-	@endif
+						<div class="col">
+							<div class="testimonial__section--inner">
+								<div class="section__heading style2 border-bottom mb-50">
+									<h2 class="section__heading--maintitle">Clints Testimonial</h2>
+								</div>
+								<div class=" testimonial__swiper--activation testimonial__padding swiper">
+									<div class="swiper-wrapper">
+									@foreach($testimonialResult['result'] as $key=>$testimonial)
+										<div class="swiper-slide">
 
-	@if($topSelling->status==200)
-		@php
-			$topSellingResult=(json_decode(($topSelling->content),true));
-		@endphp
-		<div class="va-feature-main-wrapper">
-			<div class="feature-text">
-				<h3>Best of The Week</h3>
-				<span>Featured Products</span>
-				<p>From city centers to distant rural villages come our unique, handcrafted homewares. Each purchase supports the artisans and their families whose hands built this collection</p>
-				<a class="line-btn" href="{{url('product-listing?collection=5')}}">
-					See Whole Collection 
-					<span>
-					<svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M13.8065 13.5436L20.0565 7.2936C20.1729 7.1765 20.2383 7.01809 20.2383 6.85298C20.2383 6.68786 20.1729 6.52946 20.0565 6.41235L13.8065 0.162353L12.9253 1.0436L18.1065 6.22485L0.237785 6.22485L0.237785 7.47485L18.1065 7.47485L12.9253 12.6561L13.8065 13.5436Z" fill=""></path>
-					</svg>
-					</span>
-				</a>
-			</div>
-			<div class="feature-slide">
-				@foreach($topSellingResult['result'] as $topselling)
-					<div class="product-box">
-					
-						<div class="product-img">
-							<img src="{{ $topselling['first_image'] }}" alt="img">
-							<div class="social-icon">
-								<a href="javascript:;" class="getProductDetail" data-slug="{{ $topselling['slug']}}">
-									<span class="IconCart">
-										<svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M11.9036 21.0002C13.9745 20.9997 15.9856 20.3065 17.6168 19.0308L22.7455 24.1595L24.3951 22.5098L19.2665 17.3812C20.5428 15.7498 21.2365 13.7382 21.237 11.6668C21.237 6.52066 17.0498 2.3335 11.9036 2.3335C6.75748 2.3335 2.57031 6.52066 2.57031 11.6668C2.57031 16.813 6.75748 21.0002 11.9036 21.0002ZM11.9036 4.66683C15.7641 4.66683 18.9036 7.80633 18.9036 11.6668C18.9036 15.5273 15.7641 18.6668 11.9036 18.6668C8.04315 18.6668 4.90365 15.5273 4.90365 11.6668C4.90365 7.80633 8.04315 4.66683 11.9036 4.66683Z" fill="#A56852"/>
-										<path d="M13.5498 10.0171C13.992 10.4604 14.2358 11.0461 14.2358 11.6668H16.5691C16.5702 11.0536 16.4497 10.4463 16.2146 9.88C15.9795 9.31369 15.6345 8.7996 15.1995 8.36743C13.4331 6.60343 10.3706 6.60343 8.60547 8.36743L10.2528 10.0194C11.1395 9.1351 12.6678 9.13743 13.5498 10.0171Z" fill="#A56852"/>
-										</svg>
-									</span>&nbsp;<pre class="spinner-border spinner-border-sm loaderView" style="color:#a56852;font-size: 100%;position:relative;margin:0;display:none"></pre>
-								</a>
-								<a href="javascript:;" class="addtocart" data-type="addtocart" data-product_id="{{ $topselling['variant_productid'] }}">
-									<span class="IconCart">
-										<svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M25.8531 5.03765C25.5921 4.70052 25.2565 4.42854 24.8726 4.24309C24.4886 4.05764 24.0669 3.96378 23.6406 3.9689H7.81563L6.44688 1.48452C6.22602 1.09614 5.90524 0.773955 5.51783 0.551402C5.13042 0.328848 4.69051 0.214041 4.24375 0.218898H1.04688C0.798235 0.218898 0.559778 0.31767 0.383962 0.493486C0.208147 0.669301 0.109375 0.907757 0.109375 1.1564C0.109375 1.40504 0.208147 1.64349 0.383962 1.81931C0.559778 1.99513 0.798235 2.0939 1.04688 2.0939H4.24375C4.3547 2.08915 4.46497 2.11347 4.56363 2.16444C4.66229 2.21542 4.74593 2.29128 4.80625 2.38452L6.35313 5.19702L7.15938 13.9345C7.26744 14.8392 7.7145 15.6692 8.41042 16.2573C9.10634 16.8454 9.99935 17.1477 10.9094 17.1033H20.6313C21.4352 17.1236 22.2235 16.8797 22.8755 16.4089C23.5275 15.9381 24.007 15.2665 24.2406 14.497L26.275 7.16577C26.3752 6.8027 26.3893 6.42123 26.3161 6.05176C26.2428 5.68229 26.0843 5.33503 25.8531 5.03765ZM24.4844 6.65015L22.45 13.9908C22.3233 14.3665 22.0767 14.6902 21.7481 14.912C21.4195 15.1339 21.0271 15.2417 20.6313 15.2189H10.8719C10.4336 15.251 9.99909 15.1191 9.65261 14.8489C9.30612 14.5786 9.07242 14.1893 8.99687 13.7564L8.29375 5.8439H23.6406C23.7776 5.84252 23.9132 5.87119 24.038 5.92788C24.1627 5.98457 24.2735 6.06791 24.3625 6.17202C24.4184 6.23685 24.4586 6.31377 24.4797 6.39674C24.5009 6.47971 24.5025 6.56646 24.4844 6.65015Z" fill="#A56852"/>
-										<path d="M11.3594 21.7814C12.3949 21.7814 13.2344 20.9419 13.2344 19.9064C13.2344 18.8709 12.3949 18.0314 11.3594 18.0314C10.3238 18.0314 9.48438 18.8709 9.48438 19.9064C9.48438 20.9419 10.3238 21.7814 11.3594 21.7814Z" fill="#A56852"/>
-										<path d="M20.7344 21.7814C21.7699 21.7814 22.6094 20.9419 22.6094 19.9064C22.6094 18.8709 21.7699 18.0314 20.7344 18.0314C19.6988 18.0314 18.8594 18.8709 18.8594 19.9064C18.8594 20.9419 19.6988 21.7814 20.7344 21.7814Z" fill="#A56852"/>
-										</svg>
-									</span> &nbsp;
-									<pre class="spinner-border spinner-border-sm loader" style="color:#a56852;font-size: 100%;position:relative;margin:0;display:none"></pre>
-								</a>
-								<a href="{{ url('product-detail/'.$topselling['slug'] )}}">
-									<span>
-										<svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M23.2646 11.8755C23.7781 12.5472 23.7781 13.4539 23.2646 14.1245C21.6471 16.2359 17.7666 20.5833 13.2361 20.5833C8.70564 20.5833 4.82514 16.2359 3.20772 14.1245C2.95789 13.8029 2.82227 13.4072 2.82227 13C2.82227 12.5927 2.95789 12.1971 3.20772 11.8755C4.82514 9.76407 8.70564 5.41666 13.2361 5.41666C17.7666 5.41666 21.6471 9.76407 23.2646 11.8755V11.8755Z" stroke="#A56852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M13.2363 16.25C15.0313 16.25 16.4863 14.7949 16.4863 13C16.4863 11.2051 15.0313 9.75 13.2363 9.75C11.4414 9.75 9.98633 11.2051 9.98633 13C9.98633 14.7949 11.4414 16.25 13.2363 16.25Z" stroke="#A56852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-										</svg>
-									</span>
-								</a>
+											<div class="testimonial__items">
+												<div class="testimonial__items--topbar d-flex align-items-center">
+													<div class="testimonial__items--thumbnail">
+														<img class="testimonial__items--thumbnail__img display-block" src="{{ $testimonial['image'] }}" alt="testimonial-img">
+													</div>
+													<div class="testimonial__items--author">
+														<h3 class="testimonial__items--author__title h4">{{ $testimonial['name'] }}</h3>
+														<!-- <h4 class="testimonial__items--author__subtitle h5">Ui Ux Designer</h4> -->
+														<!-- <ul class="rating testimonial__rating d-flex">
+															<li class="rating__list">
+																<span class="rating__list--icon">
+																	<svg class="rating__list--icon__svg" xmlns="http://www.w3.org/2000/svg" width="11.105" height="11.732" viewBox="0 0 10.105 9.732">
+																	<path data-name="star - Copy" d="M9.837,3.5,6.73,3.039,5.338.179a.335.335,0,0,0-.571,0L3.375,3.039.268,3.5a.3.3,0,0,0-.178.514L2.347,6.242,1.813,9.4a.314.314,0,0,0,.464.316L5.052,8.232,7.827,9.712A.314.314,0,0,0,8.292,9.4L7.758,6.242l2.257-2.231A.3.3,0,0,0,9.837,3.5Z" transform="translate(0 -0.018)" fill="currentColor"></path>
+																	</svg>
+																</span>
+															</li>
+															<li class="rating__list">
+																<span class="rating__list--icon">
+																	<svg class="rating__list--icon__svg" xmlns="http://www.w3.org/2000/svg" width="11.105" height="11.732" viewBox="0 0 10.105 9.732">
+																	<path data-name="star - Copy" d="M9.837,3.5,6.73,3.039,5.338.179a.335.335,0,0,0-.571,0L3.375,3.039.268,3.5a.3.3,0,0,0-.178.514L2.347,6.242,1.813,9.4a.314.314,0,0,0,.464.316L5.052,8.232,7.827,9.712A.314.314,0,0,0,8.292,9.4L7.758,6.242l2.257-2.231A.3.3,0,0,0,9.837,3.5Z" transform="translate(0 -0.018)" fill="currentColor"></path>
+																	</svg>
+																</span>
+															</li>
+															<li class="rating__list">
+																<span class="rating__list--icon">
+																	<svg class="rating__list--icon__svg" xmlns="http://www.w3.org/2000/svg" width="11.105" height="11.732" viewBox="0 0 10.105 9.732">
+																	<path data-name="star - Copy" d="M9.837,3.5,6.73,3.039,5.338.179a.335.335,0,0,0-.571,0L3.375,3.039.268,3.5a.3.3,0,0,0-.178.514L2.347,6.242,1.813,9.4a.314.314,0,0,0,.464.316L5.052,8.232,7.827,9.712A.314.314,0,0,0,8.292,9.4L7.758,6.242l2.257-2.231A.3.3,0,0,0,9.837,3.5Z" transform="translate(0 -0.018)" fill="currentColor"></path>
+																	</svg>
+																</span>
+															</li>
+															<li class="rating__list">
+																<span class="rating__list--icon">
+																	<svg class="rating__list--icon__svg" xmlns="http://www.w3.org/2000/svg" width="11.105" height="11.732" viewBox="0 0 10.105 9.732">
+																	<path data-name="star - Copy" d="M9.837,3.5,6.73,3.039,5.338.179a.335.335,0,0,0-.571,0L3.375,3.039.268,3.5a.3.3,0,0,0-.178.514L2.347,6.242,1.813,9.4a.314.314,0,0,0,.464.316L5.052,8.232,7.827,9.712A.314.314,0,0,0,8.292,9.4L7.758,6.242l2.257-2.231A.3.3,0,0,0,9.837,3.5Z" transform="translate(0 -0.018)" fill="currentColor"></path>
+																	</svg>
+																</span>
+															</li>
+															<li class="rating__list">
+																<span class="rating__list--icon">
+																	<svg class="rating__list--icon__svg" xmlns="http://www.w3.org/2000/svg" width="11.105" height="11.732" viewBox="0 0 10.105 9.732">
+																	<path data-name="star - Copy" d="M9.837,3.5,6.73,3.039,5.338.179a.335.335,0,0,0-.571,0L3.375,3.039.268,3.5a.3.3,0,0,0-.178.514L2.347,6.242,1.813,9.4a.314.314,0,0,0,.464.316L5.052,8.232,7.827,9.712A.314.314,0,0,0,8.292,9.4L7.758,6.242l2.257-2.231A.3.3,0,0,0,9.837,3.5Z" transform="translate(0 -0.018)" fill="currentColor"></path>
+																	</svg>
+																</span>
+															</li>
+														</ul> -->
+													</div>
+												</div>
+												<div class="testimonial__items--content">
+													<svg class="testimonial__icon--svg" data-name="Group 546" xmlns="http://www.w3.org/2000/svg" width="21.479" height="18.939" viewBox="0 0 21.479 18.939">
+														<path  data-name="Path 131" d="M8.629,11.089A1.033,1.033,0,0,0,9.149,9.7L8.3,7.918a1.036,1.036,0,0,0-1.352-.5A11.937,11.937,0,0,0,3.206,9.841,9.053,9.053,0,0,0,.693,13.809,21.762,21.762,0,0,0,0,19.908v5.319a1.043,1.043,0,0,0,1.04,1.04h6.81a1.043,1.043,0,0,0,1.04-1.04v-6.81a1.043,1.043,0,0,0-1.04-1.04H4.592A7.306,7.306,0,0,1,5.8,13.168,6.586,6.586,0,0,1,8.629,11.089Z" transform="translate(0 -7.328)" fill="currentColor"/>
+														<path  data-name="Path 132" d="M79.312,11.172a1.033,1.033,0,0,0,.52-1.386l-.849-1.767a1.036,1.036,0,0,0-1.352-.5,12.552,12.552,0,0,0-3.725,2.408,9.248,9.248,0,0,0-2.53,3.985,21.47,21.47,0,0,0-.676,6.082v5.319a1.043,1.043,0,0,0,1.04,1.04h6.81a1.043,1.043,0,0,0,1.04-1.04V18.5a1.043,1.043,0,0,0-1.04-1.04H75.274a7.307,7.307,0,0,1,1.213-4.211A6.585,6.585,0,0,1,79.312,11.172Z" transform="translate(-58.45 -7.411)" fill="currentColor"/>
+													</svg>
+													<p class="testimonial__items--desc">{{ $testimonial['description'] }}</p>
+												</div>
+											</div>
+										</div>
+										@endforeach
+										
+									</div>
+									<div class="testimonial__pagination swiper-pagination"></div>
+								</div>
 							</div>
-						</div>
-						<div class="product-text">
-							<span>{{ $topselling['category'] }}</span>
-							<a href="{{ url('product-detail/'.$topselling['slug'] )}}">{{ $topselling['name'] }}</a>
-							<h5> <small>
-								@if($topselling['discount_amount']>0)
-									<del>{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['sale_price']) }}</del>{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['offer_price']) }}
-								@else
-									{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['sale_price']) }}
-								@endif
-							</small> </h5>
 						</div>
 					</div>
-				@endforeach
-			</div>
-		</div>
 
-	@endif
-   @if($blogs->status==200)
+				</div>
+			</section>
+        @endif
+
+		
+		@if($topSelling->status==200)
+			@php
+				$newProduct=(json_decode(($topSelling->content),true));
+			@endphp
+			<section class="product__section section--padding pt-0">
+				<div class="container-fluid">
+					<div class="section__heading text-center mb-30">
+						<h2 class="section__heading--maintitle">Most Popular Items</h2>
+					</div>
+					
+					<div class="tab_content">
+						<div id="chair" class="tab_pane active show">
+							<div class="product__section--inner">
+								<div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2 mb--n30">
+									<input type="hidden" id="number" class="qty" value="1" />
+									@foreach($newProduct['result'] as $topselling)
+										<div class="col mb-30">
+											<div class="product__items ">
+												<div class="product__items--thumbnail">
+													<a class="product__items--link" href="{{ url('product-detail/'.$topselling['slug'] )}}">
+														<img class="product__items--img product__primary--img" src="{{ $topselling['first_image'] }}" alt="product-img">
+														<img class="product__items--img product__secondary--img" src="{{ $topselling['first_image'] }}" alt="product-img">
+													</a>
+													<div class="product__badge">
+														<span class="product__badge--items sale">New</span>
+													</div>
+													<ul class="product__items--action d-flex justify-content-center">
+														<li class="product__items--action__list">
+															<a class="product__items--action__btn" class="getProductDetail" data-slug="{{ $topselling['slug']}}" href="javascript:void(0)">
+																<svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg"  width="20.51" height="19.443" viewBox="0 0 512 512"><path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
+																<span class="visually-hidden">Quick View</span>
+															</a>
+														</li>
+														<li class="product__items--action__list">
+															<a class="product__items--action__btn" href="wishlist.html">
+																<svg class="product__items--action__btn--svg"  xmlns="http://www.w3.org/2000/svg" width="17.51" height="15.443" viewBox="0 0 24.526 21.82">
+																	<path  d="M12.263,21.82a1.438,1.438,0,0,1-.948-.356c-.991-.866-1.946-1.681-2.789-2.4l0,0a51.865,51.865,0,0,1-6.089-5.715A9.129,9.129,0,0,1,0,7.371,7.666,7.666,0,0,1,1.946,2.135,6.6,6.6,0,0,1,6.852,0a6.169,6.169,0,0,1,3.854,1.33,7.884,7.884,0,0,1,1.558,1.627A7.885,7.885,0,0,1,13.821,1.33,6.169,6.169,0,0,1,17.675,0,6.6,6.6,0,0,1,22.58,2.135a7.665,7.665,0,0,1,1.945,5.235,9.128,9.128,0,0,1-2.432,5.975,51.86,51.86,0,0,1-6.089,5.715c-.844.719-1.8,1.535-2.794,2.4a1.439,1.439,0,0,1-.948.356ZM6.852,1.437A5.174,5.174,0,0,0,3,3.109,6.236,6.236,0,0,0,1.437,7.371a7.681,7.681,0,0,0,2.1,5.059,51.039,51.039,0,0,0,5.915,5.539l0,0c.846.721,1.8,1.538,2.8,2.411,1-.874,1.965-1.693,2.812-2.415a51.052,51.052,0,0,0,5.914-5.538,7.682,7.682,0,0,0,2.1-5.059,6.236,6.236,0,0,0-1.565-4.262,5.174,5.174,0,0,0-3.85-1.672A4.765,4.765,0,0,0,14.7,2.467a6.971,6.971,0,0,0-1.658,1.918.907.907,0,0,1-1.558,0A6.965,6.965,0,0,0,9.826,2.467a4.765,4.765,0,0,0-2.975-1.03Zm0,0" transform="translate(0 0)" fill="currentColor"></path>
+																</svg>
+																<span class="visually-hidden">Wishlist</span>
+															</a>
+														</li>
+														<li class="product__items--action__list">
+															<a class="product__items--action__btn" href="compare.html">
+																<svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="16.47" height="13.088" viewBox="0 0 15.47 11.088">
+																	<g  transform="translate(0 -72.508)">
+																	<path  data-name="Path 114" d="M15.359,80.9l-2.011-2.011a.525.525,0,0,0-.374-.155H11.291a.287.287,0,0,0-.2.49l1.106,1.106H10.576L8.3,78.052l2.273-2.274h1.618l-1.106,1.106a.287.287,0,0,0,.2.49h1.683a.531.531,0,0,0,.374-.155l2.011-2.011a.38.38,0,0,0,0-.535l-.859-.859a.227.227,0,1,0-.32.321l.806.806L13.027,76.9a.075.075,0,0,1-.053.022H11.692l1.054-1.054a.317.317,0,0,0-.224-.542h-2.04a.227.227,0,0,0-.16.066l-2.34,2.34-.544-.544,2.519-2.519a.382.382,0,0,1,.272-.112h2.293a.317.317,0,0,0,.225-.542l-1.054-1.054h1.282a.076.076,0,0,1,.053.022l.4.4a.227.227,0,1,0,.32-.321l-.4-.4a.531.531,0,0,0-.374-.155H11.291a.287.287,0,0,0-.2.49L12.194,74.1H10.229a.832.832,0,0,0-.592.245L7.118,76.867,4.6,74.349a.832.832,0,0,0-.592-.245H.378A.378.378,0,0,0,0,74.481v.92a.378.378,0,0,0,.378.378H3.66l2.273,2.274L3.66,80.326H.378A.378.378,0,0,0,0,80.7v.92A.378.378,0,0,0,.378,82H4.007a.835.835,0,0,0,.592-.245l2.519-2.519.8.8a.227.227,0,1,0,.32-.32L3.914,75.392a.227.227,0,0,0-.16-.066H.453v-.769H4.007a.382.382,0,0,1,.272.113l6.043,6.043a.227.227,0,0,0,.16.066h2.04a.317.317,0,0,0,.224-.542l-1.054-1.054h1.282a.075.075,0,0,1,.053.022l1.958,1.958-1.958,1.958a.075.075,0,0,1-.053.022H11.692l1.054-1.054a.317.317,0,0,0-.224-.542H10.229a.383.383,0,0,1-.272-.113l-.968-.968a.227.227,0,0,0-.32.32l.968.968a.833.833,0,0,0,.592.245h1.965l-1.105,1.105a.287.287,0,0,0,.2.49h1.683a.525.525,0,0,0,.374-.155l2.011-2.011A.379.379,0,0,0,15.359,80.9Zm-11.08.539a.389.389,0,0,1-.272.113H.453v-.769h3.3a.226.226,0,0,0,.16-.066l2.34-2.34.543.544Z" transform="translate(0 0)" fill="currentColor"/>
+																	</g>
+																</svg>
+																<span class="visually-hidden">Compare</span>
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="product__items--content text-center">
+													{{ $topselling['category'] }}
+
+													<h3 class="product__items--content__title h4"><a href="{{ url('product-detail/'.$topselling['slug'] )}}">{{ $topselling['name'] }}</a></h3>
+													<div class="product__items--price">
+														@if($topselling['discount_amount']>0)
+															<span class="current__price">{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['sale_price']) }}</span>
+															<span class="old__price">{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['offer_price']) }}</span>
+														@else
+															<span class="current__price">{{ \App\Helpers\commonHelper::getPriceByCountry($topselling['sale_price']) }}</span>
+														@endif
+													</div>
+													<a class="product__items--action__cart--btn primary__btn addtocart" href="javascript:void(0)" data-type="addtocart" data-product_id="{{ $topselling['variant_productid'] }}">
+														<svg class="product__items--action__cart--btn__icon" xmlns="http://www.w3.org/2000/svg" width="13.897" height="14.565" viewBox="0 0 18.897 21.565">
+															<path  d="M16.84,8.082V6.091a4.725,4.725,0,1,0-9.449,0v4.725a.675.675,0,0,0,1.35,0V9.432h5.4V8.082h-5.4V6.091a3.375,3.375,0,0,1,6.75,0v4.691a.675.675,0,1,0,1.35,0V9.433h3.374V21.581H4.017V9.432H6.041V8.082H2.667V21.641a1.289,1.289,0,0,0,1.289,1.29h16.32a1.289,1.289,0,0,0,1.289-1.29V8.082Z" transform="translate(-2.667 -1.366)" fill="currentColor"></path>
+														</svg>
+														<span class="add__to--cart__text"> Add to cart</span>
+													</a>
+												</div>
+											</div>
+										</div>
+									@endforeach
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+		@endif
+        <!-- Start Newsletter banner section -->
+        <section class="newsletter__banner--section section--padding pt-0">
+            <div class="container-fluid">
+                <div class="newsletter__banner--thumbnail position__relative">
+                    <img class="newsletter__banner--thumbnail__img display-block" src="assets/img/banner/banner-bg2.webp" alt="newsletter-banner">
+                    <div class="newsletter__content newsletter__subscribe">
+                        <h5 class="newsletter__content--subtitle text-white">Want to offer regularly ?</h5>
+                        <h2 class="newsletter__content--title text-white h3 mb-25">Subscribe Our Newsletter <br> for Get Daily Update</h2>
+                        <form class="newsletter__subscribe--form position__relative" action="#">
+                            <label>
+                                <input class="newsletter__subscribe--input" placeholder="Enter your email address" type="email">
+                            </label>
+                            <button class="newsletter__subscribe--button primary__btn" type="submit">Subscribe
+                                <svg class="newsletter__subscribe--button__icon" xmlns="http://www.w3.org/2000/svg" width="9.159" height="7.85" viewBox="0 0 9.159 7.85">
+                                    <path  data-name="Icon material-send" d="M3,12.35l9.154-3.925L3,4.5,3,7.553l6.542.872L3,9.3Z" transform="translate(-3 -4.5)" fill="currentColor"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Newsletter banner section -->
+
+		@if($blogs->status==200)
 		@php
 			$blogResult=(json_decode(($blogs->content),true));
 		@endphp
-		<div class="va-latest-news-main-wrapper">
-			<h3>On Our Blog</h3>
-			<span>Get the Latest News </span>
-			<div class="news-main-box-wrapper">
-				@foreach($blogResult['result'] as $key=>$blog)
-					<div class="news-box-wrapper">
-						<div class="news-img">
-						<img src="{{ $blog['image'] }}" alt="img">
-						</div>
-
-						<div class="news-text">
-						<p>
-							<span>
-								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M17.4173 3.66634H15.584V2.74967C15.584 2.50656 15.4874 2.2734 15.3155 2.10149C15.1436 1.92958 14.9104 1.83301 14.6673 1.83301C14.4242 1.83301 14.191 1.92958 14.0191 2.10149C13.8472 2.2734 13.7507 2.50656 13.7507 2.74967V3.66634H8.25065V2.74967C8.25065 2.50656 8.15407 2.2734 7.98217 2.10149C7.81026 1.92958 7.5771 1.83301 7.33398 1.83301C7.09087 1.83301 6.85771 1.92958 6.6858 2.10149C6.51389 2.2734 6.41732 2.50656 6.41732 2.74967V3.66634H4.58398C3.85464 3.66634 3.15517 3.95607 2.63944 4.4718C2.12372 4.98752 1.83398 5.687 1.83398 6.41634V17.4163C1.83398 18.1457 2.12372 18.8452 2.63944 19.3609C3.15517 19.8766 3.85464 20.1663 4.58398 20.1663H17.4173C18.1467 20.1663 18.8461 19.8766 19.3619 19.3609C19.8776 18.8452 20.1673 18.1457 20.1673 17.4163V6.41634C20.1673 5.687 19.8776 4.98752 19.3619 4.4718C18.8461 3.95607 18.1467 3.66634 17.4173 3.66634ZM18.334 17.4163C18.334 17.6595 18.2374 17.8926 18.0655 18.0645C17.8936 18.2364 17.6604 18.333 17.4173 18.333H4.58398C4.34087 18.333 4.10771 18.2364 3.9358 18.0645C3.76389 17.8926 3.66732 17.6595 3.66732 17.4163V10.9997H18.334V17.4163ZM18.334 9.16634H3.66732V6.41634C3.66732 6.17323 3.76389 5.94007 3.9358 5.76816C4.10771 5.59625 4.34087 5.49967 4.58398 5.49967H6.41732V6.41634C6.41732 6.65946 6.51389 6.89261 6.6858 7.06452C6.85771 7.23643 7.09087 7.33301 7.33398 7.33301C7.5771 7.33301 7.81026 7.23643 7.98217 7.06452C8.15407 6.89261 8.25065 6.65946 8.25065 6.41634V5.49967H13.7507V6.41634C13.7507 6.65946 13.8472 6.89261 14.0191 7.06452C14.191 7.23643 14.4242 7.33301 14.6673 7.33301C14.9104 7.33301 15.1436 7.23643 15.3155 7.06452C15.4874 6.89261 15.584 6.65946 15.584 6.41634V5.49967H17.4173C17.6604 5.49967 17.8936 5.59625 18.0655 5.76816C18.2374 5.94007 18.334 6.17323 18.334 6.41634V9.16634Z" fill="#A56852"/>
-								</svg>
-							</span>
-							{{ date('d M Y',strtotime($blog['date'])) }}
-						</p>
-						<a href="{{ url('blog/'.$blog['slug'])}}">{{$blog['title']}}</a>
-						<a class="line-btn" href="{{ url('blog/'.$blog['slug'])}}">
-							Read More 
-							<span>
-								<svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M13.8065 13.5436L20.0565 7.2936C20.1729 7.1765 20.2383 7.01809 20.2383 6.85298C20.2383 6.68786 20.1729 6.52946 20.0565 6.41235L13.8065 0.162353L12.9253 1.0436L18.1065 6.22485L0.237785 6.22485L0.237785 7.47485L18.1065 7.47485L12.9253 12.6561L13.8065 13.5436Z" fill=""></path>
-								</svg>
-							</span>
-						</a>
-						</div>
+			<!-- Start blog section -->
+			<section class="blog__section section--padding pt-0">
+				<div class="container-fluid">
+					<div class="section__heading text-center mb-30">
+						<h2 class="section__heading--maintitle">Latest Post From Blog</h2>
 					</div>
-				@endforeach
-			</div>
-			<div class="view-btn-wrapper">
-				<a class="line-btn" href="{{url('blogs')}}">
-					View All Blog
-					<span>
-					<svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M13.8065 13.5436L20.0565 7.2936C20.1729 7.1765 20.2383 7.01809 20.2383 6.85298C20.2383 6.68786 20.1729 6.52946 20.0565 6.41235L13.8065 0.162353L12.9253 1.0436L18.1065 6.22485L0.237785 6.22485L0.237785 7.47485L18.1065 7.47485L12.9253 12.6561L13.8065 13.5436Z" fill=""></path>
-					</svg>
-					</span>
-				</a>
-			</div>
-		</div>
-	@endif
-   <!-- <div class="va-client-main-wrapper">
-	  <div class="client-slider">
-		 <div class="owl-carousel owl-theme">
-			<div class="item">
-			   <div class="client-box">
-				  <img src="{{ asset('assets/images/client1.png')}}" alt="">
-			   </div>
-			</div>
-			<div class="item">
-			   <div class="client-box">
-				  <img src="{{ asset('assets/images/client2.png')}}" alt="">
-			   </div>
-			</div>
-			<div class="item">
-			   <div class="client-box">
-				  <img src="{{ asset('assets/images/client3.png')}}" alt="">
-			   </div>
-			</div>
-			<div class="item">
-			   <div class="client-box">
-				  <img src="{{ asset('assets/images/client4.png')}}" alt="">
-			   </div>
-			</div>
-			<div class="item">
-			   <div class="client-box">
-				  <img src="{{ asset('assets/images/client5.png')}}" alt="">
-			   </div>
-			</div>
-		 </div>
-	  </div>
-   </div> -->
+					<div class="blog__section--inner blog__swiper--activation swiper">
+						<div class="swiper-wrapper">
+							@foreach($blogResult['result'] as $key=>$blog)
+								<div class="swiper-slide">
+									<div class="blog__items">
+										<div class="blog__thumbnail">
+											<a class="blog__thumbnail--link display-block" href="{{ url('blog/'.$blog['slug'])}}"><img class="blog__thumbnail--img display-block" src="{{ $blog['image'] }}" alt="blog-img"></a>
+										</div>
+										<div class="blog__content">
+											<ul class="blog__content--meta d-flex">
+												<li class="blog__content--meta__text">
+													<svg class="blog__content--meta__icon" xmlns="http://www.w3.org/2000/svg" width="11.001" height="11.001" viewBox="0 0 11.001 11.001">
+														<path  data-name="Icon awesome-user-circle" d="M5.5.313a5.5,5.5,0,1,0,5.5,5.5A5.5,5.5,0,0,0,5.5.313Zm0,2.129A1.952,1.952,0,1,1,3.549,4.394,1.952,1.952,0,0,1,5.5,2.442Zm0,7.63A4.25,4.25,0,0,1,2.251,8.559,2.473,2.473,0,0,1,4.436,7.232a.543.543,0,0,1,.157.024A2.937,2.937,0,0,0,5.5,7.41a2.925,2.925,0,0,0,.907-.153.543.543,0,0,1,.157-.024A2.473,2.473,0,0,1,8.75,8.559,4.25,4.25,0,0,1,5.5,10.071Z" transform="translate(0 -0.313)" fill="currentColor"/>
+													</svg> Admin
+												</li>
+												<li class="blog__content--meta__text">
+													<svg class="blog__content--meta__icon" xmlns="http://www.w3.org/2000/svg" width="12.569" height="13.966" viewBox="0 0 12.569 13.966">
+														<path  data-name="Icon material-date-range" d="M8.69,9.285h-1.4v1.4h1.4Zm2.793,0h-1.4v1.4h1.4Zm2.793,0h-1.4v1.4h1.4Zm1.4-4.888h-.7V3h-1.4V4.4H7.991V3h-1.4V4.4H5.9a1.39,1.39,0,0,0-1.39,1.4L4.5,15.569a1.4,1.4,0,0,0,1.4,1.4h9.776a1.4,1.4,0,0,0,1.4-1.4V5.793A1.4,1.4,0,0,0,15.673,4.4Zm0,11.173H5.9V7.888h9.776Z" transform="translate(-4.5 -3)" fill="currentColor"/>
+													</svg> {{ date('d M Y',strtotime($blog['date'])) }}
+												</li>
+											</ul>
+											<h3 class="blog__content--title h4"><a href="{{ url('blog/'.$blog['slug'])}}">{{$blog['title']}}</a></h3>
+											<p class="blog__content--desc">Mum ut perspiciatis unde omnis iste natus error sit voluptatem…..</p>
+											<a class="blog__content--btn primary__btn" href="{{ url('blog/'.$blog['slug'])}}">Read more </a>
+										</div>
+									</div>
+								</div>
+							@endforeach
+							
+						</div>
+						<div class="swiper__nav--btn swiper-button-next"></div>
+						<div class="swiper__nav--btn swiper-button-prev"></div>
+					</div>
+				</div>
+			</section>
+			<!-- End blog section -->
+		@endif
+
+    </main>
+	
 @endsection
 
 @push('custom_js')
