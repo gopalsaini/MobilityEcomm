@@ -39,22 +39,6 @@
 						@csrf
 						
 						<input type="hidden" name="id" value="@if(!empty($result)){{$result['id']}}@else{{ 0 }}@endif"  required />
-						<div class="row clearfix">
-							<div class="col-sm-12">
-								<div class="form-group">
-									<div class="form-line">
-										<label for="inputName">Select County<label class="text-danger">*</label></label>
-										<select class="form-control" name="country" required >
-											<option value="" disabled selected >--Select--</option>
-											<option value="3" @if(!empty($result) && $result['country']=='3') {{ 'selected' }}@endif> Canada </option>
-											<option value="2" @if(!empty($result) && $result['country']=='2') {{ 'selected' }}@endif> USA </option>
-											<option value="1" @if(!empty($result) && $result['country']=='1') {{ 'selected' }}@endif> Rest of the world </option>
-												
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
 						
 						<div class="row clearfix">
 							<div class="col-sm-12">

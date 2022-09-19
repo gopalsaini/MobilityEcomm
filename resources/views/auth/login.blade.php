@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Panel Login | Village Artisan</title>
+    <title>Admin Panel Login | 4Mobility</title>
     <link rel="stylesheet" href="{{ asset('admin-assets/css/admin_login.css') }}">
 </head>
 
@@ -16,8 +16,8 @@
             </div>
         </div>
         <div class="left">
-            <img class="img-fluid" src="{{ asset('assets/images/logo.png') }}" alt="">
-            <h1 class="logo">Welcome to Village Artisan</h1>
+            <img src="assets/img/logo/nav-log.png" alt="footer-logo" style="max-width: 39%;">
+            <h1 class="logo">Welcome to 4Mobility</h1>
             <p>Online Ecommerce Portal
             </p>
         </div>

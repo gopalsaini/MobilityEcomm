@@ -1,7 +1,7 @@
 @charset "UTF-8";
 :root {
     --primary-color: #121a25;
-    --secondary-color: #f51c1c;
+    --secondary-color: #006237;
     --secondary-color2: #4f5ac2;
     --yellow-color: #ffc107;
     --text-gray-color: #666666;
@@ -19,8 +19,10 @@
     --bg-gray-color: #f7f8fc;
     --gray-color: #ebebeb;
     --gray-color2: #f5f5f5;
-    --josefin-sans: "Josefin Sans", sans-serif;
-    --open-sans: "Open Sans", sans-serif;
+    --josefin-sans:
+    "Josefin Sans", sans-serif;
+    --open-sans:
+    "Open Sans", sans-serif;
     --body-font-size: 1.6rem;
     --body-font-weight: 400;
     --body-line-height: 2.5rem;
@@ -304,7 +306,7 @@ a:focus {
 
 a:hover {
     text-decoration: none;
-    color: var(--secondary-color)
+    color: #006237;
 }
 
 button,
@@ -1497,7 +1499,7 @@ hr {
     padding: 0 1.5rem;
     letter-spacing: .2px;
     border-radius: .3rem;
-    background: var(--secondary-color);
+    background: #006237;
     color: var(--white-color);
     border: 0
 }
@@ -1540,9 +1542,9 @@ hr {
 }
 
 .primary__btn.style2:hover {
-    background: var(--secondary-color);
+    background: #006237;
     color: var(--white-color);
-    border-color: var(--secondary-color)
+    border-color: #006237;
 }
 
 .primary__btn.btn__style2 {
@@ -1574,7 +1576,7 @@ hr {
 .swiper__nav--btn {
     width: 4rem;
     height: 4rem;
-    background: var(--secondary-color);
+    background: #006237;
     border-radius: 50%;
     opacity: 0;
     visibility: hidden;
@@ -1591,7 +1593,7 @@ hr {
 }
 
 .swiper__nav--btn:hover {
-    background: var(--primary-color)
+    background: #006237;
 }
 
 .swiper__nav--btn::after {
@@ -1652,7 +1654,7 @@ hr {
 }
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    background: var(--secondary-color);
+    background: #006237;
     width: 1.4rem;
     height: 1.4rem
 }
@@ -1683,7 +1685,7 @@ select {
     right: 20px;
     z-index: 99;
     outline: 0;
-    background-color: var(--secondary-color);
+    background-color: #006237;
     color: var(--white-color);
     -webkit-box-shadow: 0 2px 22px rgba(0, 0, 0, .16);
     box-shadow: 0 2px 22px rgba(0, 0, 0, .16);
@@ -2464,7 +2466,7 @@ body.overlay__active::before {
     width: 3rem;
     height: 3rem;
     text-align: center;
-    background: var(--secondary-color);
+    background: #006237;
     line-height: 3.8rem;
     border-radius: 50%;
     color: var(--white-color)
@@ -2535,7 +2537,7 @@ body.overlay__active::before {
 
 .offcanvas__stikcy--toolbar {
     position: fixed;
-    bottom: 22px;
+    bottom: 0;
     background: var(--white-color);
     left: 0;
     right: 0;
@@ -2580,7 +2582,7 @@ body.overlay__active::before {
     width: 3rem;
     height: 3rem;
     text-align: center;
-    background: var(--secondary-color);
+    background: #006237;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2876,7 +2878,7 @@ body.overlay__active::before {
 
 @media only screen and (max-width:991px) {
     .main__header {
-        padding: 1.5rem 0
+        padding: 1.5rem 0;
     }
 }
 
@@ -2918,7 +2920,7 @@ body.overlay__active::before {
     height: 2rem;
     font-size: 1rem;
     line-height: 2rem;
-    background: var(--secondary-color);
+    background: #006237;
     text-align: center;
     border-radius: 50%;
     color: var(--white-color)
@@ -3228,7 +3230,7 @@ body.overlay__active::before {
 
 .header__mega--menu__li {
     padding: 3px 15px;
-    width: 20%
+    width: 16%;
 }
 
 .header__mega--subtitle {
@@ -4519,7 +4521,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .product__items--action__btn:hover {
-    background: var(--secondary-color);
+    background: #006237;
     color: var(--white-color)
 }
 
@@ -4660,7 +4662,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .current__price {
     font-size: 1.5rem;
-    color: var(--secondary-color);
+    color: #006237;
     font-weight: 600
 }
 
@@ -4739,7 +4741,7 @@ input[type=number]::-webkit-outer-spin-button {
 .product__badge--items {
     width: 2.4rem;
     height: 4.9rem;
-    background: var(--secondary-color);
+    background: #006237;
     color: var(--white-color);
     font-size: 1rem;
     line-height: 4.3rem;
@@ -5565,7 +5567,7 @@ input[type=number]::-webkit-outer-spin-button {
     -ms-flex-pack: center;
     justify-content: center;
     border-radius: 50%;
-    color: var(--secondary-color);
+    color: #006237;
     position: relative;
     -webkit-transition: .5s;
     transition: .5s;
@@ -6239,7 +6241,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .blog__content--meta__icon {
-    color: var(--secondary-color);
+    color: #006237;
     margin-right: .4rem
 }
 
@@ -6263,7 +6265,7 @@ input[type=number]::-webkit-outer-spin-button {
 .blog__content--btn {
     background: var(--white-color);
     border: 1px solid var(--primary-color);
-    color: var(--secondary-color);
+    color: #006237;
     font-size: 1.4rem;
     border-radius: 2rem
 }
@@ -6277,9 +6279,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .blog__content--btn:hover {
-    background: var(--secondary-color);
+    background: #006237;
     color: var(--white-color);
-    border-color: var(--secondary-color)
+    border-color: #006237;
 }
 
 .blog__content--btn.btn__style3 {
@@ -7008,7 +7010,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .social__shear--list__icon {
-    color: var(--secondary-color)
+    color: #006237;
 }
 
 .social__shear--list__icon:hover {
@@ -8494,7 +8496,7 @@ input.quickview__value--number {
     content: "";
     width: 4.6rem;
     height: 6.9rem;
-    background: url(../img/other/widget-shape.webp);
+    /* background: url(../img/other/widget-shape.webp); */
     left: 0;
     top: 48%;
     -webkit-transform: translatey(-50%);
@@ -12396,5 +12398,18 @@ div#preloader {
 @media only screen and (min-width:768px) {
     .newsletter__popup--dontshow__again--text {
         font-size: 1.6rem
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 7800px) { 
+    .descktopview{
+        width: 225px !important;
+    }
+}
+@media screen and (min-device-width: 300px) and (max-device-width: 780px) { 
+    .descktopview{
+                
+        width: 132px !important;
+        text-align: center !important;
     }
 }

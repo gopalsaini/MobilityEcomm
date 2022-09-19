@@ -29,7 +29,6 @@ class SliderController extends Controller{
 			$rules=[
 				'id'=>'numeric|required',
 				'href'=>'required',
-				'country'=>'numeric|required',
 				'sort_order'=>'numeric|required'
 			];
 			 
@@ -73,7 +72,6 @@ class SliderController extends Controller{
 					
 					$slider->link=$request->post('href');
 					$slider->sort_order=$request->post('sort_order');
-					$slider->country=$request->post('country');
 					$slider->title=$request->post('title');
 					$slider->image=$image;
 					

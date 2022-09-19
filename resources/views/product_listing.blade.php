@@ -32,66 +32,56 @@
 
 @section('content')
 
-    <div class="va-page-strip-tag">
-        <ul>
-            <li> <a href="{{url('/')}}">Home</a> </li>
-            <li>/ &nbsp; Shop </li>
-            @if(!empty($slugCategoryResult))
-                @foreach($slugCategoryResult as $key=>$slug)
-                    @if(count($slugCategoryResult)!=($key+1))
-                        <li>/ &nbsp; <a href="{{ url('product-listing/'.$slug['slug'] )}}">{{ $slug['name'] }}</a></li>
-                    @else
-                        <li>/ &nbsp; <span>{{ $slug['name'] }}</span></li>
-                    @endif
-                @endforeach
-            @endif
-        </ul>
-    </div>
+<div class="offcanvas__filter--sidebar widget__area">
+        <button type="button" class="offcanvas__filter--close">
+            <svg class="minicart__close--icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg> <span class="offcanvas__filter--close__text">Close</span>
+        </button>
+        <div class="offcanvas__filter--sidebar__inner">
 
-    <div class="va-product-list-inner-content-wrapper">
-        <div class="product-sidebar-wrapper">
             @if(!empty($categoryResult))
+                <div class="single__widget widget__bg">
+                    <h2 class="widget__title position__relative h3">Categories</h2>
+                    @foreach($categoryResult['result'] as $cat)
+                        <ul class="widget__categories--menu">
+                            <li class="widget__categories--menu__list">
+                                <label class="widget__categories--menu__label d-flex align-items-center">
+                                    <img class="widget__categories--menu__img" src="{{ asset('uploads/category/'.$cat['image']) }}" alt="{{ ucfirst($cat['name']) }}">
+                                    <span class="widget__categories--menu__text">{{ ucfirst($cat['name']) }}</span>
+                                    <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
+                                        <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                                    </svg>
+                                </label>
+                                <ul class="widget__categories--sub__menu">
+                                    @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
+                                        @foreach($cat['child'] as $fchild)
+                                            <li class="widget__categories--sub__menu--list">
+                                                <a class="widget__categories--sub__menu--link d-flex align-items-center" href="{{ url('product-listing/'.$fchild['slug']) }}">
+                                                    <img class="widget__categories--sub__menu--img" src="{{ asset('uploads/category/'.$fchild['image']) }}" alt="{{ ucfirst($fchild['name']) }}">
+                                                    <span class="widget__categories--sub__menu--text">{{ ucfirst($fchild['name']) }}</span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    @endforeach
+                </div>
+            @endif
+            <div class="single__widget price__filter widget__bg">
+                <h2 class="widget__title position__relative h3">Filter By Price</h2>
+                
                 <div class="sidebar_widget">
-                    <h4 class="sidebar-title">
-                        Categories
-                    </h4>
-                    
-                    <div class="product-panel-wrapper">
-                        <div class="accordions-wrapper">
-                                @foreach($categoryResult['result'] as $cat)
-                                <div class="accordion">
-                                    <div class="accordion-header">
-                                        <h4>{{ ucfirst($cat['name']) }} <span>{{\App\Helpers\commonHelper::getTotalProductByCategory($cat['id'])}}</span> </h4>
-                                        <i class="fas fa-chevron-up accordion-icon"></i>
-                                    </div>
-                                    <div class="accordion-body">
-                                        <ul>
-                                            @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
-                                                @foreach($cat['child'] as $fchild)
-                                                    <li><a href="{{ url('product-listing/'.$fchild['slug']) }}">{{ ucfirst($fchild['name'] )}}</a></li>
-                                                @endforeach
-                                            @endif
-                                        </ul>
-                                    </div>
-                                </div>
-                                @endforeach
-                        </div>
+                    <div class="price-range-slider">
+                            <div id="slider-range" class="range-bar"></div>
+                            <p class="range-value">
+                                Range:
+                                <input type="text" id="amount" readonly>
+                            </p>
                     </div>
                 </div>
-          
-            @endif
-           
-            <div class="sidebar_widget">
-                <h4 class="sidebar-title">Price Range</h4>
-                <div class="price-range-slider">
-                        <div id="slider-range" class="range-bar"></div>
-                        <p class="range-value">
-                            Range:
-                            <input type="text" id="amount" readonly>
-                        </p>
-                </div>
             </div>
-
             @if($variant->status==200)
 
                 @php $variantData=json_decode($variant->content,true); @endphp
@@ -99,55 +89,180 @@
                 @foreach($variantData['result'] as $raw)
 
                 @if(!empty($raw['attributes']) && $raw['attributes'][0]!='')
-                        <div class="sidebar_widget">
-                            <h4 class="sidebar-title">{{ $raw['name'] }}</h4>
-                            <div class="va-select-box scroll-box">
+                        <div class="single__widget widget__bg">
+                            <h2 class="widget__title position__relative h3">{{ $raw['name'] }}</h2>
+                            <ul class="widget__form--check">
                     
                                 @foreach($raw['attributes'] as $rawattribute)
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="checkbox" style="" value="{{ $rawattribute['id'] }}" onchange="setSortOrder()"
-                                                class="attribute_id">{{ $rawattribute['title'] }} &nbsp;&nbsp;
-                                            <div class="checkbox-indicator"></div>
-                                        </label>
-                                    </div>
+                                    <li class="widget__form--check__list">
+                                        <label class="widget__form--check__label" for="check{{ $rawattribute['id'] }}">{{ $rawattribute['title'] }}</label>
+                                        <input class="widget__form--check__input" id="check{{ $rawattribute['id'] }}" value="{{ $rawattribute['id'] }}" onchange="setSortOrder()" type="checkbox">
+                                        <span class="widget__form--checkmark"></span>
+
+                                    </li>
                                 @endforeach
                             
-                            </div>
+                            </ul>
                         </div>
                     @endif
                 @endforeach
             @endif
         </div>
-                  
+    </div>
 
-        <div class="product-blog-wrapper">
-            <div class="product-filter-wrapper">
-                <div class="filter-text">
-                    <p>Showing all <span id="totalProduct">0</span> results</p>
-                </div>
-                <div class="filter-select">
-                    <div class="select-box">
-                        <select class="form-field-select  sort_by" title="Sort By" name="sort_by"
-                                onchange="setSortOrder()">
-                            <option value="1" selected>Price: Low to High</option>
-                            <option value="2">Price: High to Low</option>
-                            <option value="3">Order: ASC</option>
-                            <option value="4">Order: DESC</option>
-                        </select> 
+<main class="main__content_wrapper">
+
+    <section class="breadcrumb__section breadcrumb__bg">
+        <div class="container-fluid">
+            <div class="row row-cols-1">
+                <div class="col">
+                    <div class="breadcrumb__content">
+                        <ul class="breadcrumb__content--menu d-flex">
+                            <li class="breadcrumb__content--menu__items"><a class="text-white" href="{{url('/')}}">Home</a></li>
+                            <li class="breadcrumb__content--menu__items"><span class="text-white">Shop </span></li>
+                            
+                            @if(!empty($slugCategoryResult))
+                                @foreach($slugCategoryResult as $key=>$slug)
+                                    @if(count($slugCategoryResult)!=($key+1))
+                                        <li class="breadcrumb__content--menu__items"><a href="{{ url('product-listing/'.$slug['slug'] )}}" class="text-white">{{ $slug['name'] }}</a></li>
+                                    @else
+                                        <li class="breadcrumb__content--menu__items"><span class="text-white">{{ $slug['name'] }}</span></li>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </ul>
                     </div>
                 </div>
             </div>
-            <input type="hidden" id="number" class="qty" value="1" />
-            <input type="hidden" id="min_price" value="0" />
-            <input type="hidden" id="max_price" value="5000" />
-            
-            <div class="va-product-main-box product-box listing-page" id="productScroll">
-               
-            </div> 
-        </div> 
+        </div>
+    </section>
 
-    </div>
+    <section class="shop__section section--padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4">
+                    <div class="shop__sidebar--widget widget__area d-md-none">
+                        @if(!empty($categoryResult))
+                            <div class="single__widget widget__bg">
+                                <h2 class="widget__title position__relative h3">Categories</h2>
+                                @foreach($categoryResult['result'] as $cat)
+                                    <ul class="widget__categories--menu " style="padding: 1px;">
+                                        <li class="widget__categories--menu__list">
+                                            <label class="widget__categories--menu__label d-flex align-items-center">
+                                                <img class="widget__categories--menu__img" src="{{ asset('uploads/category/'.$cat['image']) }}" alt="{{ ucfirst($cat['name']) }}">
+                                                <span class="widget__categories--menu__text">{{ ucfirst($cat['name']) }}</span>
+                                                <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
+                                                    <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                                                </svg>
+                                            </label>
+                                            <ul class="widget__categories--sub__menu">
+                                                @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
+                                                    @foreach($cat['child'] as $fchild)
+                                                        <li class="widget__categories--sub__menu--list">
+                                                            <a class="widget__categories--sub__menu--link d-flex align-items-center" href="{{ url('product-listing/'.$fchild['slug']) }}">
+                                                                <img class="widget__categories--sub__menu--img" src="{{ asset('uploads/category/'.$fchild['image']) }}" alt="{{ ucfirst($fchild['name']) }}">
+                                                                <span class="widget__categories--sub__menu--text">{{ ucfirst($fchild['name']) }}</span>
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                @endif
+                                                
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                @endforeach
+                            </div>
+                        @endif
+                        <div class="single__widget price__filter widget__bg">
+                            <h2 class="widget__title position__relative h3">Filter By Price</h2>
+                            
+                            <div class="sidebar_widget">
+                                <div class="price-range-slider">
+                                        <div id="slider-range" class="range-bar"></div>
+                                        <p class="range-value">
+                                            Range:
+                                            <input type="text" id="amount" readonly>
+                                        </p>
+                                </div>
+                            </div>
+                        </div>
+                        @if($variant->status==200)
+
+                            @php $variantData=json_decode($variant->content,true); @endphp
+
+                            @foreach($variantData['result'] as $raw)
+
+                            @if(!empty($raw['attributes']) && $raw['attributes'][0]!='')
+                                    <div class="single__widget widget__bg">
+                                        <h2 class="widget__title position__relative h3">{{ $raw['name'] }}</h2>
+                                        <ul class="widget__form--check">
+                                
+                                            @foreach($raw['attributes'] as $rawattribute)
+                                                <li class="widget__form--check__list">
+                                                    <label class="widget__form--check__label" for="check{{ $rawattribute['id'] }}">{{ $rawattribute['title'] }}</label>
+                                                    <input class="widget__form--check__input" id="check{{ $rawattribute['id'] }}" value="{{ $rawattribute['id'] }}" onchange="setSortOrder()" type="checkbox">
+                                                    <span class="widget__form--checkmark"></span>
+
+                                                </li>
+                                            @endforeach
+                                        
+                                        </ul>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
+                        
+                    
+                    </div>
+                </div>
+                
+                <input type="hidden" id="number" class="qty" value="1" />
+                <input type="hidden" id="min_price" value="0" />
+                <input type="hidden" id="max_price" value="5000" />
+                <div class="col-xl-9 col-lg-8">
+                    <div class="shop__header bg__gray--color d-flex align-items-center justify-content-between mb-30">
+                        <button class="widget__filter--btn d-none d-md-flex align-items-center">
+                            <svg  class="widget__filter--btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28" d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"/><circle cx="336" cy="128" r="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/><circle cx="176" cy="256" r="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/><circle cx="336" cy="384" r="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/></svg> 
+                            <span class="widget__filter--btn__text">Filter</span>
+                        </button>
+                        <div class="product__view--mode d-flex align-items-center">
+                            
+                            <div class="product__view--mode__list product__short--by align-items-center d-none d-lg-flex">
+                                <label class="product__view--label">Sort By :</label>
+                                <div class="select shop__header--select">
+                                    <select class="form-field-select product__view--select sort_by" title="Sort By" name="sort_by"
+                                            onchange="setSortOrder()">
+                                        <option value="1" selected>Price: Low to High</option>
+                                        <option value="2">Price: High to Low</option>
+                                        <option value="3">Order: ASC</option>
+                                        <option value="4">Order: DESC</option>
+                                    </select> 
+                                </div>
+                            </div>
+                        </div>
+                        <p class="product__showing--count">Showing <span id="totalProduct">0</span> results</p>
+                    </div>
+                    <div class="shop__product--wrapper">
+                        <div class="tab_content">
+                            <div id="product_grid" class="tab_pane active show">
+                                <div class="product__section--inner product__grid--inner">
+                                    <div class="row row-cols-xxl-4 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 mb--n30" id="productScroll">
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
 
 @endsection
 

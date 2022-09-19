@@ -1,53 +1,55 @@
 @if(!empty($data))
 	@foreach($data as $value)
 	
-		
-		<div class="product-box">
-			<div class="product-img">
-				<img src="{{ $value['first_image'] }}" alt="img">
-				<div class="social-icon">
-					<a href="javascript:;" class="getProductDetail" data-slug="{{ $value['slug']}}">
-						<span class="IconCart">
-							<svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M11.9036 21.0002C13.9745 20.9997 15.9856 20.3065 17.6168 19.0308L22.7455 24.1595L24.3951 22.5098L19.2665 17.3812C20.5428 15.7498 21.2365 13.7382 21.237 11.6668C21.237 6.52066 17.0498 2.3335 11.9036 2.3335C6.75748 2.3335 2.57031 6.52066 2.57031 11.6668C2.57031 16.813 6.75748 21.0002 11.9036 21.0002ZM11.9036 4.66683C15.7641 4.66683 18.9036 7.80633 18.9036 11.6668C18.9036 15.5273 15.7641 18.6668 11.9036 18.6668C8.04315 18.6668 4.90365 15.5273 4.90365 11.6668C4.90365 7.80633 8.04315 4.66683 11.9036 4.66683Z" fill="#A56852"/>
-								<path d="M13.5498 10.0171C13.992 10.4604 14.2358 11.0461 14.2358 11.6668H16.5691C16.5702 11.0536 16.4497 10.4463 16.2146 9.88C15.9795 9.31369 15.6345 8.7996 15.1995 8.36743C13.4331 6.60343 10.3706 6.60343 8.60547 8.36743L10.2528 10.0194C11.1395 9.1351 12.6678 9.13743 13.5498 10.0171Z" fill="#A56852"/>
-							</svg>
-						</span>&nbsp;<pre class="spinner-border spinner-border-sm loaderView" style="color:#a56852;font-size: 100%;position:relative;margin:0;display:none"></pre>
-					</a>
-					<a href="javascript:;" class="addtocart" data-type="addtocart" data-product_id="{{ $value['variant_productid'] }}">
-						<span class="IconCart">
-							<svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M25.8531 5.03765C25.5921 4.70052 25.2565 4.42854 24.8726 4.24309C24.4886 4.05764 24.0669 3.96378 23.6406 3.9689H7.81563L6.44688 1.48452C6.22602 1.09614 5.90524 0.773955 5.51783 0.551402C5.13042 0.328848 4.69051 0.214041 4.24375 0.218898H1.04688C0.798235 0.218898 0.559778 0.31767 0.383962 0.493486C0.208147 0.669301 0.109375 0.907757 0.109375 1.1564C0.109375 1.40504 0.208147 1.64349 0.383962 1.81931C0.559778 1.99513 0.798235 2.0939 1.04688 2.0939H4.24375C4.3547 2.08915 4.46497 2.11347 4.56363 2.16444C4.66229 2.21542 4.74593 2.29128 4.80625 2.38452L6.35313 5.19702L7.15938 13.9345C7.26744 14.8392 7.7145 15.6692 8.41042 16.2573C9.10634 16.8454 9.99935 17.1477 10.9094 17.1033H20.6313C21.4352 17.1236 22.2235 16.8797 22.8755 16.4089C23.5275 15.9381 24.007 15.2665 24.2406 14.497L26.275 7.16577C26.3752 6.8027 26.3893 6.42123 26.3161 6.05176C26.2428 5.68229 26.0843 5.33503 25.8531 5.03765ZM24.4844 6.65015L22.45 13.9908C22.3233 14.3665 22.0767 14.6902 21.7481 14.912C21.4195 15.1339 21.0271 15.2417 20.6313 15.2189H10.8719C10.4336 15.251 9.99909 15.1191 9.65261 14.8489C9.30612 14.5786 9.07242 14.1893 8.99687 13.7564L8.29375 5.8439H23.6406C23.7776 5.84252 23.9132 5.87119 24.038 5.92788C24.1627 5.98457 24.2735 6.06791 24.3625 6.17202C24.4184 6.23685 24.4586 6.31377 24.4797 6.39674C24.5009 6.47971 24.5025 6.56646 24.4844 6.65015Z" fill="#A56852"/>
-								<path d="M11.3594 21.7814C12.3949 21.7814 13.2344 20.9419 13.2344 19.9064C13.2344 18.8709 12.3949 18.0314 11.3594 18.0314C10.3238 18.0314 9.48438 18.8709 9.48438 19.9064C9.48438 20.9419 10.3238 21.7814 11.3594 21.7814Z" fill="#A56852"/>
-								<path d="M20.7344 21.7814C21.7699 21.7814 22.6094 20.9419 22.6094 19.9064C22.6094 18.8709 21.7699 18.0314 20.7344 18.0314C19.6988 18.0314 18.8594 18.8709 18.8594 19.9064C18.8594 20.9419 19.6988 21.7814 20.7344 21.7814Z" fill="#A56852"/>
-							</svg>
-						</span>
-						&nbsp;<pre class="spinner-border spinner-border-sm loader" style="color:#a56852;font-size: 100%;position:relative;margin:0;display:none"></pre>
-					</a>
-					<a href="{{ url('product-detail/'.$value['slug'] )}}">
-						<span>
-							<svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M23.2646 11.8755C23.7781 12.5472 23.7781 13.4539 23.2646 14.1245C21.6471 16.2359 17.7666 20.5833 13.2361 20.5833C8.70564 20.5833 4.82514 16.2359 3.20772 14.1245C2.95789 13.8029 2.82227 13.4072 2.82227 13C2.82227 12.5927 2.95789 12.1971 3.20772 11.8755C4.82514 9.76407 8.70564 5.41666 13.2361 5.41666C17.7666 5.41666 21.6471 9.76407 23.2646 11.8755V11.8755Z" stroke="#A56852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-								<path d="M13.2363 16.25C15.0313 16.25 16.4863 14.7949 16.4863 13C16.4863 11.2051 15.0313 9.75 13.2363 9.75C11.4414 9.75 9.98633 11.2051 9.98633 13C9.98633 14.7949 11.4414 16.25 13.2363 16.25Z" stroke="#A56852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</span>
-					</a>
+	<div class="col mb-30">
+		<div class="product__items ">
+			<div class="product__items--thumbnail">
+				<a class="product__items--link" href="{{ url('product-detail/'.$value['slug'] )}}">
+					<img class="product__items--img product__primary--img" src="{{ $value['first_image'] }}" alt="product-img">
+					<img class="product__items--img product__secondary--img" src="{{ $value['first_image'] }}" alt="product-img">
+				</a>
+				<div class="product__badge">
+					<span class="product__badge--items sale">New</span>
 				</div>
+				<ul class="product__items--action d-flex justify-content-center">
+					<li class="product__items--action__list">
+						<a class="product__items--action__btn"  href="javascript:void(0)" class="getProductDetail" data-slug="{{ $value['slug']}}">
+							<svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg"  width="20.51" height="19.443" viewBox="0 0 512 512"><path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
+							<span class="visually-hidden">Quick View</span>
+						</a>
+					</li>
+					<li class="product__items--action__list">
+						<a class="product__items--action__btn" href="wishlist.html">
+							<svg class="product__items--action__btn--svg"  xmlns="http://www.w3.org/2000/svg" width="17.51" height="15.443" viewBox="0 0 24.526 21.82">
+								<path  d="M12.263,21.82a1.438,1.438,0,0,1-.948-.356c-.991-.866-1.946-1.681-2.789-2.4l0,0a51.865,51.865,0,0,1-6.089-5.715A9.129,9.129,0,0,1,0,7.371,7.666,7.666,0,0,1,1.946,2.135,6.6,6.6,0,0,1,6.852,0a6.169,6.169,0,0,1,3.854,1.33,7.884,7.884,0,0,1,1.558,1.627A7.885,7.885,0,0,1,13.821,1.33,6.169,6.169,0,0,1,17.675,0,6.6,6.6,0,0,1,22.58,2.135a7.665,7.665,0,0,1,1.945,5.235,9.128,9.128,0,0,1-2.432,5.975,51.86,51.86,0,0,1-6.089,5.715c-.844.719-1.8,1.535-2.794,2.4a1.439,1.439,0,0,1-.948.356ZM6.852,1.437A5.174,5.174,0,0,0,3,3.109,6.236,6.236,0,0,0,1.437,7.371a7.681,7.681,0,0,0,2.1,5.059,51.039,51.039,0,0,0,5.915,5.539l0,0c.846.721,1.8,1.538,2.8,2.411,1-.874,1.965-1.693,2.812-2.415a51.052,51.052,0,0,0,5.914-5.538,7.682,7.682,0,0,0,2.1-5.059,6.236,6.236,0,0,0-1.565-4.262,5.174,5.174,0,0,0-3.85-1.672A4.765,4.765,0,0,0,14.7,2.467a6.971,6.971,0,0,0-1.658,1.918.907.907,0,0,1-1.558,0A6.965,6.965,0,0,0,9.826,2.467a4.765,4.765,0,0,0-2.975-1.03Zm0,0" transform="translate(0 0)" fill="currentColor"></path>
+							</svg>
+							<span class="visually-hidden">Wishlist</span>
+						</a>
+					</li>
+				</ul>
 			</div>
-			<div class="product-text">
-				<span>{{ $value['category'] }}</span>
-				<a href="{{ url('product-detail/'.$value['slug'] )}}">{{ $value['name'] }}</a>
-				<h5>From 
-					<small>
-						@if($value['discount_amount']>0)
-							<del>{{ \App\Helpers\commonHelper::getPriceByCountry($value['sale_price']) }}</del>{{ \App\Helpers\commonHelper::getPriceByCountry($value['offer_price']) }}
-						@else
-							{{ \App\Helpers\commonHelper::getPriceByCountry($value['sale_price']) }}
-						@endif
-					</small> 
-				</h5>
+			<div class="product__items--content text-center">
+				
+				<h3 class="product__items--content__title h4"><a href="{{ url('product-detail/'.$value['slug'] )}}">{{ $value['name'] }}</a></h3>
+				<div class="product__items--price">
+					@if($value['discount_amount']>0)
+						<span class="current__price">{{ \App\Helpers\commonHelper::getPriceByCountry($value['sale_price']) }}</span>
+						<span class="old__price">{{ \App\Helpers\commonHelper::getPriceByCountry($value['offer_price']) }}</span>
+					@else
+						<span class="current__price">{{ \App\Helpers\commonHelper::getPriceByCountry($value['sale_price']) }}</span>
+					@endif
+				</div>
+				<a class="product__items--action__cart--btn primary__btn" class="addtocart" data-type="addtocart" data-product_id="{{ $value['variant_productid'] }}">
+					<svg class="product__items--action__cart--btn__icon" xmlns="http://www.w3.org/2000/svg" width="13.897" height="14.565" viewBox="0 0 18.897 21.565">
+						<path  d="M16.84,8.082V6.091a4.725,4.725,0,1,0-9.449,0v4.725a.675.675,0,0,0,1.35,0V9.432h5.4V8.082h-5.4V6.091a3.375,3.375,0,0,1,6.75,0v4.691a.675.675,0,1,0,1.35,0V9.433h3.374V21.581H4.017V9.432H6.041V8.082H2.667V21.641a1.289,1.289,0,0,0,1.289,1.29h16.32a1.289,1.289,0,0,0,1.289-1.29V8.082Z" transform="translate(-2.667 -1.366)" fill="currentColor"></path>
+					</svg>
+					<span class="add__to--cart__text"> Add to cart</span>
+				</a>
 			</div>
 		</div>
+	</div>
+
+	
             
 	@endforeach
 @elseif(empty($data) && $offset==0)

@@ -17,10 +17,7 @@ use Illuminate\Support\Facades\Route;
 	Route::post('country-set-landing-page-ajax', "HomeController@index");
 	Route::match(['get','post'],'contact-us', "HomeController@contactUs")->name('contact-us');
 	Route::get('searchproduct-byname', "HomeController@searchproduct")->name('searchproduct-byname');
-	Route::get('women-program', "HomeController@womenProgram")->name('women_program');
-	Route::get('wholesale/{type}', "HomeController@wholesale")->name('wholesale');
-	Route::get('about', "HomeController@about")->name('about');
-	Route::get('our-artisan', "HomeController@ourArtisan")->name('our-artisan');
+	Route::get('about', "HomeController@aboutUs")->name('about');
 	//Route::get('country-select', "HomeController@country-select")->name('our-artisan');
 	
 	Route::get('product-detail/{slug}', "ProductController@detail");

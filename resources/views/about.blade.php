@@ -5,339 +5,422 @@
 @section('meta_description','The Womens Program')
 
 @section('content')
-   <style>
-      
-      .va-women-do .core-value-slider .owl-dots button span {
-         width: 25px;
-         height: 25px;
-         border-radius: 50%;
-         opacity: 1;
-         background-color: transparent;
-         border: 1px solid #ffffff;
-         display: inline-block;
-         margin-right: 8px;
-      }
-      .va-staff-wrap.va-tribe-wrap .staff-box.green-box a {
-        
-         transform: translateY(5%) !important;
-      }
-
-      @media screen and (min-device-width: 300px) and (max-device-width: 768px) { 
-         .va-staff-wrap.va-tribe-wrap .staff-box.green-box {
-            width: 351px;
-            min-height: 351px;
-            margin-top: 51px !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-         }
-         .va-staff-wrap.va-tribe-wrap .staff-box.green-box a {
-            font-size: 30px;
-            line-height: 43px;
-         }
-      }
-
-      @media screen and (min-device-width: 768px) and (max-device-width: 1180px) { 
-         .va-staff-wrap.va-tribe-wrap .staff-box.green-box {
-            width: 216px;
-            min-height: 216px;
-            margin-top: 51px !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-         }
-      }
-     
-   </style>
-   <div class="va-page-strip-tag">
-      <ul>
-         <li> <a href="{{url('/')}}">Home</a> </li>
-         <li>/ &nbsp;  Our Story </li>
-      </ul>
-   </div>
-
-   <div class="va-social-imapact-inner-content-wrapper va-our-story-wrap">
-      <div class="inner-social-impact-box">
-         <div class="social-impact-img">
-            <img src="{{ asset('assets/images/impact-banner.png')}}" alt="img">
-            <div class="social-impact-text mission-statement">
-               <h4>AT VILLAGE ARTISAN</h4>
-               <p>OUR MISSION STATEMENT</p>
-               <span>hope - empowerment - and dignity</span>
-            </div>
-         </div>
-      </div>
-   </div>
    
-   <!-- womens program -->
-   <div class="va-women-program-wrap va-story-wrap">
-      <div class="container-fluid pd-75">
-         <div class="row align-items-center">
-            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
-               <ul>
-                  <li class="img1"><img src="{{ asset('assets/images/image1.png')}}" alt=""></li>
-                  <li class="img2"><img src="{{ asset('assets/images/image2.png')}}" alt=""></li>
-                  <li class="img3"><img src="{{ asset('assets/images/image3.png')}}" alt=""></li>
-                  <li class="img4"><img src="{{ asset('assets/images/image4.png')}}" alt=""></li>
-                  <li class="img5"><img src="{{ asset('assets/images/image5.png')}}" alt=""></li>
-               </ul>
-            </div>
-            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
-               <div class="women-cont">
-                  <h3>Our Women’s Program</h3>
-                  <span>Village Artisan</span>
-                  <p class="about-story">
-                     Every person has a story:  The story of Village Artisan is about empowering women, giving dignified work to men and delivering fashionable quality products to you, the discerning and socially conscious buyer.
-                  </p>
-                  <p class="descipt">
-                     Village Artisan is about creating stories of change and transformation in the lives of a growing number of families and communities in North India by training artisans, designing great products and connecting their work to the global market.  Every person who is involved from around the world has a unique story - from the artisans who produce beautiful handcrafted products, to the consumers on the other side of the globe who enjoy, appreciate and share them.
-                  </p>
-                  <div class="women-work-wrap">
-                     <div class="name-icon-wrap">
-                        <div>
-                           <h5>Tasha</h5>
-                           <small>FOUNDER / CEO</small>
-                        </div>
-                        <div class="social-icon">
-                           <a href="javascript:;"> <span><svg width="18" height="18" viewBox="0 0 266 513" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M172.7 512.1C141.5 512.1 110.3 512.1 79.0002 512.1C78.9002 510 78.6002 507.8 78.6002 505.7C78.6002 432.5 78.6002 359.3 78.6002 286.1C78.6002 284 78.6002 281.8 78.6002 279.1C52.2002 279.1 26.4002 279.1 0.700195 279.1C0.700195 248.4 0.700195 218.4 0.700195 187.9C26.7002 187.9 52.4002 187.9 78.6002 187.9C78.6002 185.5 78.6002 183.5 78.6002 181.6C78.6002 162.8 78.2003 144 78.8003 125.2C79.2003 112.5 79.8003 99.4998 82.4003 87.0998C91.8003 43.1998 118.4 15.2997 162.3 4.69974C182.7 -0.300258 203.5 0.799767 224.2 1.59977C237.9 2.09977 251.7 3.19979 265.4 3.99979C265.4 31.2998 265.4 58.5998 265.4 85.8998C245.7 86.1998 225.9 86.1998 206.2 86.8998C189.4 87.3998 178.2 96.4998 174.3 112.4C173.3 116.5 172.8 120.9 172.7 125.2C172.5 144.7 172.6 164.1 172.6 183.6C172.6 185 172.8 186.4 172.9 188.3C202.8 188.3 232.3 188.3 262.2 188.3C258.3 218.9 254.4 248.9 250.4 279.5C224.3 279.5 198.6 279.5 172.5 279.5C172.5 282 172.5 283.9 172.5 285.9C172.5 351.4 172.5 416.9 172.5 482.4C172.6 492.2 172.7 502.2 172.7 512.1Z" fill=""></path>
-                              </svg></span> </a>
-                           <a href="javascript:;"> <span><svg width="18" height="18" viewBox="0 0 513 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M512.9 129.5C512.9 214 512.9 298.5 512.9 383C512 388 511.4 393.1 510.2 398.1C496.8 455.1 461.9 491.7 405.4 507.6C398.4 509.6 391.1 510.4 383.9 511.8C299.2 511.8 214.6 511.8 129.9 511.8C124.8 510.9 119.7 510.3 114.7 509.1C57.5999 495.7 20.8999 460.9 5.09991 404.4C3.09991 397.4 2.2999 390.2 0.899902 383C0.899902 298.5 0.899902 214 0.899902 129.5C1.7999 124.5 2.59991 119.4 3.59991 114.4C17.2999 47.8999 74.4999 0.899943 142.5 0.799943C218.8 0.599943 295.1 0.699919 371.4 0.899919C380.7 0.899919 390.2 1.49987 399.1 3.59987C456.2 16.7999 492.9 51.6999 508.7 108.1C510.6 115.1 511.5 122.3 512.9 129.5ZM46.6999 255.7C46.5999 255.7 46.4999 255.7 46.4999 255.7C46.4999 293 46.4999 330.2 46.4999 367.5C46.4999 378.9 47.6999 390 51.2999 400.9C63.5999 437.9 99.3999 466.7 144.8 466.4C219.5 465.9 294.1 466.3 368.8 466.3C380 466.3 391 465 401.7 461.5C438.9 449.2 467.6 413.5 467.3 368.1C466.8 293.6 467.2 219.1 467.2 144.5C467.2 133.3 465.9 122.3 462.4 111.6C450 74.3999 414.2 45.7999 368.9 46.0999C294.2 46.5999 219.6 46.2998 144.9 46.1998C132.1 46.1998 119.8 48.0999 107.7 52.4999C73.0999 65.2999 47.3999 100.1 46.8999 136.9C46.2999 176.5 46.6999 216.1 46.6999 255.7Z" fill=""></path>
-                              <path d="M388.8 256.3C388.8 328.8 329.5 387.9 256.9 388C184.1 388 124.7 328.6 124.9 256C125.1 183.5 184.5 124.5 257 124.6C329.6 124.6 388.8 183.8 388.8 256.3ZM343.1 256.4C343.3 208.7 304.8 170.2 256.9 170.1C209.3 170 171 208 170.6 255.7C170.2 303.3 208.6 342 256.5 342.2C304.2 342.6 342.9 304.2 343.1 256.4Z" fill=""></path>
-                              <path d="M394.2 152.5C375.8 152.4 360.8 137.3 360.9 119.1C361.1 101.1 376.1 86.1996 394.2 86.0996C412.3 85.8996 427.7 101.2 427.7 119.4C427.8 137.6 412.6 152.6 394.2 152.5Z" fill=""></path>
-                              </svg></span> </a>
-                           <a href="javascript:;"> <span><svg width="18" height="18" viewBox="0 0 395 326" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M113.7 255.5C107.8 254.2 101.8 253.1 95.9002 251.4C76.2002 245.6 61.4002 233.4 50.5002 216.3C47.8002 212.1 45.7002 207.6 43.8002 203C42.0002 198.5 43.0002 197.6 47.9002 197.7C54.7002 197.8 61.5002 197.7 68.3002 197.5C69.8002 197.5 71.3002 197 74.2002 196.5C67.5002 193.5 62.1002 191.6 57.1002 188.9C35.9002 177.4 21.9002 160 15.9002 136.5C14.7002 131.7 13.9002 126.8 13.3002 121.8C12.6002 116.2 14.8002 114.7 19.9002 117.4C27.1002 121.2 34.8002 122.9 42.7002 123.8C43.4002 123.9 44.2002 123.6 46.1002 123.4C44.3002 121.4 43.2002 119.9 41.8002 118.6C27.2002 105.5 18.4002 89.5 15.2002 70C12.3002 52.5 15.8002 36.5 22.7002 20.7C24.3002 17 26.7002 16.6 29.4002 19.9C42.6002 35.8999 58.1002 49.3999 75.2002 61.0999C92.4002 72.8999 110.8 82 130.6 88.8C148.6 95 167.1 98.7 186 100.5C193.5 101.2 193.8 100.8 192.7 93.4C187.5 59.4 206.8 25.2999 236.5 9.89995C253.3 1.19995 270.8 -1.10005 288.8 1.39995C297.5 2.59995 305.8 7.49995 313.8 11.7C319.6 14.7 324.8 19.0999 329.8 23.2999C332.7 25.7999 335.5 26.2 338.9 25.2C352.6 21.3 366.2 17 378.7 9.99995C380.1 9.19995 382 9.09995 383.6 8.69995C383.4 10.6 383.7 12.6 383 14.2C377.1 27.9 368.4 39.3999 356.1 48C355.7 48.2999 355.5 48.7999 354.5 50.2C368.7 49.5 380.7 44 393.2 40.5C393.5 40.9 393.8 41.2999 394.1 41.7C393.4 43.1 392.8 44.7 391.9 46C382.8 58.3999 372 69.2 360 78.7C357.1 81 356.1 83.7 356.2 87.3C357 118.3 351.4 148.2 340.1 176.9C323.9 218.4 298.5 253.5 262.7 280.5C246.1 293 228.1 303.1 208.4 310.4C192.3 316.4 175.6 319.6 158.9 323.2C138.5 327.6 118.3 324.9 98.1002 325.3C92.8002 325.4 87.4002 323.1 82.1002 322.1C62.1002 318.3 42.9002 312.3 24.4002 303.8C17.8002 300.8 11.5002 297 5.10019 293.5C3.50019 292.6 2.1002 291.1 0.700195 289C42.5002 291.1 80.6002 281.8 114.1 256.8C114.1 256.5 113.9 256 113.7 255.5Z" fill=""></path>
-                              </svg></span> </a>
-                        </div>
-                     </div>
-                     <p>A young couple set out from their native Canada in 1999, full of youthful enthusiasm and a spirit of adventure.  Bound for the exotic sub-continent with two small kids in tow, they were driven by a dream to do something meaningful with their lives.</p>
-                  </div>
-                  <!-- <p class="about-story">
-                     Every person has a story:  The story of Village Artisan is about empowering women, giving dignified work to men and delivering fashionable quality products to you, the discerning and socially conscious buyer.
-                  </p>
-                  <p class="descipt">
-                     Village Artisan is about creating stories of change and transformation in the lives of a growing number of families and communities in North India by training artisans, designing great products and connecting their work to the global market.
-                  </p> -->
-               </div>
-            </div>
+   
 
-         </div>
-      </div>
-   </div>
+   <main class="main__content_wrapper">
 
-   @if($staffs->status==200)
-		@php
-			$staffResult=(json_decode(($staffs->content),true));
-        
-		@endphp
-         <!-- our staff section start-->
-      <div class="va-staff-wrap ">
-         <div class="container">
-            <div class="va-heading">
-               <h2>Our Core Staff</h2>
+<!-- Start breadcrumb section -->
+<section class="breadcrumb__section breadcrumb__bg">
+    <div class="container">
+        <div class="row row-cols-1">
+            <div class="col">
+                <div class="breadcrumb__content">
+                    <h1 class="breadcrumb__content--title text-white mb-10">About Us</h1>
+                    <ul class="breadcrumb__content--menu d-flex">
+                        <li class="breadcrumb__content--menu__items"><a class="text-white" href="{{url('/')}}">Home</a></li>
+                        <li class="breadcrumb__content--menu__items"><span class="text-white">About Us</span></li>
+                    </ul>
+                </div>
             </div>
+        </div>
+    </div>
+</section>
+<!-- End breadcrumb section -->
+
+<!-- Start about section -->
+<section class="about__section section--padding mb-95">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about__thumbnail d-flex">
+                    <div class="about__thumbnail--items">
+                        <img class="about__thumbnail--img border-radius-5 display-block" src="assets/img/other/about-thumb-list1.webp" alt="about-thumbnail">
+                    </div>
+                    <div class="about__thumbnail--items position__relative">
+                        <img class="about__thumbnail--img border-radius-5 display-block" src="assets/img/other/about-thumb-list2.webp" alt="about-thumbnail">
+                        <div class="banner__bideo--play about__thumbnail--play">
+                            <a class="bideo__play--icon glightbox" href="https://vimeo.com/115041822" data-gallery="video">
+                                <svg id="play" xmlns="http://www.w3.org/2000/svg" width="46.302" height="46.302" viewBox="0 0 46.302 46.302">
+                                    <g id="Group_193" data-name="Group 193" transform="translate(0 0)">
+                                    <path id="Path_116" data-name="Path 116" d="M39.521,6.781a23.151,23.151,0,0,0-32.74,32.74,23.151,23.151,0,0,0,32.74-32.74ZM23.151,44.457A21.306,21.306,0,1,1,44.457,23.151,21.33,21.33,0,0,1,23.151,44.457Z" fill="currentColor"></path>
+                                    <g id="Group_188" data-name="Group 188" transform="translate(15.588 11.19)">
+                                        <g id="Group_187" data-name="Group 187">
+                                        <path id="Path_117" data-name="Path 117" d="M190.3,133.213l-13.256-8.964a3,3,0,0,0-4.674,2.482v17.929a2.994,2.994,0,0,0,4.674,2.481l13.256-8.964a3,3,0,0,0,0-4.963Zm-1.033,3.435-13.256,8.964a1.151,1.151,0,0,1-1.8-.953V126.73a1.134,1.134,0,0,1,.611-1.017,1.134,1.134,0,0,1,1.185.063l13.256,8.964a1.151,1.151,0,0,1,0,1.907Z" transform="translate(-172.366 -123.734)" fill="currentColor"></path>
+                                        </g>
+                                    </g>
+                                    <g id="Group_190" data-name="Group 190" transform="translate(28.593 5.401)">
+                                        <g id="Group_189" data-name="Group 189">
+                                        <path id="Path_118" data-name="Path 118" d="M328.31,70.492a18.965,18.965,0,0,0-10.886-10.708.922.922,0,1,0-.653,1.725,17.117,17.117,0,0,1,9.825,9.664.922.922,0,1,0,1.714-.682Z" transform="translate(-316.174 -59.724)" fill="currentColor"></path>
+                                        </g>
+                                    </g>
+                                    <g id="Group_192" data-name="Group 192" transform="translate(22.228 4.243)">
+                                        <g id="Group_191" data-name="Group 191">
+                                        <path id="Path_119" data-name="Path 119" d="M249.922,47.187a19.08,19.08,0,0,0-3.2-.27.922.922,0,0,0,0,1.845,17.245,17.245,0,0,1,2.889.243.922.922,0,1,0,.31-1.818Z" transform="translate(-245.801 -46.917)" fill="currentColor"></path>
+                                        </g>
+                                    </g>
+                                    </g>
+                                </svg>
+                                <span class="visually-hidden">Play</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about__content">
+                    <span class="about__content--subtitle text__secondary mb-20"> Why Choose us</span>
+                    <h2 class="about__content--maintitle mb-25">We do not buy from the open market & traders.</h2>
+                    <p class="about__content--desc mb-20">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit illo, est repellendus are quia voluptate neque reiciendis ea placeat labore maiores cum, hic ducimus ad a dolorem soluta consectetur adipisci. Perspiciatis quas
+                        ab quibusdam is.</p>
+                    <p class="about__content--desc mb-25">Itaque accusantium eveniet a laboriosam dolorem? Magni suscipit est corrupti explicabo non perspiciatis, excepturi ut asperiores assumenda rerum? Provident ab corrupti sequi, voluptates repudiandae eius odit aut.</p>
+                    <div class="about__author position__relative">
+                        <h4 class="about__author--name">Bruce Sutton</h4>
+                        <span class="about__author--rank">Spa Manager</span>
+                        <img class="about__author--signature" src="assets/img/icon/signature.webp" alt="signature">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End about section -->
+
+<!-- Start counterup banner section -->
+<div class="counterup__banner--section counterup__banner__bg2" id="funfactId">
+    <div class="container">
+        <div class="row row-cols-1 align-items-center">
+            <div class="col">
+                <div class="counterup__banner--inner position__relative d-flex align-items-center justify-content-between">
+                    <div class="counterup__banner--items text-center">
+                        <p class="counterup__banner--items__text text-white">YEARS OF <br> FOUNDATION
+                        </p>
+                        <span class="counterup__banner--items__number js-counter text-white" data-count="50">0</span>
+                    </div>
+                    <div class="counterup__banner--items text-center">
+                        <p class="counterup__banner--items__text text-white">SKILLED TEAM <br> MEMBERS </p>
+                        <span class="counterup__banner--items__number js-counter text-white" data-count="100">0</span>
+                    </div>
+                    <div class="counterup__banner--items text-center">
+                        <p class="counterup__banner--items__text text-white">HAPPY <br> CUSTOMERS
+                        </p>
+                        <span class="counterup__banner--items__number js-counter text-white" data-count="80">0</span>
+                    </div>
+                    <div class="counterup__banner--items text-center">
+                        <p class="counterup__banner--items__text text-white">MONTHLY <br> ORDERS
+                        </p>
+                        <span class="counterup__banner--items__number js-counter text-white" data-count="70">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End counterup banner section -->
+
+<!-- Start team members section -->
+<!-- <section class="team__section section--padding">
+    <div class="container">
+        <div class="section__heading text-center mb-30">
+            <h2 class="section__heading--maintitle">Our Team</h2>
+        </div>
+        <div class="team__container">
             <div class="row">
-               @foreach($staffResult['result'] as $key=>$staff)
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                     <div class="staff-box">
-                        <a href="javascript:;">
-                           <img src="{{ $staff['image'] }}" alt="">
-                           <div class="overlay-cont">
-                              <div class="cont">
-                                 <span class="name">{{ $staff['name'] }}</span>
-                                 <small>{{ $staff['designation'] }}</small>
-                                 <strong>{{ $staff['location'] }}</strong>
-                              </div>
-                           </div>
-                        </a>
-                     </div>
-                  </div>
-               @endforeach
-               
-            </div>
-         </div>
-      </div>
-      <!-- our staff section  end-->
-   @endif
-
-   <!-- how we do it -->
-   <div class="va-women-do">
-      <div class="container-fluid pd-75">
-         <div class="va-heading mb-4">
-            <h2 class="text-center">Our Core Values</h2>
-         </div>
-         <div class="core-value-slider">
-            <div class="owl-carousel owl-theme">
-              
-               <!--  -->
-               <div class="item">
-                  <div class="va-box">
-                     <h5>Quality</h5>
-                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                  </div>
-               </div>
-               <div class="item">
-                  <div class="va-box">
-                     <h5>Relationships</h5>
-                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
-                  </div>
-               </div>
-               <div class="item">
-                  <div class="va-box">
-                     <h5>Empowerment</h5>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                  </div>
-               </div>
-               <div class="item">
-                  <div class="va-box">
-                     <h5>Relationships</h5>
-                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
-                  </div>
-               </div>
-               <div class="item">
-                  <div class="va-box">
-                     <h5>Quality</h5>
-                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                  </div>
-               </div>
-               <!--  -->
-            </div>
-         </div>
-        
-      </div>
-
-   </div>
-
-   @if($artisans->status==200)
-		@php
-			$artisans=(json_decode(($artisans->content),true));
-        
-		@endphp
-         <!-- our staff section start-->
-         <div class="va-staff-wrap va-tribe-wrap position-relative">
-            <div class="tribe-img">
-               <img src="images/map-bg.png" alt="" class="w-100">
-            </div>
-            <div class="container">
-               <div class="va-heading">
-                  <h2>Our Tribe</h2>
-               </div>
-               <div class="row">
-                  @foreach($artisans['result'] as $key=>$art)
-                     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                        <div class="staff-box">
-                           <a href="javascript:;">
-                              <img src="{{ $art['image'] }}" alt="">
-                              <div class="overlay-cont">
-                                 <div class="cont">
-                                    <span class="name">{{ $art['name'] }}</span>
-                                 </div>
-                              </div>
-                           </a>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col">
+                    <div class="team__items text-center">
+                        <div class="team__thumbnail">
+                            <img class="team__thumbnail--img border-radius-50 display-block" src="assets/img/other/team1.webp" alt="team-thumb">
                         </div>
-                     </div>
-                  @endforeach
-                  
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                     <div class="staff-box green-box">
-                        <a href="javascript:;">
-                           THIS<br>
-                           COULD<br>
-                           BE YOU !                     
-                        </a>
-                     </div>
-                  </div>
-               </div>
+                        <div class="team__content ">
+                            <h3 class="team__content--title">Sarrison Samuel</h3>
+                            <span class="team__content--subtitle">CEO - Founder</span>
+                            <ul class="team__social d-flex justify-content-center align-items-center">
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.facebook.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="7.667" height="16.524" viewBox="0 0 7.667 16.524">
+                                            <path  data-name="Path 237" d="M967.495,353.678h-2.3v8.253h-3.437v-8.253H960.13V350.77h1.624v-1.888a4.087,4.087,0,0,1,.264-1.492,2.9,2.9,0,0,1,1.039-1.379,3.626,3.626,0,0,1,2.153-.6l2.549.019v2.833h-1.851a.732.732,0,0,0-.472.151.8.8,0,0,0-.246.642v1.719H967.8Z" transform="translate(-960.13 -345.407)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Facebook</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://twitter.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.489" height="13.384" viewBox="0 0 16.489 13.384">
+                                            <path  data-name="Path 303" d="M966.025,1144.2v.433a9.783,9.783,0,0,1-.621,3.388,10.1,10.1,0,0,1-1.845,3.087,9.153,9.153,0,0,1-3.012,2.259,9.825,9.825,0,0,1-4.122.866,9.632,9.632,0,0,1-2.748-.4,9.346,9.346,0,0,1-2.447-1.11q.4.038.809.038a6.723,6.723,0,0,0,2.24-.376,7.022,7.022,0,0,0,1.958-1.054,3.379,3.379,0,0,1-1.958-.687,3.259,3.259,0,0,1-1.186-1.666,3.364,3.364,0,0,0,.621.056,3.488,3.488,0,0,0,.885-.113,3.267,3.267,0,0,1-1.374-.631,3.356,3.356,0,0,1-.969-1.186,3.524,3.524,0,0,1-.367-1.5v-.057a3.172,3.172,0,0,0,1.544.433,3.407,3.407,0,0,1-1.1-1.214,3.308,3.308,0,0,1-.4-1.609,3.362,3.362,0,0,1,.452-1.694,9.652,9.652,0,0,0,6.964,3.538,3.911,3.911,0,0,1-.075-.772,3.293,3.293,0,0,1,.452-1.694,3.409,3.409,0,0,1,1.233-1.233,3.257,3.257,0,0,1,1.685-.461,3.351,3.351,0,0,1,2.466,1.073,6.572,6.572,0,0,0,2.146-.828,3.272,3.272,0,0,1-.574,1.083,3.477,3.477,0,0,1-.913.8,6.869,6.869,0,0,0,1.958-.546A7.074,7.074,0,0,1,966.025,1144.2Z" transform="translate(-951.23 -1140.849)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Twitter</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.skype.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.482" height="16.481" viewBox="0 0 16.482 16.481">
+                                            <path  data-name="Path 284" d="M879,926.615a4.479,4.479,0,0,1,.622-2.317,4.666,4.666,0,0,1,1.676-1.677,4.482,4.482,0,0,1,2.317-.622,4.577,4.577,0,0,1,2.43.678,7.58,7.58,0,0,1,5.048.961,7.561,7.561,0,0,1,3.786,6.593,8,8,0,0,1-.094,1.206,4.676,4.676,0,0,1,.7,2.411,4.53,4.53,0,0,1-.622,2.326,4.62,4.62,0,0,1-1.686,1.686,4.626,4.626,0,0,1-4.756-.075,7.7,7.7,0,0,1-1.187.094,7.623,7.623,0,0,1-7.647-7.647,7.46,7.46,0,0,1,.094-1.187A4.424,4.424,0,0,1,879,926.615Zm4.107,1.714a2.473,2.473,0,0,0,.282,1.234,2.41,2.41,0,0,0,.782.829,5.091,5.091,0,0,0,1.215.565,15.981,15.981,0,0,0,1.582.424q.678.151.979.235a3.091,3.091,0,0,1,.593.235,1.388,1.388,0,0,1,.452.348.738.738,0,0,1,.16.481.91.91,0,0,1-.48.753,2.254,2.254,0,0,1-1.271.321,2.105,2.105,0,0,1-1.253-.292,2.262,2.262,0,0,1-.65-.838,2.42,2.42,0,0,0-.414-.546.853.853,0,0,0-.584-.17.893.893,0,0,0-.669.283.919.919,0,0,0-.273.659,1.654,1.654,0,0,0,.217.782,2.456,2.456,0,0,0,.678.763,3.64,3.64,0,0,0,1.158.574,5.931,5.931,0,0,0,1.639.235,5.767,5.767,0,0,0,2.072-.339,2.982,2.982,0,0,0,1.356-.961,2.306,2.306,0,0,0,.471-1.431,2.161,2.161,0,0,0-.443-1.375,3.009,3.009,0,0,0-1.2-.894,10.118,10.118,0,0,0-1.865-.575,11.2,11.2,0,0,1-1.309-.311,2.011,2.011,0,0,1-.8-.452.992.992,0,0,1-.3-.744,1.143,1.143,0,0,1,.565-.97,2.59,2.59,0,0,1,1.488-.386,2.538,2.538,0,0,1,1.074.188,1.634,1.634,0,0,1,.622.49,3.477,3.477,0,0,1,.414.753,1.568,1.568,0,0,0,.4.594.866.866,0,0,0,.574.2,1,1,0,0,0,.706-.254.828.828,0,0,0,.273-.631,2.234,2.234,0,0,0-.443-1.253,3.321,3.321,0,0,0-1.158-1.046,5.375,5.375,0,0,0-2.524-.527,5.764,5.764,0,0,0-2.213.386,3.161,3.161,0,0,0-1.422,1.083A2.738,2.738,0,0,0,883.106,928.329Z" transform="translate(-878.999 -922)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Skype</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.youtube.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.49" height="11.582" viewBox="0 0 16.49 11.582">
+                                            <path  data-name="Path 321" d="M967.759,1365.592q0,1.377-.019,1.717-.076,1.114-.151,1.622a3.981,3.981,0,0,1-.245.925,1.847,1.847,0,0,1-.453.717,2.171,2.171,0,0,1-1.151.6q-3.585.265-7.641.189-2.377-.038-3.387-.085a11.337,11.337,0,0,1-1.5-.142,2.206,2.206,0,0,1-1.113-.585,2.562,2.562,0,0,1-.528-1.037,3.523,3.523,0,0,1-.141-.585c-.032-.2-.06-.5-.085-.906a38.894,38.894,0,0,1,0-4.867l.113-.925a4.382,4.382,0,0,1,.208-.906,2.069,2.069,0,0,1,.491-.755,2.409,2.409,0,0,1,1.113-.566,19.2,19.2,0,0,1,2.292-.151q1.82-.056,3.953-.056t3.952.066q1.821.067,2.311.142a2.3,2.3,0,0,1,.726.283,1.865,1.865,0,0,1,.557.49,3.425,3.425,0,0,1,.434,1.019,5.72,5.72,0,0,1,.189,1.075q0,.095.057,1C967.752,1364.1,967.759,1364.677,967.759,1365.592Zm-7.6.925q1.49-.754,2.113-1.094l-4.434-2.339v4.66Q958.609,1367.311,960.156,1366.517Z" transform="translate(-951.269 -1359.8)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Youtube</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col">
+                    <div class="team__items text-center">
+                        <div class="team__thumbnail">
+                            <img class="team__thumbnail--img border-radius-50 display-block" src="assets/img/other/team2.webp" alt="team-thumb">
+                        </div>
+                        <div class="team__content">
+                            <h3 class="team__content--title">Warrison Samuel</h3>
+                            <span class="team__content--subtitle">Spa Manager</span>
+                            <ul class="team__social d-flex justify-content-center align-items-center">
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.facebook.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="7.667" height="16.524" viewBox="0 0 7.667 16.524">
+                                            <path  data-name="Path 237" d="M967.495,353.678h-2.3v8.253h-3.437v-8.253H960.13V350.77h1.624v-1.888a4.087,4.087,0,0,1,.264-1.492,2.9,2.9,0,0,1,1.039-1.379,3.626,3.626,0,0,1,2.153-.6l2.549.019v2.833h-1.851a.732.732,0,0,0-.472.151.8.8,0,0,0-.246.642v1.719H967.8Z" transform="translate(-960.13 -345.407)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Facebook</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://twitter.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.489" height="13.384" viewBox="0 0 16.489 13.384">
+                                            <path  data-name="Path 303" d="M966.025,1144.2v.433a9.783,9.783,0,0,1-.621,3.388,10.1,10.1,0,0,1-1.845,3.087,9.153,9.153,0,0,1-3.012,2.259,9.825,9.825,0,0,1-4.122.866,9.632,9.632,0,0,1-2.748-.4,9.346,9.346,0,0,1-2.447-1.11q.4.038.809.038a6.723,6.723,0,0,0,2.24-.376,7.022,7.022,0,0,0,1.958-1.054,3.379,3.379,0,0,1-1.958-.687,3.259,3.259,0,0,1-1.186-1.666,3.364,3.364,0,0,0,.621.056,3.488,3.488,0,0,0,.885-.113,3.267,3.267,0,0,1-1.374-.631,3.356,3.356,0,0,1-.969-1.186,3.524,3.524,0,0,1-.367-1.5v-.057a3.172,3.172,0,0,0,1.544.433,3.407,3.407,0,0,1-1.1-1.214,3.308,3.308,0,0,1-.4-1.609,3.362,3.362,0,0,1,.452-1.694,9.652,9.652,0,0,0,6.964,3.538,3.911,3.911,0,0,1-.075-.772,3.293,3.293,0,0,1,.452-1.694,3.409,3.409,0,0,1,1.233-1.233,3.257,3.257,0,0,1,1.685-.461,3.351,3.351,0,0,1,2.466,1.073,6.572,6.572,0,0,0,2.146-.828,3.272,3.272,0,0,1-.574,1.083,3.477,3.477,0,0,1-.913.8,6.869,6.869,0,0,0,1.958-.546A7.074,7.074,0,0,1,966.025,1144.2Z" transform="translate(-951.23 -1140.849)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Twitter</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.skype.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.482" height="16.481" viewBox="0 0 16.482 16.481">
+                                            <path  data-name="Path 284" d="M879,926.615a4.479,4.479,0,0,1,.622-2.317,4.666,4.666,0,0,1,1.676-1.677,4.482,4.482,0,0,1,2.317-.622,4.577,4.577,0,0,1,2.43.678,7.58,7.58,0,0,1,5.048.961,7.561,7.561,0,0,1,3.786,6.593,8,8,0,0,1-.094,1.206,4.676,4.676,0,0,1,.7,2.411,4.53,4.53,0,0,1-.622,2.326,4.62,4.62,0,0,1-1.686,1.686,4.626,4.626,0,0,1-4.756-.075,7.7,7.7,0,0,1-1.187.094,7.623,7.623,0,0,1-7.647-7.647,7.46,7.46,0,0,1,.094-1.187A4.424,4.424,0,0,1,879,926.615Zm4.107,1.714a2.473,2.473,0,0,0,.282,1.234,2.41,2.41,0,0,0,.782.829,5.091,5.091,0,0,0,1.215.565,15.981,15.981,0,0,0,1.582.424q.678.151.979.235a3.091,3.091,0,0,1,.593.235,1.388,1.388,0,0,1,.452.348.738.738,0,0,1,.16.481.91.91,0,0,1-.48.753,2.254,2.254,0,0,1-1.271.321,2.105,2.105,0,0,1-1.253-.292,2.262,2.262,0,0,1-.65-.838,2.42,2.42,0,0,0-.414-.546.853.853,0,0,0-.584-.17.893.893,0,0,0-.669.283.919.919,0,0,0-.273.659,1.654,1.654,0,0,0,.217.782,2.456,2.456,0,0,0,.678.763,3.64,3.64,0,0,0,1.158.574,5.931,5.931,0,0,0,1.639.235,5.767,5.767,0,0,0,2.072-.339,2.982,2.982,0,0,0,1.356-.961,2.306,2.306,0,0,0,.471-1.431,2.161,2.161,0,0,0-.443-1.375,3.009,3.009,0,0,0-1.2-.894,10.118,10.118,0,0,0-1.865-.575,11.2,11.2,0,0,1-1.309-.311,2.011,2.011,0,0,1-.8-.452.992.992,0,0,1-.3-.744,1.143,1.143,0,0,1,.565-.97,2.59,2.59,0,0,1,1.488-.386,2.538,2.538,0,0,1,1.074.188,1.634,1.634,0,0,1,.622.49,3.477,3.477,0,0,1,.414.753,1.568,1.568,0,0,0,.4.594.866.866,0,0,0,.574.2,1,1,0,0,0,.706-.254.828.828,0,0,0,.273-.631,2.234,2.234,0,0,0-.443-1.253,3.321,3.321,0,0,0-1.158-1.046,5.375,5.375,0,0,0-2.524-.527,5.764,5.764,0,0,0-2.213.386,3.161,3.161,0,0,0-1.422,1.083A2.738,2.738,0,0,0,883.106,928.329Z" transform="translate(-878.999 -922)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Skype</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.youtube.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.49" height="11.582" viewBox="0 0 16.49 11.582">
+                                            <path  data-name="Path 321" d="M967.759,1365.592q0,1.377-.019,1.717-.076,1.114-.151,1.622a3.981,3.981,0,0,1-.245.925,1.847,1.847,0,0,1-.453.717,2.171,2.171,0,0,1-1.151.6q-3.585.265-7.641.189-2.377-.038-3.387-.085a11.337,11.337,0,0,1-1.5-.142,2.206,2.206,0,0,1-1.113-.585,2.562,2.562,0,0,1-.528-1.037,3.523,3.523,0,0,1-.141-.585c-.032-.2-.06-.5-.085-.906a38.894,38.894,0,0,1,0-4.867l.113-.925a4.382,4.382,0,0,1,.208-.906,2.069,2.069,0,0,1,.491-.755,2.409,2.409,0,0,1,1.113-.566,19.2,19.2,0,0,1,2.292-.151q1.82-.056,3.953-.056t3.952.066q1.821.067,2.311.142a2.3,2.3,0,0,1,.726.283,1.865,1.865,0,0,1,.557.49,3.425,3.425,0,0,1,.434,1.019,5.72,5.72,0,0,1,.189,1.075q0,.095.057,1C967.752,1364.1,967.759,1364.677,967.759,1365.592Zm-7.6.925q1.49-.754,2.113-1.094l-4.434-2.339v4.66Q958.609,1367.311,960.156,1366.517Z" transform="translate(-951.269 -1359.8)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Youtube</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col">
+                    <div class="team__items text-center">
+                        <div class="team__thumbnail">
+                            <img class="team__thumbnail--img border-radius-50 display-block" src="assets/img/other/team3.webp" alt="team-thumb">
+                        </div>
+                        <div class="team__content">
+                            <h3 class="team__content--title">Harrison Samuel</h3>
+                            <span class="team__content--subtitle">Products Manager</span>
+                            <ul class="team__social d-flex justify-content-center align-items-center">
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.facebook.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="7.667" height="16.524" viewBox="0 0 7.667 16.524">
+                                            <path  data-name="Path 237" d="M967.495,353.678h-2.3v8.253h-3.437v-8.253H960.13V350.77h1.624v-1.888a4.087,4.087,0,0,1,.264-1.492,2.9,2.9,0,0,1,1.039-1.379,3.626,3.626,0,0,1,2.153-.6l2.549.019v2.833h-1.851a.732.732,0,0,0-.472.151.8.8,0,0,0-.246.642v1.719H967.8Z" transform="translate(-960.13 -345.407)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Facebook</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://twitter.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.489" height="13.384" viewBox="0 0 16.489 13.384">
+                                            <path  data-name="Path 303" d="M966.025,1144.2v.433a9.783,9.783,0,0,1-.621,3.388,10.1,10.1,0,0,1-1.845,3.087,9.153,9.153,0,0,1-3.012,2.259,9.825,9.825,0,0,1-4.122.866,9.632,9.632,0,0,1-2.748-.4,9.346,9.346,0,0,1-2.447-1.11q.4.038.809.038a6.723,6.723,0,0,0,2.24-.376,7.022,7.022,0,0,0,1.958-1.054,3.379,3.379,0,0,1-1.958-.687,3.259,3.259,0,0,1-1.186-1.666,3.364,3.364,0,0,0,.621.056,3.488,3.488,0,0,0,.885-.113,3.267,3.267,0,0,1-1.374-.631,3.356,3.356,0,0,1-.969-1.186,3.524,3.524,0,0,1-.367-1.5v-.057a3.172,3.172,0,0,0,1.544.433,3.407,3.407,0,0,1-1.1-1.214,3.308,3.308,0,0,1-.4-1.609,3.362,3.362,0,0,1,.452-1.694,9.652,9.652,0,0,0,6.964,3.538,3.911,3.911,0,0,1-.075-.772,3.293,3.293,0,0,1,.452-1.694,3.409,3.409,0,0,1,1.233-1.233,3.257,3.257,0,0,1,1.685-.461,3.351,3.351,0,0,1,2.466,1.073,6.572,6.572,0,0,0,2.146-.828,3.272,3.272,0,0,1-.574,1.083,3.477,3.477,0,0,1-.913.8,6.869,6.869,0,0,0,1.958-.546A7.074,7.074,0,0,1,966.025,1144.2Z" transform="translate(-951.23 -1140.849)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Twitter</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.skype.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.482" height="16.481" viewBox="0 0 16.482 16.481">
+                                            <path  data-name="Path 284" d="M879,926.615a4.479,4.479,0,0,1,.622-2.317,4.666,4.666,0,0,1,1.676-1.677,4.482,4.482,0,0,1,2.317-.622,4.577,4.577,0,0,1,2.43.678,7.58,7.58,0,0,1,5.048.961,7.561,7.561,0,0,1,3.786,6.593,8,8,0,0,1-.094,1.206,4.676,4.676,0,0,1,.7,2.411,4.53,4.53,0,0,1-.622,2.326,4.62,4.62,0,0,1-1.686,1.686,4.626,4.626,0,0,1-4.756-.075,7.7,7.7,0,0,1-1.187.094,7.623,7.623,0,0,1-7.647-7.647,7.46,7.46,0,0,1,.094-1.187A4.424,4.424,0,0,1,879,926.615Zm4.107,1.714a2.473,2.473,0,0,0,.282,1.234,2.41,2.41,0,0,0,.782.829,5.091,5.091,0,0,0,1.215.565,15.981,15.981,0,0,0,1.582.424q.678.151.979.235a3.091,3.091,0,0,1,.593.235,1.388,1.388,0,0,1,.452.348.738.738,0,0,1,.16.481.91.91,0,0,1-.48.753,2.254,2.254,0,0,1-1.271.321,2.105,2.105,0,0,1-1.253-.292,2.262,2.262,0,0,1-.65-.838,2.42,2.42,0,0,0-.414-.546.853.853,0,0,0-.584-.17.893.893,0,0,0-.669.283.919.919,0,0,0-.273.659,1.654,1.654,0,0,0,.217.782,2.456,2.456,0,0,0,.678.763,3.64,3.64,0,0,0,1.158.574,5.931,5.931,0,0,0,1.639.235,5.767,5.767,0,0,0,2.072-.339,2.982,2.982,0,0,0,1.356-.961,2.306,2.306,0,0,0,.471-1.431,2.161,2.161,0,0,0-.443-1.375,3.009,3.009,0,0,0-1.2-.894,10.118,10.118,0,0,0-1.865-.575,11.2,11.2,0,0,1-1.309-.311,2.011,2.011,0,0,1-.8-.452.992.992,0,0,1-.3-.744,1.143,1.143,0,0,1,.565-.97,2.59,2.59,0,0,1,1.488-.386,2.538,2.538,0,0,1,1.074.188,1.634,1.634,0,0,1,.622.49,3.477,3.477,0,0,1,.414.753,1.568,1.568,0,0,0,.4.594.866.866,0,0,0,.574.2,1,1,0,0,0,.706-.254.828.828,0,0,0,.273-.631,2.234,2.234,0,0,0-.443-1.253,3.321,3.321,0,0,0-1.158-1.046,5.375,5.375,0,0,0-2.524-.527,5.764,5.764,0,0,0-2.213.386,3.161,3.161,0,0,0-1.422,1.083A2.738,2.738,0,0,0,883.106,928.329Z" transform="translate(-878.999 -922)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Skype</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.youtube.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.49" height="11.582" viewBox="0 0 16.49 11.582">
+                                            <path  data-name="Path 321" d="M967.759,1365.592q0,1.377-.019,1.717-.076,1.114-.151,1.622a3.981,3.981,0,0,1-.245.925,1.847,1.847,0,0,1-.453.717,2.171,2.171,0,0,1-1.151.6q-3.585.265-7.641.189-2.377-.038-3.387-.085a11.337,11.337,0,0,1-1.5-.142,2.206,2.206,0,0,1-1.113-.585,2.562,2.562,0,0,1-.528-1.037,3.523,3.523,0,0,1-.141-.585c-.032-.2-.06-.5-.085-.906a38.894,38.894,0,0,1,0-4.867l.113-.925a4.382,4.382,0,0,1,.208-.906,2.069,2.069,0,0,1,.491-.755,2.409,2.409,0,0,1,1.113-.566,19.2,19.2,0,0,1,2.292-.151q1.82-.056,3.953-.056t3.952.066q1.821.067,2.311.142a2.3,2.3,0,0,1,.726.283,1.865,1.865,0,0,1,.557.49,3.425,3.425,0,0,1,.434,1.019,5.72,5.72,0,0,1,.189,1.075q0,.095.057,1C967.752,1364.1,967.759,1364.677,967.759,1365.592Zm-7.6.925q1.49-.754,2.113-1.094l-4.434-2.339v4.66Q958.609,1367.311,960.156,1366.517Z" transform="translate(-951.269 -1359.8)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Youtube</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col">
+                    <div class="team__items text-center">
+                        <div class="team__thumbnail">
+                            <img class="team__thumbnail--img border-radius-50 display-block" src="assets/img/other/team1.webp" alt="team-thumb">
+                        </div>
+                        <div class="team__content">
+                            <h3 class="team__content--title">Milton Marsh</h3>
+                            <span class="team__content--subtitle">Products Manager</span>
+                            <ul class="team__social d-flex justify-content-center align-items-center">
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.facebook.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="7.667" height="16.524" viewBox="0 0 7.667 16.524">
+                                            <path  data-name="Path 237" d="M967.495,353.678h-2.3v8.253h-3.437v-8.253H960.13V350.77h1.624v-1.888a4.087,4.087,0,0,1,.264-1.492,2.9,2.9,0,0,1,1.039-1.379,3.626,3.626,0,0,1,2.153-.6l2.549.019v2.833h-1.851a.732.732,0,0,0-.472.151.8.8,0,0,0-.246.642v1.719H967.8Z" transform="translate(-960.13 -345.407)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Facebook</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://twitter.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.489" height="13.384" viewBox="0 0 16.489 13.384">
+                                            <path  data-name="Path 303" d="M966.025,1144.2v.433a9.783,9.783,0,0,1-.621,3.388,10.1,10.1,0,0,1-1.845,3.087,9.153,9.153,0,0,1-3.012,2.259,9.825,9.825,0,0,1-4.122.866,9.632,9.632,0,0,1-2.748-.4,9.346,9.346,0,0,1-2.447-1.11q.4.038.809.038a6.723,6.723,0,0,0,2.24-.376,7.022,7.022,0,0,0,1.958-1.054,3.379,3.379,0,0,1-1.958-.687,3.259,3.259,0,0,1-1.186-1.666,3.364,3.364,0,0,0,.621.056,3.488,3.488,0,0,0,.885-.113,3.267,3.267,0,0,1-1.374-.631,3.356,3.356,0,0,1-.969-1.186,3.524,3.524,0,0,1-.367-1.5v-.057a3.172,3.172,0,0,0,1.544.433,3.407,3.407,0,0,1-1.1-1.214,3.308,3.308,0,0,1-.4-1.609,3.362,3.362,0,0,1,.452-1.694,9.652,9.652,0,0,0,6.964,3.538,3.911,3.911,0,0,1-.075-.772,3.293,3.293,0,0,1,.452-1.694,3.409,3.409,0,0,1,1.233-1.233,3.257,3.257,0,0,1,1.685-.461,3.351,3.351,0,0,1,2.466,1.073,6.572,6.572,0,0,0,2.146-.828,3.272,3.272,0,0,1-.574,1.083,3.477,3.477,0,0,1-.913.8,6.869,6.869,0,0,0,1.958-.546A7.074,7.074,0,0,1,966.025,1144.2Z" transform="translate(-951.23 -1140.849)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Twitter</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.skype.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.482" height="16.481" viewBox="0 0 16.482 16.481">
+                                            <path  data-name="Path 284" d="M879,926.615a4.479,4.479,0,0,1,.622-2.317,4.666,4.666,0,0,1,1.676-1.677,4.482,4.482,0,0,1,2.317-.622,4.577,4.577,0,0,1,2.43.678,7.58,7.58,0,0,1,5.048.961,7.561,7.561,0,0,1,3.786,6.593,8,8,0,0,1-.094,1.206,4.676,4.676,0,0,1,.7,2.411,4.53,4.53,0,0,1-.622,2.326,4.62,4.62,0,0,1-1.686,1.686,4.626,4.626,0,0,1-4.756-.075,7.7,7.7,0,0,1-1.187.094,7.623,7.623,0,0,1-7.647-7.647,7.46,7.46,0,0,1,.094-1.187A4.424,4.424,0,0,1,879,926.615Zm4.107,1.714a2.473,2.473,0,0,0,.282,1.234,2.41,2.41,0,0,0,.782.829,5.091,5.091,0,0,0,1.215.565,15.981,15.981,0,0,0,1.582.424q.678.151.979.235a3.091,3.091,0,0,1,.593.235,1.388,1.388,0,0,1,.452.348.738.738,0,0,1,.16.481.91.91,0,0,1-.48.753,2.254,2.254,0,0,1-1.271.321,2.105,2.105,0,0,1-1.253-.292,2.262,2.262,0,0,1-.65-.838,2.42,2.42,0,0,0-.414-.546.853.853,0,0,0-.584-.17.893.893,0,0,0-.669.283.919.919,0,0,0-.273.659,1.654,1.654,0,0,0,.217.782,2.456,2.456,0,0,0,.678.763,3.64,3.64,0,0,0,1.158.574,5.931,5.931,0,0,0,1.639.235,5.767,5.767,0,0,0,2.072-.339,2.982,2.982,0,0,0,1.356-.961,2.306,2.306,0,0,0,.471-1.431,2.161,2.161,0,0,0-.443-1.375,3.009,3.009,0,0,0-1.2-.894,10.118,10.118,0,0,0-1.865-.575,11.2,11.2,0,0,1-1.309-.311,2.011,2.011,0,0,1-.8-.452.992.992,0,0,1-.3-.744,1.143,1.143,0,0,1,.565-.97,2.59,2.59,0,0,1,1.488-.386,2.538,2.538,0,0,1,1.074.188,1.634,1.634,0,0,1,.622.49,3.477,3.477,0,0,1,.414.753,1.568,1.568,0,0,0,.4.594.866.866,0,0,0,.574.2,1,1,0,0,0,.706-.254.828.828,0,0,0,.273-.631,2.234,2.234,0,0,0-.443-1.253,3.321,3.321,0,0,0-1.158-1.046,5.375,5.375,0,0,0-2.524-.527,5.764,5.764,0,0,0-2.213.386,3.161,3.161,0,0,0-1.422,1.083A2.738,2.738,0,0,0,883.106,928.329Z" transform="translate(-878.999 -922)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Skype</span>
+                                    </a>
+                                </li>
+                                <li class="team__social--list">
+                                    <a class="team__social--icon" target="_blank" href="https://www.youtube.com">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="16.49" height="11.582" viewBox="0 0 16.49 11.582">
+                                            <path  data-name="Path 321" d="M967.759,1365.592q0,1.377-.019,1.717-.076,1.114-.151,1.622a3.981,3.981,0,0,1-.245.925,1.847,1.847,0,0,1-.453.717,2.171,2.171,0,0,1-1.151.6q-3.585.265-7.641.189-2.377-.038-3.387-.085a11.337,11.337,0,0,1-1.5-.142,2.206,2.206,0,0,1-1.113-.585,2.562,2.562,0,0,1-.528-1.037,3.523,3.523,0,0,1-.141-.585c-.032-.2-.06-.5-.085-.906a38.894,38.894,0,0,1,0-4.867l.113-.925a4.382,4.382,0,0,1,.208-.906,2.069,2.069,0,0,1,.491-.755,2.409,2.409,0,0,1,1.113-.566,19.2,19.2,0,0,1,2.292-.151q1.82-.056,3.953-.056t3.952.066q1.821.067,2.311.142a2.3,2.3,0,0,1,.726.283,1.865,1.865,0,0,1,.557.49,3.425,3.425,0,0,1,.434,1.019,5.72,5.72,0,0,1,.189,1.075q0,.095.057,1C967.752,1364.1,967.759,1364.677,967.759,1365.592Zm-7.6.925q1.49-.754,2.113-1.094l-4.434-2.339v4.66Q958.609,1367.311,960.156,1366.517Z" transform="translate(-951.269 -1359.8)" fill="currentColor"/>
+                                        </svg>
+                                        <span class="visually-hidden">Youtube</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-         <!-- our staff section  end-->
-      @endif
-   <!-- behind product section start-->
-   <div class="va-begind-product">
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-0">
-               <div class="img-sec">
-                  <img src="{{ asset('assets/images/meet-artisan1.png')}}" alt="" class="w-100">
-               </div>
-            </div>   
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-0">
-               <div class="product-detail">
-                  <div class="cont-area">
-                     <h3>INVITATION TO JOIN THE TRIBE</h3>
-                     <p>When you make a purchase and represent VA
-                        with the earrings you wear or bag you carry,  you become part of
-                        the “VA TRIBE” and contribute to</p>
-                     <span class="head">a global story of change</span>
-                     <a class="line-btn" href="javascript:">
-                        See Whole Collection 
-                        <span>
-                           <svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M13.8065 13.5436L20.0565 7.2936C20.1729 7.1765 20.2383 7.01809 20.2383 6.85298C20.2383 6.68786 20.1729 6.52946 20.0565 6.41235L13.8065 0.162353L12.9253 1.0436L18.1065 6.22485L0.237785 6.22485L0.237785 7.47485L18.1065 7.47485L12.9253 12.6561L13.8065 13.5436Z" fill="#ffffff"></path>
-                           </svg>
-                        </span>
-                     </a>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-0 order-lg-1 order-md-2 order-2 ">
-               <div class="product-detail ma-box">
-                  <div class="cont-area">
-                     <h3>Meet The Artisans</h3>
-                     <p>BEHIND OUR PRODUCTS</p>
-                     <a class="va_btn" href="{{url('our-artisan')}}">
-                        Learn More 
-                     </a>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12 p-0 order-lg-2 order-md-1 order-1">
-               <div class="img-sec">
-                  <img src="{{ asset('assets/images/meet-artisan2.png')}}" alt="" class="w-100">
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- behind product section end-->
-   
-   <div class="va-insta-story va-pd">
-      <div class="container-fluid pd-75">
-         <div class="va-heading">
-            <h2>Our Instagram Stories</h2>
-            <p>@village_artisan</p>
-         </div>
-         <ul>
-            @if(!empty($stories) && count($stories)>0)
-                  @foreach($stories as $key=>$instagram_photo)
+        </div>
+    </div>
+</section> -->
+<!-- End team members section -->
+
+<!-- Start testimonial section -->
+<section class="testimonial__section position__relative testimonial__bg--two section--padding">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="testimonial__section--inner">
+                    <div class="section__heading text-center mb-40">
+                        <h2 class="section__heading--maintitle">What Say Our Top Clints</h2>
+                    </div>
+                    <div class=" testimonial__swiper--column3 testimonial__padding swiper">
+                        <div class="swiper-wrapper">
+                           @if($testimonial->status==200)
+                           @php
+                              $testimonialResult=(json_decode(($testimonial->content),true));
+                           @endphp
+                           @foreach($testimonialResult['result'] as $key=>$testimonial)
+                                 <div class="swiper-slide">
+                                    <div class="testimonial__items--style2 position__relative border-radius-5 d-flex align-items-center">
+                                          <div class="testimonial__thumbnail--style2">
+                                             <img class="testimonial__items--thumbnail__img display-block" src="{{ $testimonial['image'] }}" alt="testimonial-img">
+                                          </div>
+                                          <div class="testimonial__content--style2">
+                                             <h3 class="testimonial__items--author__title h4">{{ $testimonial['name'] }}</h3>
+                                             <!-- <h4 class="testimonial__items--author__subtitle h5">Ui Ux Designer</h4> -->
+                                             <p class="testimonial__items--desc style2"><svg xmlns="http://www.w3.org/2000/svg" width="8.101" height="6.481" viewBox="0 0 8.101 6.481">
+                                                <path  data-name="Icon metro-quote" d="M5.57,9.667v3.24H8.81V9.667H7.19a1.587,1.587,0,0,1,1.62-1.62V6.427A3.174,3.174,0,0,0,5.57,9.667Zm8.1-1.62V6.427a3.174,3.174,0,0,0-3.24,3.24v3.24h3.24V9.667h-1.62A1.587,1.587,0,0,1,13.671,8.047Z" transform="translate(-5.57 -6.427)" fill="currentColor"/>
+                                                </svg> {{ $testimonial['description'] }} <svg xmlns="http://www.w3.org/2000/svg" width="7.774" height="6.803" viewBox="0 0 7.774 6.803">
+                                                      <path  data-name="Icon awesome-quote-right" d="M7.046,1.5H5.1a.729.729,0,0,0-.729.729V4.172A.729.729,0,0,0,5.1,4.9H6.317v.972a.973.973,0,0,1-.972.972H5.223a.364.364,0,0,0-.364.364v.729a.364.364,0,0,0,.364.364h.121a2.429,2.429,0,0,0,2.43-2.43V2.229A.729.729,0,0,0,7.046,1.5Zm-4.373,0H.729A.729.729,0,0,0,0,2.229V4.172A.729.729,0,0,0,.729,4.9H1.944v.972a.973.973,0,0,1-.972.972H.85a.364.364,0,0,0-.364.364v.729A.364.364,0,0,0,.85,8.3H.972A2.429,2.429,0,0,0,3.4,5.873V2.229A.729.729,0,0,0,2.672,1.5Z" transform="translate(0 -1.5)" fill="currentColor"/>
+                                                   </svg>
+                                             </p>
                                              
-                     @php
-                       
-                        $image=$instagram_photo->getthumbnails()
-                     @endphp
-                     @if(($key+1) <=4 )
-                        <li>
-                              <a target="_blank" href="{{$image[4]->src}}">
-                                    <img  src="<?php echo 'data:image/jpg;base64,'.base64_encode(file_get_contents($image[4]->src))?>" alt="Image" class="img-responsive" /></a>
-                                    <span><svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4391 2.1725C14.3941 2.0825 15.0174 2.0625 19.9974 2.0625C24.9774 2.0625 25.6007 2.08417 27.5541 2.1725C29.5074 2.26083 30.8407 2.5725 32.0074 3.02417C33.2291 3.48583 34.3374 4.2075 35.2541 5.14083C36.1874 6.05583 36.9074 7.1625 37.3674 8.38583C37.8207 9.5525 38.1307 10.8858 38.2207 12.8358C38.3107 14.7942 38.3307 15.4175 38.3307 20.3958C38.3307 25.3758 38.3091 25.9992 38.2207 27.9542C38.1324 29.9042 37.8207 31.2375 37.3674 32.4042C36.9074 33.6277 36.1862 34.7362 35.2541 35.6525C34.3374 36.5858 33.2291 37.3058 32.0074 37.7658C30.8407 38.2192 29.5074 38.5292 27.5574 38.6192C25.6007 38.7092 24.9774 38.7292 19.9974 38.7292C15.0174 38.7292 14.3941 38.7075 12.4391 38.6192C10.4891 38.5308 9.15573 38.2192 7.98906 37.7658C6.7656 37.3058 5.6571 36.5846 4.74073 35.6525C3.80803 34.7369 3.08625 33.629 2.62573 32.4058C2.17406 31.2392 1.86406 29.9058 1.77406 27.9558C1.68406 25.9975 1.66406 25.3742 1.66406 20.3958C1.66406 15.4158 1.68573 14.7925 1.77406 12.8392C1.8624 10.8858 2.17406 9.5525 2.62573 8.38583C3.08693 7.16264 3.80926 6.05469 4.7424 5.13917C5.65746 4.20667 6.76485 3.48491 7.9874 3.02417C9.15406 2.5725 10.4874 2.2625 12.4374 2.1725H12.4391ZM27.4057 5.4725C25.4724 5.38417 24.8924 5.36583 19.9974 5.36583C15.1024 5.36583 14.5224 5.38417 12.5891 5.4725C10.8007 5.55417 9.83073 5.8525 9.18406 6.10417C8.32906 6.4375 7.7174 6.8325 7.07573 7.47417C6.46747 8.06592 5.99936 8.7863 5.70573 9.5825C5.45406 10.2292 5.15573 11.1992 5.07406 12.9875C4.98573 14.9208 4.9674 15.5008 4.9674 20.3958C4.9674 25.2908 4.98573 25.8708 5.07406 27.8042C5.15573 29.5925 5.45406 30.5625 5.70573 31.2092C5.99906 32.0042 6.4674 32.7258 7.07573 33.3175C7.6674 33.9258 8.38906 34.3942 9.18406 34.6875C9.83073 34.9392 10.8007 35.2375 12.5891 35.3192C14.5224 35.4075 15.1007 35.4258 19.9974 35.4258C24.8941 35.4258 25.4724 35.4075 27.4057 35.3192C29.1941 35.2375 30.1641 34.9392 30.8107 34.6875C31.6657 34.3542 32.2774 33.9592 32.9191 33.3175C33.5274 32.7258 33.9957 32.0042 34.2891 31.2092C34.5407 30.5625 34.8391 29.5925 34.9207 27.8042C35.0091 25.8708 35.0274 25.2908 35.0274 20.3958C35.0274 15.5008 35.0091 14.9208 34.9207 12.9875C34.8391 11.1992 34.5407 10.2292 34.2891 9.5825C33.9557 8.7275 33.5607 8.11583 32.9191 7.47417C32.3273 6.86595 31.6069 6.39785 30.8107 6.10417C30.1641 5.8525 29.1941 5.55417 27.4057 5.4725ZM17.6557 26.0475C18.9635 26.5919 20.4197 26.6654 21.7756 26.2554C23.1315 25.8454 24.3031 24.9774 25.0901 23.7996C25.8771 22.6218 26.2308 21.2073 26.0908 19.7977C25.9508 18.3881 25.3257 17.0708 24.3224 16.0708C23.6828 15.4316 22.9094 14.9422 22.058 14.6377C21.2065 14.3333 20.2981 14.2214 19.3982 14.3102C18.4983 14.399 17.6293 14.6861 16.8537 15.1511C16.0782 15.616 15.4153 16.2471 14.9129 16.9989C14.4105 17.7508 14.081 18.6046 13.9483 19.4991C13.8155 20.3936 13.8826 21.3063 14.145 22.1717C14.4073 23.0371 14.8582 23.8335 15.4653 24.5037C16.0723 25.1739 16.8204 25.7011 17.6557 26.0475ZM13.3341 13.7325C14.2091 12.8575 15.2479 12.1633 16.3912 11.6898C17.5345 11.2162 18.7599 10.9725 19.9974 10.9725C21.2349 10.9725 22.4603 11.2162 23.6036 11.6898C24.7469 12.1633 25.7857 12.8575 26.6607 13.7325C27.5358 14.6075 28.2299 15.6464 28.7035 16.7897C29.177 17.933 29.4208 19.1583 29.4208 20.3958C29.4208 21.6333 29.177 22.8587 28.7035 24.002C28.2299 25.1453 27.5358 26.1841 26.6607 27.0592C24.8935 28.8264 22.4966 29.8192 19.9974 29.8192C17.4982 29.8192 15.1013 28.8264 13.3341 27.0592C11.5668 25.2919 10.574 22.8951 10.574 20.3958C10.574 17.8966 11.5668 15.4997 13.3341 13.7325ZM31.5107 12.3758C31.7276 12.1713 31.9012 11.9253 32.0212 11.6525C32.1413 11.3796 32.2054 11.0854 32.2098 10.7874C32.2141 10.4893 32.1586 10.1934 32.0465 9.91718C31.9345 9.64095 31.7681 9.39002 31.5573 9.17923C31.3465 8.96845 31.0956 8.8021 30.8194 8.69003C30.5432 8.57796 30.2472 8.52246 29.9492 8.52681C29.6511 8.53115 29.357 8.59526 29.0841 8.71533C28.8113 8.8354 28.5653 9.00899 28.3607 9.22583C27.9629 9.64755 27.7451 10.2077 27.7536 10.7874C27.762 11.3671 27.9961 11.9206 28.406 12.3306C28.8159 12.7405 29.3695 12.9745 29.9492 12.983C30.5289 12.9914 31.089 12.7737 31.5107 12.3758Z" fill="white"></path>
-                                       </svg>
-                                    </span>
-                              </a>
-                        </li>
-                     @endif
-                     
-                  @endforeach
-            @endif
-            
-         </ul>
+                                          </div>
+                                          <div class="testimonial__quote--icon">
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="25.599" height="22.572" viewBox="0 0 25.599 22.572">
+                                                <g  data-name="Group 382" transform="translate(-164 -5399)">
+                                                   <path  data-name="Path 131" d="M10.284,11.81a1.231,1.231,0,0,0,.62-1.652L9.892,8.031a1.235,1.235,0,0,0-1.611-.6A14.227,14.227,0,0,0,3.82,10.324,10.79,10.79,0,0,0,.826,15.052,25.936,25.936,0,0,0,0,22.321v6.34A1.243,1.243,0,0,0,1.239,29.9H9.355a1.243,1.243,0,0,0,1.239-1.239V20.545a1.243,1.243,0,0,0-1.239-1.239H5.472a8.707,8.707,0,0,1,1.446-5.018A7.849,7.849,0,0,1,10.284,11.81Z" transform="translate(164 5391.672)" fill="#f1f1f1"/>
+                                                   <path  data-name="Path 132" d="M80.963,11.89a1.231,1.231,0,0,0,.62-1.652L80.571,8.132a1.235,1.235,0,0,0-1.611-.6,14.959,14.959,0,0,0-4.44,2.87,11.021,11.021,0,0,0-3.015,4.75A25.587,25.587,0,0,0,70.7,22.4v6.34a1.243,1.243,0,0,0,1.239,1.239h8.116a1.243,1.243,0,0,0,1.239-1.239V20.625a1.243,1.243,0,0,0-1.239-1.239h-3.9A8.709,8.709,0,0,1,77.6,14.368,7.848,7.848,0,0,1,80.963,11.89Z" transform="translate(107.9 5391.592)" fill="#f1f1f1"/>
+                                                </g>
+                                             </svg>
+                                          </div>
+                                    </div>
+                                 </div>
+                           @endforeach
+                            @endif
+                        </div>
+                        <div class="testimonial__pagination swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img class="testimonial__bg--shape1" src="assets/img/other/testimonial-shape.webp" alt="">
+    <img class="testimonial__bg--shape2" src="assets/img/other/testimonial-shape2.webp" alt="">
+</section>
+<!-- End testimonial section -->
 
-      </div>
-   </div>
 
-      
+<!-- Start Newsletter banner section -->
+<section class="newsletter__banner--section section--padding">
+    <div class="container">
+        <div class="newsletter__banner--thumbnail position__relative">
+            <img class="newsletter__banner--thumbnail__img" src="assets/img/banner/banner-bg7.webp" alt="newsletter-banner">
+            <div class="newsletter__content newsletter__subscribe">
+                <h5 class="newsletter__content--subtitle text-white">Want to offer regularly ?</h5>
+                <h2 class="newsletter__content--title text-white h3 mb-25">Subscribe Our Newsletter <br> for Get Daily Update</h2>
+                <form class="newsletter__subscribe--form position__relative" action="#">
+                    <label>
+                        <input class="newsletter__subscribe--input" placeholder="Enter your email address" type="email">
+                    </label>
+                    <button class="newsletter__subscribe--button primary__btn" type="submit">Subscribe
+                        <svg class="newsletter__subscribe--button__icon" xmlns="http://www.w3.org/2000/svg" width="9.159" height="7.85" viewBox="0 0 9.159 7.85">
+                            <path  data-name="Icon material-send" d="M3,12.35l9.154-3.925L3,4.5,3,7.553l6.542.872L3,9.3Z" transform="translate(-3 -4.5)" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Newsletter banner section -->
+
+<!-- Start brand logo section -->
+<!-- <div class="brand__logo--section bg__secondary section--padding">
+    <div class="container-fluid">
+        <div class="row row-cols-1">
+            <div class="col">
+                <div class="brand__logo--section__inner d-flex justify-content-center align-items-center">
+                    <div class="brand__logo--items">
+                        <img class="brand__logo--items__thumbnail--img" src="assets/img/logo/brand-logo1.webp" alt="brand logo">
+                    </div>
+                    <div class="brand__logo--items">
+                        <img class="brand__logo--items__thumbnail--img" src="assets/img/logo/brand-logo2.webp" alt="brand logo">
+                    </div>
+                    <div class="brand__logo--items">
+                        <img class="brand__logo--items__thumbnail--img" src="assets/img/logo/brand-logo3.webp" alt="brand logo">
+                    </div>
+                    <div class="brand__logo--items">
+                        <img class="brand__logo--items__thumbnail--img" src="assets/img/logo/brand-logo4.webp" alt="brand logo">
+                    </div>
+                    <div class="brand__logo--items">
+                        <img class="brand__logo--items__thumbnail--img" src="assets/img/logo/brand-logo5.webp" alt="brand logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- End brand logo section -->
+</main> 
       
 
 @endsection

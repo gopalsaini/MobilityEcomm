@@ -804,10 +804,10 @@ class commonHelper{
 		$tags = explode(',',$id);  $categoryData= '';
 		foreach($tags as $tag){
 
-			$categoryData .= '<li><a href="'.url('blogs?tag='.$tag).'">'.$tag.'</a>'.', </li>';
+			$categoryData .= '<li class="blog__tags--media__list"><a class="blog__tags--media__link" href="'.url('blogs?tag='.$tag).'">'.$tag.'</a>'.' </li>';
 			
 		}
-		return rtrim($categoryData, ", </li>");
+		return rtrim($categoryData, " </li>");
 		
 	}
 

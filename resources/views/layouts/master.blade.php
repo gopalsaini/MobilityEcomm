@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<title>@yield('title') | Village Artisan</title>
+		<title>@yield('title') | 4Mobility</title>
 		<meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}" />
 		<link rel="icon" href="{{ asset('admin-assets/images/favicon.ico')}}" type="image/x-icon">
 		<link href="{{ asset('admin-assets/css/app.min.css') }}" rel="stylesheet">

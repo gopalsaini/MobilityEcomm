@@ -63,7 +63,7 @@ class HomeController extends Controller
 	
 	public function searchproduct(Request $request){
 
-		$search=\App\Helpers\commonHelper::callAPI('GET','/search-product?text='.$request->get('term').'?country_id='.Session::get('country_type'));
+		$search=\App\Helpers\commonHelper::callAPI('GET','/search-product?text='.$request->get('term'));
     
 		if($search->status==200){
 
@@ -182,7 +182,10 @@ class HomeController extends Controller
             'description'=>'About us',
         ];
 
-        return view('information',compact('result','meta'));
+        
+		$testimonial=\App\Helpers\commonHelper::callAPI('GET','/testimonial-list');
+
+        return view('about',compact('result','meta','testimonial'));
 
     }
 
@@ -387,39 +390,5 @@ class HomeController extends Controller
 		
     }
 
-    public function about(Request $request){
-
-        $staffs=\App\Helpers\commonHelper::callAPI('GET','/get-staff');
-
-        $artisans=\App\Helpers\commonHelper::callAPI('GET','/artisan-list');
-
-        // $username = env('INSTAGRAM_ID');
-        // $cachePool = new FilesystemAdapter('Instagram', 0, __DIR__ . '/../cache');
-
-        // $api = new Api($cachePool);
-        // $api->login($username, env('INSTAGRAM_PASSWORD')); // mandatory
-
-        // $profile = $api->getProfile($username); // we need instagram username
-        // $feedStories = $api->getStories($profile->getId());
-
-        // $stories=$profile->getMedias();
-        // echo "<pre>";
-        // print_r($stories); die;
-   
-        $stories = [];
-        return view('about',compact('staffs','artisans','stories'));
-		
-    }
-
-    public function ourArtisan(Request $request){
-
-        return view('our_artisan');
-		
-    }
-
-
-    
-
-    
 	
 }

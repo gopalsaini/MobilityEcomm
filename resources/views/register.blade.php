@@ -1,168 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <title>@yield('title') | Village Artisan </title>
-    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}" />
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="title" content="@yield('title')" />
-    <meta name="description" content="@yield('meta_description')" />
-    <meta name="keywords" content="@yield('meta_keywords')" />
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('fonts/simple-line-icons/css/simple-line-icons.css') }}">
-    @stack('custom_css')
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/animate.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/fonts.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.theme.default.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/magnific-popup.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/toggle.css')}}" /> 
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/camera.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css')}}" />
-    <!--favicon-->
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/favicon.png')}}" />
+@push('custom_css')
 
-    <link rel="stylesheet" href="{{ asset('css/fSelect.css') }}">
+@endpush
 
-    <script src="https://kit.fontawesome.com/0b8334f960.js" crossorigin="anonymous"></script>
-    <style>
+@section('content')
+
+
+<main class="main__content_wrapper">
         
-    </style>
+    
+    <section class="breadcrumb__section breadcrumb__bg">
+        <div class="container">
+            <div class="row row-cols-1">
+                <div class="col">
+                    <div class="breadcrumb__content">
+                        <h1 class="breadcrumb__content--title text-white mb-10">Account Login</h1>
+                        <ul class="breadcrumb__content--menu d-flex">
+                            <li class="breadcrumb__content--menu__items"><a class="text-white" href="{{url('/')}}">Home</a></li>
+                            <li class="breadcrumb__content--menu__items"><span class="text-white">Login</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        var baseUrl = "{{ url('/') }}";
-
-        var loading_set =
-            '<div style="text-align:center;width:100%;height:200px; position:relative;top:100px;"><i style="color:black;font-size:25px;" class="fa fa-refresh fa-spin fa-3x fa-fw"></i><p>Please wait</p></div>';
-
-        var userLogin = "{{ Session::has('5ferns_user') }}";
-    </script>
-</head>
-
-<body>
-    <div id="preloader">
-        <div id="status">
-            <img src="{{ asset('assets/images/loader1.png')}}" alt="" class="logo-icon">
-            <img src="{{ asset('assets/images/loader2.png')}}" alt="">
+    <div class="login__section section--padding">
+        <div class="container">
+            
+            <div class="login__section--inner">
+                <div class="row ">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="account__login register">
+                            <p class="regemailmsg"></p>
+                            <div class="account__login--header mb-25">
+                                <h3 class="account__login--header__title mb-10">Create an Account</h3>
+                                <p class="account__login--header__desc">Register here if you are a new customer</p>
+                            </div>
+                            
+                            <form action="{{ route('register-by-email') }}" method="post" id="regEmail">
+                        
+                                <div class="account__login--inner row">
+                                    <div class="col-md-6 col-12">
+                                        <label>First Name</label>
+                                        <div class="input-box">
+                                            <input type="text" required name="first_name" class="form-control account__login--input" placeholder="Enter Here">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <label>Last Name</label>
+                                        <div class="input-box">
+                                            <input type="text" required name="last_name" class="form-control account__login--input" placeholder="Enter Here">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <label>Email Address</label>
+                                        <div class="input-box">
+                                            <input type="email" name="email" required class="account__login--input form-control" placeholder="Enter Email">
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <label>Password</label>
+                                        <div class="input-box">
+                                            <input type="password" id="pass_log_password" name="password" required class="account__login--input form-control" placeholder="Enter password">
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <label>Re-type Password</label>
+                                        <div class="input-box">
+                                            <input type="password" id="pass_log_password_confirmation" name="password_confirmation" required class="account__login--input form-control" placeholder="Enter password">
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="account__login--remember position__relative">
+                                        <input class="checkout__checkbox--input" id="check2" type="checkbox">
+                                        <span class="checkout__checkbox--checkmark"></span>
+                                        <label class="checkout__checkbox--label login__remember--label" for="check2">
+                                            I have read and agree to the terms & conditions</label>
+                                    </div>
+                                    <br><br>
+                                    <button class="account__login--btn primary__btn submit-reg" type="submit">Register &nbsp;&nbsp;<pre style="margin-bottom: 0rem;display:none" class="spinner-border  spinner-border-sm loginloader"></pre></button>
+                                    <div class="account__login--divide">
+                                        <span class="account__login--divide__text">OR</span>
+                                    </div>
+                                    <div class="account__social d-flex justify-content-center mb-15">
+                                        <a class="account__social--link facebook" target="_blank" href="https://www.facebook.com">Facebook</a>
+                                        <a class="account__social--link google" target="_blank" href="{{ url('auth/google') }}">Google</a>
+                                    </div>
+                                    <p class="account__login--signup__text">Already Have an Account? <button type="button"><a href="{{ url('login') }}">Sign In now</a></button></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
         </div>
     </div>
 
-    <a href="javascript:;" id="return-to-top" class="change-bg2"> <i class="fas fa-angle-double-up"></i></a>
-     
-    <div class="va-login-page-main-wrapper">
-         <div class="login-form-wrapper">
-            <div class="login-logo-wrapper">
-               <a href="index.html">
-                  <img src="{{ asset('assets/images/logo.png')}}" alt="logo">
-               </a>
-               <h2>Register</h2><br><p class="regemailmsg"></p>
-            </div>
-            <div class="login-form">
-                <form action="{{ route('register-by-email') }}" method="post" id="regEmail">
-                    
-                    <div class="form-group row">
-                        <div class="col-md-6 col-12">
-                            <label>First Name</label>
-                            <div class="input-box">
-                            <input type="text" required name="first_name" class="form-control" placeholder="Enter Here">
-                            <span><i class="fas fa-user"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <label>Last Name</label>
-                            <div class="input-box">
-                            <input type="text" required name="last_name" class="form-control" placeholder="Enter Here">
-                            <span><i class="fas fa-user"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 col-12">
-                            <label>Email Address</label>
-                            <div class="input-box">
-                            <input type="email" name="email" required class="form-control" placeholder="Enter Email">
-                            <span>
-                                <span><i class="fas fa-envelope"></i></span>
-                            </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 col-12">
-                            <label>Password</label>
-                            <div class="input-box">
-                            <input type="password" id="pass_log_password" name="password" required class="form-control" placeholder="Enter password">
-                            <span>
-                            <i class="toggle-password fa fa-fw fa-eye-slash" data-id="password"></i>
-                            </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 col-12">
-                            <label>Re-type Password</label>
-                            <div class="input-box">
-                            <input type="password" id="pass_log_password_confirmation" name="password_confirmation" required class="form-control" placeholder="Enter password">
-                            <span>
-                            <i class="toggle-password fa fa-fw fa-eye-slash" data-id="password_confirmation"></i>
-                            </span>
-                            </div>
-                        </div>
-                    </div>
-                    <button type='submit' class="spinner-btn va_btn submit-reg">Register
-                        &nbsp;&nbsp;<pre class="spinner-border spinner-border-sm regemailloader sendotploader"
-                        style="margin-bottom: 0rem;color:white;font-size: 100%;position:relative;display:none"></pre>
-                    </button>
-                </form>
-               <div class="strip"><p>Or</p></div>
-               <div class="form-btn">
-                  <a href="{{ url('auth/google') }}"> <span> <img src="{{ asset('assets/images/goggle.png')}}" alt="goggle"> </span> Sign In With Goggle </a>
-                
-               </div>
-               <div class="tag-line">
-                  <p>Already Have An Account ? <a href="{{url('login')}}">Login</a> </p>
-               </div>
-            </div>
-         </div>
-         <div class="back-btn">
-            <a href="{{url('/')}}"> <span> <img src="{{ asset('assets/images/left.png')}}" alt="img"> </span> Go To Home</a>
-         </div>
-    </div>
+</main>
 
+@endsection
 
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    
-    <script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('assets/js/wow.js')}}"></script>
-    <script src="{{ asset('assets/js/tesi.js')}}"></script>
-    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/home-js/camera.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/home-js/jquery.easing.1.3.js')}}"></script> 
-    <script src="{{ asset('assets/js/custom.js')}}"></script>
+@push('custom_js')
     <script>
-         $('.dropdown').on('click', function () {
-            $('.dropdown-menu').toggleClass('show')
-         })
-      </script>
-        <script>
-            $(document).on('click', '.toggle-password', function() {
+        $(document).on('click', '.toggle-password', function() {
 
-                $(this).toggleClass("fa-eye fa-eye-slash");
-                
-                var input = $("#pass_log_"+$(this).data('id'));
-                input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type','password')
-            });
-        </script>
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            
+            var input = $("#pass_log_"+$(this).data('id'));
+            input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type','password')
+        });
+    </script>
     <script>
         $("form#regEmail").submit(function (e) {
             var mobile=$("input[name=mobile]").val();
@@ -473,5 +430,6 @@
     </script>
 
 
-</body>
-</html>
+@endpush
+
+       

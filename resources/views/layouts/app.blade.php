@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>@yield('title') | Village Artisan </title>
+    <title>@yield('title') | 4MOBILITY </title>
     <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -204,7 +204,7 @@
                         </a>
                     </div>
                     <div class="main__logo">
-                        <h1 class="main__logo--title"><a class="main__logo--link" href="{{url('/')}}"><img class="main__logo--img" src="assets/img/logo/nav-log.webp" alt="logo-img"></a></h1>
+                        <h1 class="main__logo--title"><a class="main__logo--link descktopview" href="{{url('/')}}"><img class="main__logo--img" src="{{ asset('assets/img/logo/nav-log.png')}}" alt="logo-img" style="max-width: 39%;"></a></h1>
                     </div>
                     <div class="header__menu d-none d-lg-block">
                         <nav class="header__menu--navigation">
@@ -233,14 +233,35 @@
                                        @endif
                                     
                                 </li>
-                                <li class="header__menu--items">
-                                    <a class="header__menu--link" href="about.html">About US </a>
+                                <li class="header__menu--items mega__menu--items">
+                                    <a class="header__menu--link" href="javascript:void(0)">Hire <span class="menu__plus--icon">+</span></a>
+                                    
+                                       @if(!empty($category))
+                                          <ul class="header__mega--menu d-flex">
+                                                @foreach($category['result'] as $cat)
+                                                   <li class="header__mega--menu__li">
+                                                         <span class="header__mega--subtitle">{{ ucfirst($cat['name']) }}</span>
+                                                         @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
+                                                            <ul class="header__mega--sub__menu">
+                                                               @foreach($cat['child'] as $fchild)
+                                                                  <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="{{ url('product-listing/'.$fchild['slug']) }}">{{ ucfirst($fchild['name'] )}}</a></li>
+                                                               @endforeach
+                                                            </ul>
+                                                         @endif
+                                                   </li>
+                                                @endforeach  
+                                          </ul>
+                                       @endif
+                                    
                                 </li>
                                 <li class="header__menu--items">
-                                    <a class="header__menu--link" href="{{url('/')}}">Blogs</a>
+                                    <a class="header__menu--link" href="{{ url('about')}}">About US </a>
                                 </li>
                                 <li class="header__menu--items">
-                                    <a class="header__menu--link" href="{{ url('contact')}}">Contact </a>
+                                    <a class="header__menu--link" href="{{url('blogs')}}">Blogs</a>
+                                </li>
+                                <li class="header__menu--items">
+                                    <a class="header__menu--link" href="{{ url('contact-us')}}">Contact </a>
                                 </li>
                             </ul>
                         </nav>
@@ -295,12 +316,33 @@
                 </div>
             </div>
         </div>
+        @if(!empty($category))
+        <div class="header__topbar bg__primary d-none d-lg-block">
+            <div class="container-fluid">
+                <div class="header__topbar--inner d-flex align-items-center justify-content-between">
+                    
+                    <div class="language__currency d-none d-lg-block">
+                        <ul class="d-flex align-items-center">
+                            @foreach($category['result'] as $cat)
+                                <li class="language__currency--list">
+                                    <a class="language__switcher text-white" href="{{ url('product-listing/'.$cat['slug']) }}">
+                                        <img class="language__switcher--icon__img" src="{{ asset('uploads/category/'.$cat['image']) }}" alt="{{ ucfirst($cat['name']) }}" style="width: 26px;">
+                                        <span>{{ ucfirst($cat['name']) }}</span> 
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
         
         <div class="offcanvas-header" tabindex="-1">
             <div class="offcanvas__inner">
                 <div class="offcanvas__logo">
                     <a class="offcanvas__logo_link" href="{{url('/')}}">
-                        <img src="assets/img/logo/nav-log.webp" alt="Furea Logo">
+                        <img src="assets/img/logo/nav-log.png" alt="Furea Logo" style="max-width: 39%;">
                     </a>
                     <button class="offcanvas__close--btn" aria-label="offcanvas close btn">close</button>
                 </div>
@@ -329,9 +371,30 @@
                               @endif
                            
                         </li>
+                        <li class="offcanvas__menu_li">
+                           <a class="offcanvas__menu_item" href="javascript:void(0)">Hire </a>
+                           
+                              @if(!empty($category))
+                                 <ul class="offcanvas__sub_menu">
+                                       @foreach($category['result'] as $cat)
+                                          <li class="offcanvas__sub_menu_li">
+                                                <span class="offcanvas__sub_menu_item">{{ ucfirst($cat['name']) }}</span>
+                                                @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
+                                                   <ul class="offcanvas__sub_menu">
+                                                      @foreach($cat['child'] as $fchild)
+                                                         <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item"  href="{{ url('product-listing/'.$fchild['slug']) }}">{{ ucfirst($fchild['name'] )}}</a></li>
+                                                      @endforeach
+                                                   </ul>
+                                                @endif
+                                          </li>
+                                       @endforeach  
+                                 </ul>
+                              @endif
+                           
+                        </li>
                         <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="{{ url('about')}}">About</a></li>
                         <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="{{ url('blogs')}}">Blogs</a></li>
-                        <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="{{ url('contact')}}">Contact</a></li>
+                        <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="{{ url('contact-us')}}">Contact</a></li>
                     </ul>
                     <div class="offcanvas__account--items">
                         <a class="offcanvas__account--items__btn d-flex align-items-center" href="{{ url('login')}}">
@@ -443,7 +506,7 @@
                                 </svg>
                             </h2>
                             <div class="footer__widget--inner">
-                                <a class="footer__logo" href="index.html"><img src="assets/img/logo/nav-log.webp" alt="footer-logo"></a>
+                                <a class="footer__logo" href="{{url('/')}}"><img src="{{ asset('assets/img/logo/nav-log.png')}}" alt="footer-logo" style="max-width: 39%;"></a>
                                 <p class="footer__widget--desc">Ut enim ad minim veniam, quis <br> nostrud exercitation ullamco laboris <br> nisi ut aliquip ex ea commodo.</p>
                                 <div class="footer__social">
                                     <ul class="social__shear d-flex">
