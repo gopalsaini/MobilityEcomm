@@ -74,14 +74,8 @@ class SalesController extends Controller
 			$query->where('sales_details.payment_status','!=','1');
 		}
 
-		$saletype = 'Retail';
-
-		if(isset($_GET['type']) && $_GET['type']== 'B2B'){
-			$saletype= 'B2B';
-		}
-
 		//echo $saletype; die;
-		$result=$query->where('sales.user_type',$saletype)->groupBy('sales_details.order_id')->get();
+		$result=$query->groupBy('sales_details.order_id')->get();
 		
 		
 		return view('admin.sales.list',compact('result','title','type'));

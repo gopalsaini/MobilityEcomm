@@ -55,17 +55,7 @@
                                                     <th class="center sorting" tabindex="0"
                                                         aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                                         style="width: 193.017px;"
-                                                        aria-label=" Email : activate to sort column ascending"> Canada Stock
-                                                    </th>
-                                                    <th class="center sorting" tabindex="0"
-                                                        aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                                        style="width: 193.017px;"
-                                                        aria-label=" Email : activate to sort column ascending"> USA Stock
-                                                    </th>
-                                                    <th class="center sorting" tabindex="0"
-                                                        aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                                        style="width: 193.017px;"
-                                                        aria-label=" Email : activate to sort column ascending"> India Stock
+                                                        aria-label=" Email : activate to sort column ascending">  Stock
                                                     </th>
 													<th class="center sorting" tabindex="0"
                                                         aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
@@ -93,9 +83,7 @@
 															<td class="center">{{ $key+1}}</td>
 															<td class="center">{{ $value['sku_id'] }}</td>
 															<td class="center">{{ $value['sale_price'] }}</td>
-															<td class="center">{{ $value['canada_stock'] }} @if($value['canada_stock'] != 'NA') Pc @endif</td>
-															<td class="center">{{ $value['usa_stock'] }} @if($value['usa_stock'] != 'NA') Pc @endif</td>
-															<td class="center">{{ $value['india_stock'] }} @if($value['india_stock'] != 'NA') Pc @endif</td>
+															<td class="center">{{ $value['stock'] }} @if($value['stock'] != 'NA') Pc @endif</td>
 															<td class="center">  
 																@php
 																	$attribute='';
@@ -160,9 +148,7 @@
                                                     <th class="center" rowspan="1" colspan="1">#</th>
                                                     <th class="center" rowspan="1" colspan="1"> SKU No </th>
                                                     <th class="center" rowspan="1" colspan="1"> Sale Price </th>
-                                                    <th class="center" rowspan="1" colspan="1"> Canada Stock </th>
-                                                    <th class="center" rowspan="1" colspan="1"> USA Stock </th>
-                                                    <th class="center" rowspan="1" colspan="1"> India Stock </th>
+                                                    <th class="center" rowspan="1" colspan="1">  Stock </th>
                                                     <th class="center" rowspan="1" colspan="1"> Attributes </th>
 													@if(\Auth::user()->designation_id=='1' || \Auth::user()->designation_id=='4')
 														<th class="center" rowspan="1" colspan="1"> Status </th>

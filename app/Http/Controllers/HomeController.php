@@ -364,31 +364,22 @@ class HomeController extends Controller
                 'meta_description'=>$value['meta_description'],
             ];
             
-            return view('blog',compact('result'));
+            
+            $blogs=\App\Models\Blog::where('status','1')->where('id','!=',$value['id'])->where('category_id',$value['category_id'])->get();
+
+            return view('blog',compact('result','blogs'));
             
         }else{
 
             $result=[];
-            return view('blog',compact('result'));
+
+            $blogs= [];
+
+            return view('blog',compact('result','blogs'));
         }
 
     }
 
-    public function womenProgram(Request $request){
-
-        return view('women_program');
-		
-    }
-
-    public function wholesale(Request $request,$type){
-
-        $testimonial=\App\Helpers\commonHelper::callAPI('GET','/testimonial-list');
-
-        $category=\App\Helpers\commonHelper::callAPI('GET','/get-sub-category-list?type='.$type);
-
-        return view('wholesale',compact('testimonial','category','type'));
-		
-    }
 
 	
 }

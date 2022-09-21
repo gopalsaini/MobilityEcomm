@@ -191,9 +191,55 @@
 <body>
          
 
-   <!-- Start header area -->
+   
    <header class="header__section header__transparent">
-       
+
+        <!-- Start top header area -->
+        <div class="header__topbar " style="background: #006237;">
+            <div class="container-fluid">
+                <div class="header__topbar--inner d-flex align-items-center justify-content-between">
+                    <div class="header__shipping">
+                        <ul class="d-flex align-items-center">
+                            <li class="language__currency--list">
+                                <a class="account__currency--link text-white" href="#">
+                                    <img src="assets/img/icon/usd-icon.webp" alt="currency">
+                                    <span>Currency</span> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
+                                        <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
+                                    </svg>
+                                </a>
+                                <div class="dropdown__currency">
+                                    <ul>
+                                        <li class="currency__items"><a class="currency__text" href="#">CAD</a></li>
+                                        <li class="currency__items"><a class="currency__text" href="#">CNY</a></li>
+                                        <li class="currency__items"><a class="currency__text" href="#">EUR</a></li>
+                                        <li class="currency__items"><a class="currency__text" href="#">GBP</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="language__currency--list">
+                                <a class="language__switcher text-white" href="#">
+                                    <img class="language__switcher--icon__img" src="assets/img/icon/language-icon.webp" alt="currency">
+                                    <span>Language</span> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
+                                        <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
+                                    </svg>
+                                </a>
+                                <div class="dropdown__language">
+                                    <ul>
+                                        <li class="language__items"><a class="language__text" href="#">France</a></li>
+                                        <li class="language__items"><a class="language__text" href="#">Russia</a></li>
+                                        <li class="language__items"><a class="language__text" href="#">Spanish</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start main header area -->
         <div class="main__header header__sticky">
             <div class="container-fluid">
                 <div class="main__header--inner position__relative d-flex justify-content-between align-items-center">
@@ -316,21 +362,36 @@
                 </div>
             </div>
         </div>
+
+        <!-- Start category header area -->
         @if(!empty($category))
-        <div class="header__topbar bg__primary d-none d-lg-block">
+        <div class="header__topbar bg__primary d-none d-lg-block" style="background: #006237;">
             <div class="container-fluid">
                 <div class="header__topbar--inner d-flex align-items-center justify-content-between">
                     
                     <div class="language__currency d-none d-lg-block">
+                        
                         <ul class="d-flex align-items-center">
                             @foreach($category['result'] as $cat)
                                 <li class="language__currency--list">
-                                    <a class="language__switcher text-white" href="{{ url('product-listing/'.$cat['slug']) }}">
+                                    <a class="language__switcher text-white" href="#">
                                         <img class="language__switcher--icon__img" src="{{ asset('uploads/category/'.$cat['image']) }}" alt="{{ ucfirst($cat['name']) }}" style="width: 26px;">
                                         <span>{{ ucfirst($cat['name']) }}</span> 
+                                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
+                                            <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
+                                        </svg> -->
                                     </a>
+                                    <!-- <div class="dropdown__currency">
+                                        <ul>
+                                            <li class="currency__items"><a class="currency__text" href="#">CAD</a></li>
+                                            <li class="currency__items"><a class="currency__text" href="#">CNY</a></li>
+                                            <li class="currency__items"><a class="currency__text" href="#">EUR</a></li>
+                                            <li class="currency__items"><a class="currency__text" href="#">GBP</a></li>
+                                        </ul>
+                                    </div> -->
                                 </li>
                             @endforeach
+                            
                         </ul>
                     </div>
                 </div>
@@ -632,13 +693,13 @@
       <button aria-label="scroll top btn" id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 244l144-144 144 144M256 120v292"/></svg></button>
 
 
+      <script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/swiper-bundle.min.js')}}" defer="defer"></script>
     <script src="{{ asset('assets/js/plugins/glightbox.min.js')}}" defer="defer"></script>
     <script src="{{ asset('assets/js/script.js')}}" defer="defer"></script>
     <script src="{{ asset('js/fSelect.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
     <script>
 
 

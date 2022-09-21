@@ -42,7 +42,7 @@
 					<a href="#" onClick="return false;" class="bars"></a>
 					<a class="navbar-brand" href="index.php">
 						<img src="{{ asset('admin-assets/images/logo.png')}}" alt="" />
-						<span class="logo-name">Village Artisan</span>
+						<span class="logo-name">4Mobility</span>
 					</a>
 				</div>
 				<div class="collapse navbar-collapse" id="navbar-collapse">

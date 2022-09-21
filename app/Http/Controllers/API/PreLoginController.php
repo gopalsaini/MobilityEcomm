@@ -704,9 +704,7 @@ class PreLoginController extends Controller
 						'first_image'=>asset('uploads/products/'.$imagesArray[0]),
 						'second_image'=>$secondImage,
 						'slug'=>$value['slug'],
-						'canada_stock'=>$value['canada_stock'],
-						'usa_stock'=>$value['usa_stock'],
-						'india_stock'=>$value['india_stock'],
+						'stock'=>$value['stock'],
 						'category'=>\App\Helpers\commonHelper::getProductCategoryNameById($value['category_id']),
 					];
 				}
@@ -791,9 +789,7 @@ class PreLoginController extends Controller
 						'first_image'=>asset('uploads/products/'.$imagesArray[0]),
 						'second_image'=>$secondImage,
 						'slug'=>$value['slug'],
-						'canada_stock'=>$value['canada_stock'],
-						'usa_stock'=>$value['usa_stock'],
-						'india_stock'=>$value['india_stock'],
+						'stock'=>$value['stock'],
 					];
 				}
 
@@ -889,9 +885,7 @@ class PreLoginController extends Controller
 					'sale_price'=>$productResult->sale_price,
 					'discount_amount'=>$productResult->discount_amount,
 					'offer_price'=>\App\Helpers\commonHelper::getOfferProductPrice($productResult['sale_price'],$productResult['discount_type'],$productResult['discount_amount']),
-					'canada_stock'=>$productResult['canada_stock'],
-					'usa_stock'=>$productResult['usa_stock'],
-					'india_stock'=>$productResult['india_stock'],
+					'stock'=>$productResult['stock'],
 					'b2b_price'=>$productResult['b2b_price'],
 					'b2b_min_qty'=>$productResult['b2b_min_qty'],
 					'images'=>implode(',',$imagesArray),
@@ -1340,9 +1334,7 @@ class PreLoginController extends Controller
 						'second_image'=>$secondImage,
 						'slug'=>$value['slug'],
 						'category'=>\App\Helpers\commonHelper::getProductCategoryNameById($value['category_id']),
-						'canada_stock'=>$value['canada_stock'],
-						'usa_stock'=>$value['usa_stock'],
-						'india_stock'=>$value['india_stock'],
+						'stock'=>$value['stock'],
 					];
 				}
 				
@@ -1398,9 +1390,7 @@ class PreLoginController extends Controller
 						'first_image'=>asset('uploads/products/'.$imagesArray[0]),
 						'second_image'=>$secondImage,
 						'slug'=>$value['slug'],
-						'canada_stock'=>$value['canada_stock'],
-						'usa_stock'=>$value['usa_stock'],
-						'india_stock'=>$value['india_stock'],
+						'stock'=>$value['stock'],
 						'category'=>\App\Helpers\commonHelper::getProductCategoryNameById($value['category_id']),
 						
 					];
@@ -2247,9 +2237,7 @@ class PreLoginController extends Controller
 						'first_image'=>asset('uploads/products/'.$imagesArray[0]),
 						'second_image'=>$secondImage,
 						'slug'=>$value['slug'],
-						'canada_stock'=>$value['canada_stock'],
-						'usa_stock'=>$value['usa_stock'],
-						'india_stock'=>$value['india_stock'],
+						'stock'=>$value['stock'],
 						'category'=>\App\Helpers\commonHelper::getProductCategoryNameById($value['category_id']),
 					];
 				}
@@ -2314,9 +2302,7 @@ class PreLoginController extends Controller
 						'first_image'=>asset('uploads/products/'.$imagesArray[0]),
 						'second_image'=>$secondImage,
 						'slug'=>$value['slug'],
-						'canada_stock'=>$value['canada_stock'],
-						'usa_stock'=>$value['usa_stock'],
-						'india_stock'=>$value['india_stock'],
+						'stock'=>$value['stock'],
 						'category'=>\App\Helpers\commonHelper::getProductCategoryNameById($value['category_id']),
 						
 					];

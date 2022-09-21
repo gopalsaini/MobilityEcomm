@@ -105,224 +105,27 @@
                             </button>
                         </form>
                     </div> -->
-                    <div class="single__widget widget__bg">
-                        <h2 class="widget__title position__relative h3">Categories</h2>
-                        <ul class="widget__categories--menu">
-                            <li class="widget__categories--menu__list">
-                                <label class="widget__categories--menu__label d-flex align-items-center">
-                                    <img class="widget__categories--menu__img" src="assets/img/product/small-product1.webp" alt="categories-img">
-                                    <span class="widget__categories--menu__text">Denim Jacket</span>
-                                    <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
-                                        <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                                    </svg>
-                                </label>
-                                <ul class="widget__categories--sub__menu">
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product2.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Jacket, Women</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product3.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Woolend Jacket</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product4.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Western denim</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product5.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Mini Dresss</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="widget__categories--menu__list">
-                                <label class="widget__categories--menu__label d-flex align-items-center">
-                                    <img class="widget__categories--menu__img" src="assets/img/product/small-product2.webp" alt="categories-img">
-                                    <span class="widget__categories--menu__text">Oversize Cotton</span>
-                                    <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" >
-                                        <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                                    </svg>
-                                </label>
-                                <ul class="widget__categories--sub__menu">
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product2.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Jacket, Women</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product3.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Woolend Jacket</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product4.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Western denim</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product5.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Mini Dresss</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="widget__categories--menu__list">
-                                <label class="widget__categories--menu__label d-flex align-items-center">
-                                    <img class="widget__categories--menu__img" src="assets/img/product/small-product3.webp" alt="categories-img">
-                                    <span class="widget__categories--menu__text">Dairy & chesse</span>
-                                    <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
-                                        <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                                    </svg>
-                                </label>
-                                <ul class="widget__categories--sub__menu">
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product2.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Jacket, Women</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product3.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Woolend Jacket</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product4.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Western denim</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product5.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Mini Dresss</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="widget__categories--menu__list">
-                                <label class="widget__categories--menu__label d-flex align-items-center">
-                                    <img class="widget__categories--menu__img" src="assets/img/product/small-product4.webp" alt="categories-img">
-                                    <span class="widget__categories--menu__text">Shoulder Bag</span>
-                                    <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
-                                        <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                                    </svg>
-                                </label>
-                                <ul class="widget__categories--sub__menu">
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product2.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Jacket, Women</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product3.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Woolend Jacket</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product4.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Western denim</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product5.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Mini Dresss</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="widget__categories--menu__list">
-                                <label class="widget__categories--menu__label d-flex align-items-center">
-                                    <img class="widget__categories--menu__img" src="assets/img/product/small-product5.webp" alt="categories-img">
-                                    <span class="widget__categories--menu__text">Denim Jacket</span>
-                                    <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
-                                        <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                                    </svg>
-                                </label>
-                                <ul class="widget__categories--sub__menu">
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product2.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Jacket, Women</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product3.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Woolend Jacket</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product4.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Western denim</span>
-                                        </a>
-                                    </li>
-                                    <li class="widget__categories--sub__menu--list">
-                                        <a class="widget__categories--sub__menu--link d-flex align-items-center" href="blog-details.html">
-                                            <img class="widget__categories--sub__menu--img" src="assets/img/product/small-product5.webp" alt="categories-img">
-                                            <span class="widget__categories--sub__menu--text">Mini Dresss</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="single__widget widget__bg">
-                        <h2 class="widget__title position__relative h3">Post article</h2>
-                        <div class="articl__post--inner">
-                            <div class="articl__post--items d-flex align-items-center">
-                                <div class="articl__post--items__thumbnail position__relative">
-                                    <a class="articl__post--items__link display-block" href="blog-details.html">
-                                        <img class="articl__post--items__img display-block" src="assets/img/product/small-product1.webp" alt="product-img">
-                                    </a>
-                                </div>
-                                <div class="articl__post--items__content">
-                                    <h4 class="articl__post--items__content--title"><a href="blog-details.html">The Greatest Team's Favorite Leggings.</a></h4>
-                                    <span class="meta__deta text__secondary">Jan 11, 2022</span>
-                                </div>
-                            </div>
-                            <div class="articl__post--items d-flex align-items-center">
-                                <div class="articl__post--items__thumbnail position__relative">
-                                    <a class="articl__post--items__link display-block" href="blog-details.html">
-                                        <img class="articl__post--items__img display-block" src="assets/img/product/small-product2.webp" alt="product-img">
-                                    </a>
-                                </div>
-                                <div class="articl__post--items__content">
-                                    <h4 class="articl__post--items__content--title"><a href="blog-details.html">Top 10 Best Furniture Company.</a></h4>
-                                    <span class="meta__deta text__secondary">Jan 11, 2022</span>
-                                </div>
-                            </div>
-                            <div class="articl__post--items d-flex align-items-center">
-                                <div class="articl__post--items__thumbnail position__relative">
-                                    <a class="articl__post--items__link display-block" href="blog-details.html">
-                                        <img class="articl__post--items__img display-block" src="assets/img/product/small-product3.webp" alt="product-img">
-                                    </a>
-                                </div>
-                                <div class="articl__post--items__content">
-                                    <h4 class="articl__post--items__content--title"><a href="blog-details.html">There are History you Should Know.</a></h4>
-                                    <span class="meta__deta text__secondary">Jan 11, 2022</span>
-                                </div>
+                    @if(!empty($blogs) && count($blogs)>0)
+                        <div class="single__widget widget__bg">
+                            <h2 class="widget__title position__relative h3">Releted Article</h2>
+                            <div class="articl__post--inner">
+                                @foreach($blogs as $val)
+                                    <div class="articl__post--items d-flex align-items-center">
+                                        <div class="articl__post--items__thumbnail position__relative">
+                                            <a class="articl__post--items__link display-block" href="{{route('single.blog',['slug'=>$val['slug']])}}">
+                                                <img class="articl__post--items__img display-block" src="{{asset('uploads/blog/'.$val['image'])}}" alt="product-img">
+                                            </a>
+                                        </div>
+                                        <div class="articl__post--items__content">
+                                            <h4 class="articl__post--items__content--title"><a href="{{route('single.blog',['slug'=>$val['slug']])}}">{{ucfirst($val['title'])}}</a></h4>
+                                            <span class="meta__deta text__secondary">{{date('M, d, Y', strtotime($val['created_at']))}}</span>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

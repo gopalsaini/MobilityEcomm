@@ -851,26 +851,12 @@ class commonHelper{
 		
 	}
 
-	public static function getProductStock($canada_stock,$usa_stock,$india_stock){
+	public static function getProductStock($stock){
 		
-		if(\Session::get('country_id') == 0){
-			if($canada_stock == 0){
-				return true;
-			}else{
-				return false;
-			}
-		}elseif(\Session::get('country_id') == 1){
-			if($usa_stock == 0){
-				return true;
-			}else{
-				return false;
-			}
+		if($stock == 0){
+			return true;
 		}else{
-			if($india_stock == 0){
-				return true;
-			}else{
-				return false;
-			}
+			return false;
 		}
 		
 	}
@@ -912,29 +898,6 @@ class commonHelper{
 		
 	}
 
-	
-	
-	public static function checkUserCountry($currency_id,$country_id){
-		
-		$country = '1';
-		if($country_id == '233'){
-			$country = '2';
-		}elseif($country_id == '39'){
-			$country = '3';
-		}
-
-		if($currency_id == $country){
-
-			return false;
-
-		}else{
-
-			return true;
-		}
-		
-	}
-
-	
 	public static function userNameById($id){
 		
 		$user = \App\Models\User::where('id',$id)->first();
@@ -969,53 +932,6 @@ class commonHelper{
 	}
 	
 	
-	public static function checkShippingCountry($currency_id,$country_id){
-		
-		$country = '1';
-		if($country_id == '233'){
-			$country = '2';
-		}elseif($country_id == '39'){
-			$country = '3';
-		}
-
-		if($currency_id == $country){
-
-			return false;
-
-		}else{
-
-			return true;
-		}
-		
-	}
-	
-	public static function getAddressCountryType($addressCountry){
-		
-		if($addressCountry == '101'){
-			$country_id = '1';
-		}elseif($addressCountry == '233'){
-			$country_id = '2';
-		}elseif($addressCountry == '39'){
-			$country_id = '3';
-		}else{
-			$country_id = '4';
-		}
-		return $country_id;
-		
-	}
-	
-	public static function checkProductInCountryAvailable($country, $canada_stock,$usa_stock,$india_stock){
-		
-		if($country == '3' && $canada_stock == 'NA'){
-			return 'This product not available in selected country';
-		}else if($country == '2' && $usa_stock == 'NA'){
-			return 'This product not available in selected country';
-		}else if($country == '1' && $india_stock == 'NA'){
-			return 'This product not available in selected country';
-		}
-
-		
-	}
 
 	
 

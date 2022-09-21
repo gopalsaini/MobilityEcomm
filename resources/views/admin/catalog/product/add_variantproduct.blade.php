@@ -114,41 +114,6 @@
 						
 						<div class="row clearfix">
 
-							<div class="col-sm-@if(!empty($result) && $result->b2b == '1'){{'4'}}@else{{'12'}}@endif" id="B2BCheck">
-								<div class="form-group">
-									<div class="form-line">
-										<label for="inputName">Is applicable for B2B <label class="text-danger">*</label></label>
-										<select class="form-control" name="b2b" required id="B2B">
-											<option value="" disabled selected>--Select--</option>
-											<option value="1" @if(!empty($result) &&  $result->b2b == '1') selected @endif>Yes</option>
-											<option value="2" @if(!empty($result) &&  $result->b2b == '2') selected @endif>No</option>
-												
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-4" style="display:@if(!empty($result) && $result->b2b == '1') block @else none @endif" id="B2BMinQty">
-								<div class="form-group">
-									<div class="form-line">
-										<label for="inputName">B2B Min Qty <label class="text-danger">*</label></label>
-										<input type="text" id="b2b_min_qty" name="b2b_min_qty" class="form-control" placeholder="Enter B2B Min Qty" value="@if(!empty($result)){{ $result['b2b_min_qty'] }}@endif"/>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-4" style="display:@if(!empty($result) &&  $result->b2b == '1') block @else none @endif" id="B2BPrice">
-								<div class="form-group">
-									<div class="form-line">
-										<label for="inputName">B2B Price <label class="text-danger">*</label></label>
-										<input type="text" id="b2b_price" name="b2b_price" required class="form-control" placeholder="Enter SKU" value="@if(!empty($result)){{ $result['b2b_price'] }}@endif"/>
-									</div>
-								</div>
-							</div>
-						</div>
-						<p></p>
-						<div class="row clearfix">
-
 							<div class="col-sm-6">
 								<div class="form-group">
 									<div class="form-line">
@@ -195,32 +160,22 @@
 						
 						<div class="row clearfix">
 						
-							<div class="col-sm-4">
+							<div class="col-sm-6">
 								<div class="form-group">
 									<div class="form-line">
-										<label for="inputName">Canada Stock (Qty) <label class="text-danger">*</label></label>
-										<input type="tel" name="canada_stock" onkeypress="return /[0-9 a-z A-Z]/i.test(event.key)" value="@if(!empty($result)){{ $result['canada_stock'] }}@else{{'0'}}@endif" class="form-control" placeholder="Enter Stock (Qty)" required />
+										<label for="inputName">Stock (Qty) <label class="text-danger">*</label></label>
+										<input type="tel" name="stock" onkeypress="return /[0-9 a-z A-Z]/i.test(event.key)" value="@if(!empty($result)){{ $result['stock'] }}@else{{'0'}}@endif" class="form-control" placeholder="Enter Stock (Qty)" required />
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-4">
+							<div class="col-sm-6">
 								<div class="form-group">
 									<div class="form-line">
-										<label for="inputName">USA Stock (Qty) <label class="text-danger">*</label></label>
-										<input type="tel" name="usa_stock" onkeypress="return /[0-9 a-z A-Z]/i.test(event.key)" value="@if(!empty($result)){{ $result['usa_stock'] }}@else{{'0'}}@endif" class="form-control" placeholder="Enter Stock (Qty)" required />
+										<label for="inputName">Package Label <label class="text-danger">*</label></label>
+										<input type="tel" name="package_label"  value="@if(!empty($result)){{ $result['package_label'] }}@endif"  class="form-control" placeholder="Enter Package Label" required />
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-4">
-								<div class="form-group">
-									<div class="form-line">
-										<label for="inputName">India Stock (Qty) <label class="text-danger">*</label></label>
-										<input type="tel" name="india_stock" onkeypress="return /[0-9 a-z A-Z]/i.test(event.key)" value="@if(!empty($result)){{ $result['india_stock'] }}@else{{'0'}}@endif" class="form-control" placeholder="Enter Stock (Qty)" required />
-									</div>
-								</div>
-							</div>
-							
-
 						</div>
 						
 						<div class="row clearfix">
@@ -266,19 +221,6 @@
 
 						</div>
 						
-						
-						<div class="row clearfix">
-						
-							<div class="col-sm-12">
-								<div class="form-group">
-									<div class="form-line">
-										<label for="inputName">Package Label <label class="text-danger">*</label></label>
-										<input type="tel" name="package_label"  value="@if(!empty($result)){{ $result['package_label'] }}@endif"  class="form-control" placeholder="Enter Package Label" required />
-									</div>
-								</div>
-							</div>
-							
-						</div>
 						
 						<div class="row clearfix">
 							<div class="col-sm-12">

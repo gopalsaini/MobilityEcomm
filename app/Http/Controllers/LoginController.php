@@ -51,13 +51,6 @@ class LoginController extends Controller
             Session::put('5ferns_user',$resultData['token']);
             Session::put('5ferns_result',$resultData['result']);
             
-            if(\Session::has('5ferns_user')){
-                    
-                $user_country = \App\Helpers\commonHelper::getAddressCountryType($resultData['result']['country_id']);
-                Session::put('country_id',$user_country);
-                Session::put('country_type',$user_country);
-            }
-
             \App\Helpers\commonHelper::movecartDataWithUser();
 
             // Session::put('wishlist_user',$resultData['wishlistid']);
@@ -179,14 +172,6 @@ class LoginController extends Controller
             Session::put('5ferns_user',$resultData['token']);
             Session::put('5ferns_result',$resultData['result']);
 
-            // if(\Session::has('5ferns_user')){
-                    
-            //     $user_country = \App\Helpers\commonHelper::getAddressCountryType($resultData['result']['country_id']);
-            //     Session::put('country_id',$user_country);
-            //     Session::put('country_type',$user_country);
-            // }
-
-
             \App\Helpers\commonHelper::movecartDataWithUser();
 
             // Session::put('wishlist_user',$resultData['wishlistid']);
@@ -288,13 +273,6 @@ class LoginController extends Controller
                 Session::put('5ferns_user',$resultData['token']);
                 Session::put('5ferns_result',$resultData['result']);
 
-                if(\Session::has('5ferns_user')){
-                    
-                    $user_country = \App\Helpers\commonHelper::getAddressCountryType($resultData['result']['country_id']);
-                    Session::put('country_id',$user_country);
-                    Session::put('country_type',$user_country);
-                }
-
                 \App\Helpers\commonHelper::movecartDataWithUser();
     
                 Session::put('wishlist_user',$resultData['wishlistid']);
@@ -336,13 +314,6 @@ class LoginController extends Controller
                 Session::put('5ferns_user',$resultData['token']);
                 Session::put('5ferns_result',$resultData['result']);
                 
-                if(\Session::has('5ferns_user')){
-                    
-                    $user_country = \App\Helpers\commonHelper::getAddressCountryType($resultData['result']['country_id']);
-                    Session::put('country_id',$user_country);
-                    Session::put('country_type',$user_country);
-                }
-
                 \App\Helpers\commonHelper::movecartDataWithUser();
     
                 Session::put('wishlist_user',$resultData['wishlistid']);
@@ -395,13 +366,6 @@ class LoginController extends Controller
     
                 Session::put('5ferns_user',$resultData['token']);
                 Session::put('5ferns_result',$resultData['result']);
-
-                if(\Session::has('5ferns_user')){
-                    
-                    $user_country = \App\Helpers\commonHelper::getAddressCountryType($resultData['result']['country_id']);
-                    Session::put('country_id',$user_country);
-                    Session::put('country_type',$user_country);
-                }
 
                 \App\Helpers\commonHelper::movecartDataWithUser();
                 

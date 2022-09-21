@@ -112,12 +112,12 @@
                                                         <div class="variant__color d-flex">
 
                                                             @foreach($variant['attribute'] as $childAttribute)
-                                                            <div class="d-flex">
-                                                                <input type="radio" class="geturl" value="{{ $childAttribute['id'] }}"
-                                                                    name="variant{{ $variant['id'] }}" id="color1-radio{{ $childAttribute['id'] }}"
-                                                                    @if(in_array($childAttribute['id'],$selectAttribute)) checked @endif>
-                                                                <label for="color1-radio{{ $childAttribute['id'] }}" class="color1 "
-                                                                    style="background:{{ $childAttribute['color'] }}"></label>
+                                                            <div class="variant__color--list">
+                                                                <input type="radio" class="geturl " value="{{ $childAttribute['id'] }}" name="variant{{ $variant['id'] }}" id="color{{ $childAttribute['id'] }}" @if(in_array($childAttribute['id'],$selectAttribute)) checked @endif>
+                                                                <label for="color{{ $childAttribute['id'] }}" class="color1 variant__color--value "
+                                                                    style="background:{{ $childAttribute['color'] }}">
+                                                                    <img class="variant__color--value__img" src="{{ $image }}" alt="product-nav-img" >
+                                                                </label>
                                                             </div>
                                                             @endforeach
                                                         </div>
@@ -131,7 +131,7 @@
                                                 <div class="variant__color d-flex pl-5">
                                                     <label>{{ ucfirst($variant['name']) }}</label> &nbsp;&nbsp;&nbsp;
                                                     @if(!empty($variant['attribute']))
-                                                    <select class="form-field-select  geturl" aria-label="Size" name="hey[]">
+                                                    <select class="form-field-select checkout__input--field geturl" aria-label="Size" name="hey[]" style="width: 29%;">
                                                         @foreach($variant['attribute'] as $childAttribute)
                                                         <option value="{{ $childAttribute['id'] }}"
                                                             @if(in_array($childAttribute['id'],$selectAttribute)) selected @endif>

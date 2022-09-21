@@ -226,9 +226,7 @@ class ProductController extends Controller
 				'sku_id'=>'required|unique:variantproducts,sku_id,'.$request->post('id'),
 				'discount_type'=>'numeric|required|in:1,2',
 				'discount_amount'=>'required',
-				'canada_stock'=>'required',
-				'usa_stock'=>'required',
-				'india_stock'=>'required',
+				'stock'=>'required',
 				'sale_price'=>'required',
 				'package_length'=>'required',
 				'package_breadth'=>'required',
@@ -238,7 +236,6 @@ class ProductController extends Controller
 				'meta_title'=>'required',
 				'meta_keywords'=>'required',
 				'meta_description'=>'required',
-				'b2b'=>'required|in:1,2',
 			];
 			
 			if($parentProduct->variant_id != 1){
@@ -253,12 +250,6 @@ class ProductController extends Controller
 				
 			}
 			
-			if($request->post('b2b')==1){
-				
-				$rules['b2b_min_qty']='numeric|required';
-				$rules['b2b_price']='required';
-				
-			}
 			
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -292,24 +283,6 @@ class ProductController extends Controller
 					try{
 
 
-						if(strtolower($request->post('canada_stock')) == 'na'){
-							$canada_stock = 'NA';
-						}else{
-							$canada_stock = intval($request->post('canada_stock'));
-						}
-						
-						if(strtolower($request->post('usa_stock')) == 'na'){
-							$usa_stock = 'NA';
-						}else{
-							$usa_stock = intval($request->post('usa_stock'));
-						}
-						
-						if(strtolower($request->post('india_stock')) == 'na'){
-							$india_stock = 'NA';
-						}else{
-							$india_stock = intval($request->post('india_stock'));
-						}
-						
 						$variantIds=[];
 							
 						if($variants){
@@ -392,31 +365,6 @@ class ProductController extends Controller
 							
 							} 
 							
-							// send prudcut notify message if qty is update more than to 0
-							// if($variProduct && $variProduct->stock==0 && $request->post('stock')>0){
-
-							// 	//get Notify product Email ids
-							// 	$notifyResult=\App\Models\Notifyproduct::where('product_id',$variProduct->id)->get();
-
-							// 	if($notifyResult){
- 
-							// 		$slug=$variProduct->slug;
-
-							// 		foreach($notifyResult as $notify){
-
-							// 			$to=$notify->email;
-							// 			\Mail::send('email_templates.notifyproducts', compact('slug'), function($message) use ($to)
-							// 			{
-							// 				$message->from(env('MAIL_USERNAME'),env('MAIL_FROM_NAME'));
-							// 				$message->subject('Notify Product');
-							// 				$message->to($to);
-							// 			});
-
-							// 		}
-
-							// 		\App\Models\Notifyproduct::where('product_id',$variProduct->id)->delete();
-							// 	}
-							// }
 
 							$variProduct->product_id=$product_id;
 							
@@ -426,9 +374,7 @@ class ProductController extends Controller
 							$variProduct->sale_price=$request->post('sale_price');
 							$variProduct->discount_type=$request->post('discount_type');   
 							$variProduct->discount_amount=$request->post('discount_amount');   
-							$variProduct->canada_stock=$canada_stock;   
-							$variProduct->usa_stock=$usa_stock;   
-							$variProduct->india_stock=$india_stock;   
+							$variProduct->stock=$request->post('stock');  
 							$variProduct->package_length=$request->post('package_length');   
 							$variProduct->package_breadth=$request->post('package_breadth');   
 							$variProduct->package_height=$request->post('package_height');   
@@ -438,7 +384,6 @@ class ProductController extends Controller
 							$variProduct->meta_title=$request->post('meta_title');
 							$variProduct->meta_keywords=$request->post('meta_keywords');
 							$variProduct->meta_description=$request->post('meta_description');
-							$variProduct->b2b=$request->post('b2b');
 
 							if($parentProduct->variant_id != 1){
 
@@ -446,10 +391,6 @@ class ProductController extends Controller
 	
 							}else{
 								$variProduct->variant_id=1;
-							}
-							if($request->post('b2b')==1){
-								$variProduct->b2b_min_qty=$request->post('b2b_min_qty');
-								$variProduct->b2b_price=$request->post('b2b_price');
 							}
 							$variProduct->save();
 							

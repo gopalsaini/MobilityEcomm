@@ -518,7 +518,7 @@ class PostLoginController extends Controller
 
 		try{ 	
 				
-			$result=\App\Models\Addtocart::select('addtocarts.id as cartid','products.name','addtocarts.qty','addtocarts.remark','variantproducts.sale_price','variantproducts.canada_stock','variantproducts.usa_stock','variantproducts.india_stock','variantproducts.id','variantproducts.discount_type','variantproducts.discount_amount','variantproducts.images','products.short_description','variantproducts.package_length','variantproducts.package_breadth','variantproducts.package_height','variantproducts.package_weight')->where([
+			$result=\App\Models\Addtocart::select('addtocarts.id as cartid','products.name','addtocarts.qty','addtocarts.remark','variantproducts.sale_price','variantproducts.stock','variantproducts.id','variantproducts.discount_type','variantproducts.discount_amount','variantproducts.images','products.short_description','variantproducts.package_length','variantproducts.package_breadth','variantproducts.package_height','variantproducts.package_weight')->where([
 										['addtocarts.user_id','=',$request->user()->id]
 										])->join('variantproducts','variantproducts.id','=','addtocarts.product_id')->join('products','products.id','=','variantproducts.product_id')->get();
 	
@@ -596,18 +596,12 @@ class PostLoginController extends Controller
 
 				$sales=new \App\Models\Sales();
 				
-				$orderId="VLA-".rand(11,99).str_pad(($totalSales+1), 3, "0", STR_PAD_LEFT);
+				$orderId="4MOB-".rand(11,99).str_pad(($totalSales+1), 3, "0", STR_PAD_LEFT);
 
 				$sales->order_id=$orderId;
 
 				$addressResult=\App\Models\Addressbook::where('id',$request->json()->get('address_id'))->first();
 		
-				if(\App\Helpers\commonHelper::checkUserCountry($request->json()->get('currency_id'),$addressResult->country_id)){
-			
-						return response(array('message'=>'Currency not match'),403);
-						
-				}
-
 				$sales->user_id=$request->user()->id; 
 				$sales->checkout_type='2';
 				$sales->name=$addressResult->name;
@@ -646,14 +640,6 @@ class PostLoginController extends Controller
 					
 				}
 				
-				if($request->user()->designation_id == 3){
-					$userType = 'B2B';
-				}else{
-					$userType = 'Retail';
-				}
-				
-				$sales->user_type=$userType;
-
 				$cartData=\App\Models\Addtocart::where('user_id',$request->user()->id)->get();
 	
 				$sales->payment_type=$request->json()->get('payment_type');
@@ -669,26 +655,8 @@ class PostLoginController extends Controller
 						
 						if($productResult){
 
-							$registeredCountry = \App\Helpers\commonHelper::getAddressCountryType($addressResult->country_id);
-
-							if($registeredCountry == '3' && $productResult->canada_stock == 'NA'){
-								return response(array("message" => "This ".$productResult->name." not available in selected country"),403);
+							if($productResult->stock == 0){
 								
-							}else if($registeredCountry == '2' && $productResult->usa_stock == 'NA'){
-								return response(array("message" => "This ".$productResult->name." not available in selected country"),403);
-								
-							}else if($registeredCountry == '1' && $productResult->india_stock == 'NA'){
-								return response(array("message" => "This ".$productResult->name." not available in selected country"),403);
-								
-							}
-
-							if($registeredCountry == '3' && $productResult->canada_stock == 0){
-								return response(array("message" => "This ".$productResult->name." out of stock"),403);
-
-							}elseif($registeredCountry == '2' && $productResult->usa_stock == 0){
-								return response(array("message" => "This ".$productResult->name." out of stock"),403);
-
-							}elseif($registeredCountry == '1' && $productResult->india_stock == 0){
 								return response(array("message" => "This ".$productResult->name." out of stock"),403);
 
 							}
@@ -798,54 +766,32 @@ class PostLoginController extends Controller
 					}
 				}
 
-				$transactionId=strtotime("now").rand(11,99);
+				if($request->json()->get('payment_type') == 1){
 
-				$payment=new \App\Models\Transaction();
+					$transactionId=strtotime("now").rand(11,99);
 
-				$payment->user_id=$request->user()->id ?? null;
-				$payment->order_id=$orderId;
-				$payment->currency_id=$request->json()->get('currency_id');
-				$payment->transaction_id=$transactionId;
-				$payment->amount=\App\Helpers\commonHelper::getPriceAmountByCountryId($netAmount,$request->json()->get('currency_id'));
-				$payment->payment_status='0';
-				$payment->save();
+					$payment=new \App\Models\Transaction();
 
-				$registeredCountry = \App\Helpers\commonHelper::getAddressCountryType($addressResult->country_id);
+					$payment->user_id=$request->user()->id ?? null;
+					$payment->order_id=$orderId;
+					$payment->currency_id=$request->json()->get('currency_id');
+					$payment->transaction_id=$transactionId;
+					$payment->amount=\App\Helpers\commonHelper::getPriceAmountByCountryId($netAmount,$request->json()->get('currency_id'));
+					$payment->payment_status='0';
+					$payment->save();
 
-
-				if($registeredCountry == '2'){
-					$currency = "USD";
-				}elseif($registeredCountry == '3'){
-					$currency = "CAD";
-				}else{
 					$currency = "INR";
-				}
+					
+					// Enter Your Stripe Secret
+					\Stripe\Stripe::setApiKey(env("STRIPE_SECRET"));
 
-				// Enter Your Stripe Secret
-				\Stripe\Stripe::setApiKey(env("STRIPE_SECRET"));
-
-				$amount = \App\Helpers\commonHelper::getPriceAmountByCountryId($netAmount,$request->json()->get('currency_id'));
-				$amount *= 100;
-				$amount = (int) $amount;
-				
-				$stripe = new \Stripe\StripeClient(env("STRIPE_SECRET"));
-				$customer = $stripe->customers->create(
-					[
-					  'name' => $addressResult->name,
-					  'address' => [
-						'line1' => $addressResult->address_line1.' '.$addressResult->address_line2,
-						'postal_code' => $addressResult->pincode,
-						'city' => \App\Helpers\commonHelper::getCityNameById($addressResult->city_id),
-						'state' => \App\Helpers\commonHelper::getStateNameById($addressResult->state_id),
-						'country' => \App\Helpers\commonHelper::getCountryNameById($addressResult->country_id),
-						],
-					]
-				  );
-
-				$payment_intent = \Stripe\PaymentIntent::create([
-					'customer'  => $customer['id'], 
-					'description' => 'Stripe Test Payment',
-					'shipping' => [	
+					$amount = \App\Helpers\commonHelper::getPriceAmountByCountryId($netAmount,$request->json()->get('currency_id'));
+					$amount *= 100;
+					$amount = $amount;
+					
+					$stripe = new \Stripe\StripeClient(env("STRIPE_SECRET"));
+					$customer = $stripe->customers->create(
+						[
 						'name' => $addressResult->name,
 						'address' => [
 							'line1' => $addressResult->address_line1.' '.$addressResult->address_line2,
@@ -853,16 +799,35 @@ class PostLoginController extends Controller
 							'city' => \App\Helpers\commonHelper::getCityNameById($addressResult->city_id),
 							'state' => \App\Helpers\commonHelper::getStateNameById($addressResult->state_id),
 							'country' => \App\Helpers\commonHelper::getCountryNameById($addressResult->country_id),
+							],
+						]
+					);
+
+					$payment_intent = \Stripe\PaymentIntent::create([
+						'customer'  => $customer['id'], 
+						'description' => 'Stripe Test Payment',
+						'shipping' => [	
+							'name' => $addressResult->name,
+							'address' => [
+								'line1' => $addressResult->address_line1.' '.$addressResult->address_line2,
+								'postal_code' => $addressResult->pincode,
+								'city' => \App\Helpers\commonHelper::getCityNameById($addressResult->city_id),
+								'state' => \App\Helpers\commonHelper::getStateNameById($addressResult->state_id),
+								'country' => \App\Helpers\commonHelper::getCountryNameById($addressResult->country_id),
+							],
 						],
-					],
-					'amount' => $amount,
-					'currency' => $currency,
-					"metadata" => ["order_id" => $orderId],
-					'capture_method' => 'automatic',
-					'confirmation_method' => 'automatic',
-				]);
-				
-				$intent = $payment_intent->client_secret;
+						'amount' => $amount,
+						'currency' => $currency,
+						"metadata" => ["order_id" => $orderId],
+						'capture_method' => 'automatic',
+						'confirmation_method' => 'automatic',
+					]);
+					
+					$intent = $payment_intent->client_secret;
+					
+				}else{
+					$intent = '';
+				}
 				
 				return response(array("message" => "Checkout successfully.","order_id"=>$orderId,"intent"=>$intent),200); 
 				

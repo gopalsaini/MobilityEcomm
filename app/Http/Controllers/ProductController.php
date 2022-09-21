@@ -379,11 +379,7 @@ class ProductController extends Controller
 
 		}
 
-		$country_id = \App\Helpers\commonHelper::getAddressCountryType($resultData['data']['country_id']);
-
-		$shipping=\App\Models\Setting::where('currency',$country_id)->get();
-
-		return view('cart',compact('result','country','resultData','shipping'));
+		return view('cart',compact('result','country','resultData'));
 	}
 
 	public function getTotalCart(Request $request){
@@ -400,7 +396,7 @@ class ProductController extends Controller
 
 			$apiData=\App\Helpers\commonHelper::callAPI('userTokenget','/cart-list');
 			$resultData=json_decode($apiData->content,true);
-
+			
 			if($apiData->status==200){
 
 				$result=$resultData['result'];
@@ -518,7 +514,7 @@ class ProductController extends Controller
 
 			foreach($result as $value){
 
-				$shippingAmount=\App\Helpers\commonHelper::getShippingAmount($value['package_length'],$value['package_breadth'],$value['package_height'],$value['package_weight'],$request->get('countryId'),\Session::get('shipping_id'));
+				$shippingAmount=0;
 
 				$totalMrp+=($value['sale_price']*$value['qty']);
 				$totalShipping+=($shippingAmount*$value['qty']);
@@ -543,23 +539,23 @@ class ProductController extends Controller
 
 		$totalItems=count($result);
 
-		if($request->get('countryId')=='101'){
+		// if($request->get('countryId')=='101'){
 			
-			$freeShippingAmount=\App\Helpers\commonHelper::callAPI('GET','/getfreeshippingamount');
+		// 	$freeShippingAmount=\App\Helpers\commonHelper::callAPI('GET','/getfreeshippingamount');
 
-			if($freeShippingAmount->status==200){
+		// 	if($freeShippingAmount->status==200){
 
-				$freeShippingResult=json_decode($freeShippingAmount->content,true);
+		// 		$freeShippingResult=json_decode($freeShippingAmount->content,true);
 
-				if($finalAmount>=(float) $freeShippingResult['amount']){
+		// 		if($finalAmount>=(float) $freeShippingResult['amount']){
 
-					$totalShipping=0;
+		// 			$totalShipping=0;
 
-				}
+		// 		}
 
-			}
+		// 	}
 
-		}
+		// }
 
 		$finalAmount+=$totalShipping;
 
@@ -575,7 +571,6 @@ class ProductController extends Controller
 			
 			$rules['payment_type']='required|in:1,2';
 			$rules['address_id']='required';
-			$rules['shipping']='required|in:1,2,3,4,5,6,7,8,9,10,11,12';
 
 			$validator = Validator::make($request->all(), $rules);
 			
@@ -601,7 +596,7 @@ class ProductController extends Controller
 						'coupon_id'=>$request->post('coupon_id'),
 						'coupon_code'=>Session::get('coupon_code'),
 						'currency_id'=>Session::get('country_id'),
-						'shipping_id'=>Session::get('shipping_id'),
+						'shipping_id'=>0,
 						'type'=>'1'
 					];
 
@@ -1050,28 +1045,5 @@ class ProductController extends Controller
 
     }
 
-	
-    public function getShippingOptionUsingAddressId(Request $request){
-
-        
-		$address= \App\Models\Addressbook::find($request->post('address_id'));
-		
-		$country_id = \App\Helpers\commonHelper::getAddressCountryType($address['country_id']);
-
-        $option="<option value='' selected >--Select Shipping--</option>";
-
-        if($country_id>0){
-
-            $shipping=\App\Models\Setting::where('currency',$country_id)->get();
-
-            foreach($shipping as $value){
-
-                $option.="<option value='".$value['id']."'>".ucwords($value->label)." - ".$value['sign'].ucfirst($value['value'])."</option>";
-            }
-        }
-
-        return response(array('message'=>'shipping fetched successfully.','html'=>$option));
-    }
-	
 
 }
