@@ -153,7 +153,7 @@
                                        </div>
                                  </div>
                               </div>
-                              <button class="contact__form--btn primary__btn" type="submit">Submit Now 
+                              <button class="contact__form--btn primary__btn" id="contactUsSubmit" type="submit">Submit Now 
                                     &nbsp;&nbsp;
                                     <pre class="spinner-border spinner-border-sm contactUsLoader" style="display:none"></pre>
                               </button>
@@ -239,6 +239,7 @@
             success: function(data) {
                 showMsg('success', data.message);
                 $('.order_fatch').html(data.html);
+                $('#'+formId)[0].reset();
                 $('#' + formId + 'Loader').css('display', 'none');
                 $('#' + formId + 'Submit').prop('disabled', false);
             },

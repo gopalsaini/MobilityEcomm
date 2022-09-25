@@ -2,7 +2,7 @@
 @foreach($result as $key=>$addres)
 	<div class="col-lg-6 col-md-6 col-sm-12 col-12">
 		<div class="address-box">
-		<h3>Shipping Address - {{$key+1}}</h3>
+		<h3>{{$addres['name']}}</h3>
 		<a href="javascript:void(0)">
 			{{$addres['address_line1']}},<br>
 			{{$addres['address_line2']}}, {{\App\Helpers\commonHelper::getCityNameById($addres['city_id'])}}, {{\App\Helpers\commonHelper::getStateNameById($addres['state_id'])}}, {{\App\Helpers\commonHelper::getCountryNameById($addres['country_id'])}} -{{$addres['pincode']}}<br>

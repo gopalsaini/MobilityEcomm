@@ -48,7 +48,7 @@
                                                         aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                                         style="width: 193.017px;"
                                                         aria-label=" Email : activate to sort column ascending">
-                                                        Quantity
+                                                        Date
                                                     </th>
                                                     <th class="center sorting" tabindex="0"
                                                         aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
@@ -66,7 +66,7 @@
                                                     <td class="center">{{ ucfirst($value['name']) }}</td>
                                                     <td class="center">{{ $value['email'] }}</td>
                                                     <td class="center">{{ $value['mobile'] }}</td>
-                                                    <td class="center">{{ $value['qty'] }}</td>
+                                                    <td class="center">{{ $value['date'] }}</td>
                                                     <td class="center">
                                                         <button data-toggle="modal"
                                                             data-target="#details{{ $value['id'] }}"
@@ -87,7 +87,7 @@
                                                     <th class="center" rowspan="1" colspan="1"> Name </th>
                                                     <th class="center" rowspan="1" colspan="1"> Email </th>
                                                     <th class="center" rowspan="1" colspan="1"> Mobile </th>
-                                                    <th class="center" rowspan="1" colspan="1"> Quantity</th>
+                                                    <th class="center" rowspan="1" colspan="1"> Date</th>
                                                     <th class="center" rowspan="1" colspan="1"> View </th>
 
                                                 </tr>

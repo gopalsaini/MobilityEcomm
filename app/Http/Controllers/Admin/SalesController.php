@@ -776,11 +776,8 @@ class SalesController extends Controller
 	
 	public function productQuery(Request $request){
 
-		$query=\App\Models\ProductQuery::select('users.*','product_queries.message','variantproducts.slug')->join('users','users.id','=','product_queries.user_id')->join('variantproducts','variantproducts.id','=','product_queries.product_id');
+		$query=\App\Models\ProductQuery::select('product_queries.*','variantproducts.slug')->join('variantproducts','variantproducts.id','=','product_queries.product_id');
 
-		if(\Auth::user()->designation_id == '3'){
-			$query->where('users.used_reference_code',\Auth::user()->reference_code);
-		}
 		$result = $query->get();
 
 		if($result->count()>0){

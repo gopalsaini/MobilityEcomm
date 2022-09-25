@@ -32,7 +32,7 @@
 
 @section('content')
 
-<div class="offcanvas__filter--sidebar widget__area">
+    <div class="offcanvas__filter--sidebar widget__area">
         <button type="button" class="offcanvas__filter--close">
             <svg class="minicart__close--icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg> <span class="offcanvas__filter--close__text">Close</span>
         </button>
@@ -46,13 +46,15 @@
                             <li class="widget__categories--menu__list">
                                 <label class="widget__categories--menu__label d-flex align-items-center">
                                     <img class="widget__categories--menu__img" src="{{ asset('uploads/category/'.$cat['image']) }}" alt="{{ ucfirst($cat['name']) }}">
-                                    <span class="widget__categories--menu__text">{{ ucfirst($cat['name']) }}</span>
-                                    <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
-                                        <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                                    </svg>
-                                </label>
-                                <ul class="widget__categories--sub__menu">
+                                    <span class="widget__categories--menu__text"><a href="{{ url('product-listing/'.$cat['slug']) }}">{{ ucfirst($cat['name']) }}</a></span>
                                     @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
+                                        <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
+                                            <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                                        </svg>
+                                    @endif
+                                </label>
+                                @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
+                                    <ul class="widget__categories--sub__menu">
                                         @foreach($cat['child'] as $fchild)
                                             <li class="widget__categories--sub__menu--list">
                                                 <a class="widget__categories--sub__menu--link d-flex align-items-center" href="{{ url('product-listing/'.$fchild['slug']) }}">
@@ -61,9 +63,8 @@
                                                 </a>
                                             </li>
                                         @endforeach
-                                    @endif
-                                    
-                                </ul>
+                                    </ul>
+                                @endif
                             </li>
                         </ul>
                     @endforeach
@@ -150,13 +151,16 @@
                                         <li class="widget__categories--menu__list">
                                             <label class="widget__categories--menu__label d-flex align-items-center">
                                                 <img class="widget__categories--menu__img" src="{{ asset('uploads/category/'.$cat['image']) }}" alt="{{ ucfirst($cat['name']) }}">
-                                                <span class="widget__categories--menu__text">{{ ucfirst($cat['name']) }}</span>
-                                                <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
-                                                    <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                                                </svg>
-                                            </label>
-                                            <ul class="widget__categories--sub__menu">
+                                                <span class="widget__categories--menu__text"><a href="{{ url('product-listing/'.$cat['slug']) }}">{{ ucfirst($cat['name']) }}</a></span>
                                                 @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
+                                                    <svg class="widget__categories--menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394">
+                                                        <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                                                    </svg>
+                                                @endif
+                                            </label>
+                                            @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
+                                            <ul class="widget__categories--sub__menu">
+                                                
                                                     @foreach($cat['child'] as $fchild)
                                                         <li class="widget__categories--sub__menu--list">
                                                             <a class="widget__categories--sub__menu--link d-flex align-items-center" href="{{ url('product-listing/'.$fchild['slug']) }}">
@@ -165,9 +169,10 @@
                                                             </a>
                                                         </li>
                                                     @endforeach
-                                                @endif
+                                                
                                                 
                                             </ul>
+                                            @endif
                                         </li>
                                     </ul>
                                 @endforeach
@@ -263,6 +268,14 @@
 
 </main>
 
+    @php
+
+        $type = ''; 
+        if(isset($_GET['type']) && $_GET['type'] != ''){
+            $type = $_GET['type'];
+
+        }
+    @endphp
 
 @endsection
 
@@ -367,7 +380,8 @@
                 "country_id":country_id,
                 "collection":collection,
                 "categoryslug":"{{$categoryslug}}",
-                "ondemandproduct":"{{$ondemandCategory}}"
+                "ondemandproduct":"{{$ondemandCategory}}",
+                "type":"{{$type}}"
             },
             beforeSend: function () {
                 notscrolly = false;
@@ -408,9 +422,9 @@
     }
 </script>
 <script>
-    // document.querySelector('.filter-mob').addEventListener('click', function () {
-	// 	document.querySelector('.filter-sideBar').classList.toggle('left-move');
-	// });
+    document.querySelector('.filter-mob').addEventListener('click', function () {
+		document.querySelector('.filter-sideBar').classList.toggle('left-move');
+	});
     
 </script>
 <script>

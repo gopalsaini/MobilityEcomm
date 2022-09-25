@@ -114,7 +114,18 @@
 						
 						<div class="row clearfix">
 
-							<div class="col-sm-6">
+							<div class="col-sm-4">
+								<div class="form-group">
+									<div class="form-line">
+										<label for="inputName">Product Type <label class="text-danger">*</label></label>
+										<select class="form-control" name="type" required >
+											<option value="Sale" @if(!empty($result) && $result['type']=='Sale') selected @endif >Sale</option>
+											<option value="Rent" @if(!empty($result) && $result['type']=='Rent') selected @endif>Rent</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
 								<div class="form-group">
 									<div class="form-line">
 										<label for="inputName">Sale Price (Rs) <label class="text-danger">*</label></label>
@@ -123,7 +134,7 @@
 								</div>
 							</div>
 							
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="form-group">
 									<div class="form-line">
 										<label for="inputName">SKU <label class="text-danger">*</label></label>
@@ -178,7 +189,7 @@
 							</div>
 						</div>
 						
-						<div class="row clearfix">
+						<!-- <div class="row clearfix">
 						
 							<div class="col-sm-6">
 								<div class="form-group">
@@ -197,9 +208,9 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						
-						<div class="row clearfix">
+						<!-- <div class="row clearfix">
 						
 							<div class="col-sm-6">
 								<div class="form-group">
@@ -219,7 +230,7 @@
 								</div>
 							</div>
 
-						</div>
+						</div> -->
 						
 						
 						<div class="row clearfix">

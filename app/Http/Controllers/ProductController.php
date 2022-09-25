@@ -123,11 +123,11 @@ class ProductController extends Controller
 
 	public function productListing(Request $request,$categoryslug=''){
 
-		
 		if($request->ajax()){
 			
-			
-			$result=\App\Helpers\commonHelper::callAPI('GET','/productlist?sort_order='.$request->post('sort_order').'&min_price='.$request->post('minPrice').'&collection='.$request->post('collection').'&max_price='.$request->post('maxPrice').'&country_id='.$request->post('country_id').'&attributeId='.$request->post('attributeId').'&category_slug='.$request->post('categoryslug').'&offset='.$request->post('offset').'&limit='.$request->post('limit'));
+			$type = $request->post('type');
+
+			$result=\App\Helpers\commonHelper::callAPI('GET','/productlist?sort_order='.$request->post('sort_order').'&min_price='.$request->post('minPrice').'&collection='.$request->post('collection').'&max_price='.$request->post('maxPrice').'&country_id='.$request->post('country_id').'&attributeId='.$request->post('attributeId').'&category_slug='.$request->post('categoryslug').'&offset='.$request->post('offset').'&limit='.$request->post('limit').'&type='.$type);
 			$resultData=json_decode($result->content,true);
 			//print_r($result); die;
 			if($result->status==200){
@@ -142,13 +142,14 @@ class ProductController extends Controller
 					$wishlist=Session::get('wishlist_user');
 				}
 
+				
 				if($request->post('ondemandproduct')){
 
-					$html=view('product_listing_product_ondemand',compact('data','offset','wishlist'))->render();
+					$html=view('product_listing_product_ondemand',compact('data','offset','wishlist','type'))->render();
 
 				}else{
 
-					$html=view('product_listing_product',compact('data','offset','wishlist'))->render();
+					$html=view('product_listing_product',compact('data','offset','wishlist','type'))->render();
 				}
 				 
 				return response(array('message'=>$resultData['message'],'html'=>$html,'total'=>count($data)),$result->status);
@@ -907,6 +908,10 @@ class ProductController extends Controller
 
 
 		$data=array(
+			'name'=>$request->post('name'),
+			'email'=>$request->post('email'),
+			'mobile'=>$request->post('mobile'),
+			'date'=>$request->post('date'),
 			'description'=>$request->post('description'),
 			'product_id'=>$request->post('product_id'),
 		);

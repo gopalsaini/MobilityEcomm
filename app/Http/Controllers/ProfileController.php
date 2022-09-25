@@ -182,8 +182,7 @@ class ProfileController extends Controller
             
           $data=array(
             'type'=>'1',
-            'first_name'=>$request->post('first_name'),
-            'last_name'=>$request->post('last_name'),
+            'name'=>$request->post('first_name').' '.$request->post('last_name'),
             'email'=>$request->post('email'),
             'mobile'=>$request->post('mobile'),
             'country_id'=>$request->post('country_id'),

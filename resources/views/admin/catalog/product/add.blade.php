@@ -100,7 +100,7 @@
 						</div>
 						
 						<div class="row clearfix">
-						<div class="col-sm-4">
+						<div class="col-sm-6">
 								<div class="form-group">
 									<div class="form-line">
 										<label for="inputName">Category <label class="text-danger">*</label></label>
@@ -115,41 +115,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-4">
-								<div class="form-group">
-									<div class="form-line">
-										<label for="inputName">Select Artisan <label class="text-danger">*</label></label>
-										<select class="form-control" name="artisan_id" required >
-											<option  selected value="">--Select--</option>
-											@if(!empty($artisan))
-												@foreach($artisan as $raw)
-													<option value="{{ $raw['id'] }}" @if(!empty($result) && $raw['id']==$result['artisan_id']) {{ 'selected' }} @endif>{{ $raw['name'] }}</option>
-												@endforeach
-											@endif
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group">
-									<div class="form-line">
-										<label for="inputName">Select Collection </label>
-										<select class="form-control"  id="select" name="collection_id[]"  multiple="multiple" >
-											<option  selected value="0">--Select--</option>
-											<option value="1" @if(!empty($result) && in_array('1',explode(',',$result['whole_collection_status']))) {{ 'selected' }} @endif>Freedom Business</option>
-											<option value="2" @if(!empty($result) && in_array('2',explode(',',$result['whole_collection_status']))) {{ 'selected' }} @endif>Modern Meets Tradition</option>
-											<option value="3" @if(!empty($result) && in_array('3',explode(',',$result['whole_collection_status']))) {{ 'selected' }} @endif>Handcrafted Housewares</option>
-											<option value="4" @if(!empty($result) && in_array('4',explode(',',$result['whole_collection_status']))) {{ 'selected' }} @endif>New Products</option>
-											<option value="5" @if(!empty($result) && in_array('5',explode(',',$result['whole_collection_status']))) {{ 'selected' }} @endif>Featured Products</option>
-												
-										</select>
-									</div>
-								</div>
-							</div>
 							
-						</div>
-						
-						<div class="row clearfix">
 						
 							<div class="col-sm-6">
 								<div class="form-group">
@@ -160,14 +126,6 @@
 								</div>
 							</div>
 
-							<div class="col-sm-6">
-								<div class="form-group">
-									<div class="form-line">
-										<label for="inputName">Tax Ratio (%) <label class="text-danger">*</label></label>
-										<input  value="@if(!empty($result)){{ $result['tax_ratio'] }}@endif" onkeypress="return /[0-9 ]/i.test(event.key)" type="tel" required class="form-control" placeholder="Enter Tax Ratio (%)" name="tax_ratio" >
-									</div>
-								</div>
-							</div>
 						</div>
 						
 						<div class="row clearfix">

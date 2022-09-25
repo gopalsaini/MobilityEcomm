@@ -9,53 +9,33 @@
             padding-top: 18px;
             justify-content: space-between;
         }
-        .fs-wrap .fs-label-wrap{
-            width: 100%;
-            height: 46px;
-            padding: 0px 6px;
-            background: #FCF2E7;
-            border: none;
-        }
-        .fs-wrap {
-            display: inline-block;
-            cursor: pointer;
-            line-height: 1;
-            width: 100% !important;
-        }
-        .fs-label-wrap .fs-label {
-            padding: 14px 22px 14px 11px !important;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            /* width: 120%; */
-            overflow: hidden;
-        }
         .fs-wrap {
 			display: inline-block;
 			cursor: pointer;
-			line-height: 1;
+			line-height: 2;
 			width: 100%;
 		}
 		.fs-dropdown {
 			position: absolute;
 			background-color: #FCF2E7;
 			border: 1px solid #ddd;
-			width: 100%;
+			line-height: 1 !important;
 			margin-top: 5px;
 			z-index: 1000;
 		}
     </style>
    
-   <div class="modal fade address-popup" id="add-address-modal-update">
+   <div class="modal fade address-popup" data-animation="slideInUp" id="add-address-modal-update">
 
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog quickview__main--wrapper" role="document">
          <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title">@if(!empty($result)) Update @else Add New @endif Address</h5>
-            <button type="button" class="close btnClose" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
+            <h3 class="modal-title">@if(!empty($result)) Update @else Add New @endif Address</h3>
+            <header class="modal-header quickview__header">
+                <button class="close-modal quickview__close--btn" aria-label="close modal" data-close>✕ </button>
+            </header>
             </div>
-            <div class="modal-body">
+            <div class="modal-body ">
                <div class="row">
                   <div class="col-lg-12 col-md-12">
                      
@@ -63,16 +43,16 @@
                            <form id="address" action="{{ url('add-address') }}" class="form-signin" method="post" accept-charset="utf-8">
                               @csrf
                               <input value="@if(!empty($result)){{ $result['id'] }}@else{{ 0 }}@endif" type="hidden" name="id" required >
-                              <div class="address-separate">Contact Details</div>
+                              
                                  <div class="row">
-                                       <div class="col-sm-12 " >
+                                       <div class="col-sm-6 mb-10" >
                                           <div class="form-group">
-                                                <input class="form-control" required="" value="@if(!empty($result)) {{ $result['name'] }} @endif"
-                                                   placeholder="Name*" type="text" name="name"
-                                                   onkeypress="return /[A-Za-z ]/i.test(event.key)">
+                                             <input class="form-control contact__form--input" required="" value="@if(!empty($result)) {{ $result['name'] }} @endif"
+                                                placeholder="Name*" type="text" name="name"
+                                                onkeypress="return /[A-Za-z ]/i.test(event.key)">
                                           </div>
                                        </div>
-                                       <div class="col-sm-3">
+                                       <div class="col-sm-2 mb-10">
                                           <div class="form-group ">
                                              <div class="input-group">
                                                 <div class="input-group-prepend">
@@ -86,91 +66,87 @@
                                              </div>
                                           </div>
                                        </div>
-                                       <div class="col-sm-9"  style="padding:0 ;">
-                                             <div class="form-group">
-                                                <input type="tel" placeholder="Mobile*" value="@if(!empty($result)) {{ $result['mobile'] }}@endif" style="width:100%;border-radius: 0 5px 5px 0;" onkeypress="return /[0-9 ]/i.test(event.key)" name="mobile">
+                                       <div class="col-sm-4 mb-10" >
+                                          <div class="form-group">
+                                             <input type="tel" class="contact__form--input" placeholder="Mobile*" value="@if(!empty($result)) {{ $result['mobile'] }}@endif" style="width:100%;border-radius: 0 5px 5px 0;" onkeypress="return /[0-9 ]/i.test(event.key)" name="mobile">
 
-                                             </div>
+                                          </div>
+                                       </div>
+                                       
+                                       <div class="col-sm-6 mb-10">
+                                          <div class="form-group">
+                                             <input class="form-control contact__form--input" type="email" value="@if(!empty($result)) {{ $result['email'] }} @endif" required
+                                                placeholder="Email*" type="text" name="email" >
+                                          </div>
+                                       </div>
+
+
+                                       <div class="col-sm-6 mb-10">
+                                          <div class="form-group">
+                                             <select class="country selectbox" name="country_id" data-state_id="@if(!empty($result)) {{ $result['state_id'] }} @else{{ '0' }}@endif" data-city_id="@if(!empty($result)) {{ $result['city_id'] }} @else{{ '0' }}@endif">
+                                                <option value="">--Select--</option>
+                                                @foreach($country as $con)
+                                                      <option value="{{ $con['id'] }}" @if(!empty($result) && $con['id']==$result['country_id']) {{ 'selected' }} @endif>{{ ucfirst($con['name']) }}</option>
+                                                @endforeach
+                                             </select>
+                                          </div>
+                                       </div>
+
+                                       <div class="col-sm-6 mb-10">
+                                          <div class="form-group">
+                                             <select class="selectbox statehtml" name="state_id" required data-placeholder="Select State">
+                                                <option value="">--Select--</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                       
+                                       <div class="col-sm-6 mb-10">
+                                          <div class="form-group">
+                                             <select class="selectbox cityHtml" name="city_id">
+                                                <option value="">--Select--</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                       
+                                       <div class="col-sm-6 mb-15">
+                                          <div class="form-group">
+                                             <input required class="form-control pincodesssss contact__form--input" 
+                                                placeholder="pincode*" type="tel" value="@if(!empty($result)){{ $result['pincode'] }}@endif" name="pincode" onkeypress="return /[0-9 ]/i.test(event.key)" minlength="6" maxlength="6">
+                                          </div>
+                                       </div>
+
+                                       <div class="col-sm-6 mb-15">
+                                          <div class="form-group">
+                                             <input required class="form-control contact__form--input" 
+                                                placeholder="Address 1(House No, Building, Street, Area)*" type="text" value="@if(!empty($result)) {{ $result['address_line1'] }} @endif" name="address_line1">
+                                          </div>
+                                       </div>
+                                       
+
+                                       <div class="col-sm-6 mb-10">
+                                          <div class="form-group">
+                                             <input required="" class="form-control contact__form--input"
+                                                placeholder="Address 2(House No, Building, Street, Area)" type="text" value="@if(!empty($result)) {{ $result['address_line2'] }} @endif" name="address_line2">
+                                          </div>
+                                       </div>
+                                       
+                                       <div class="col-sm-6 mb-10">
+                                          <div class="form-group">
+                                             <select class="form-control contact__form--input" name="type_id" required >
+                                                <option value="">Type</option>
+                                                <option value="1" @if(!empty($result) && $result['type']=='1') selected @endif>Home</option>
+                                                <option value="2" @if(!empty($result) && $result['type']=='2') selected @endif>Office</option>
+                                             </select>
+                                          </div>
                                        </div>
                                     </div>
 
-                                    <div class="row" style="padding:0 15px;">
-                                       <div class="col-sm-12"  style="padding:0 ;">
-                                             <div class="form-group">
-                                                <input class="form-control" type="email" value="@if(!empty($result)) {{ $result['email'] }} @endif" required
-                                                   placeholder="Email*" type="text" name="email" >
-                                       </div>
-                                    </div>
-
-                              <div class="address-separate">Address</div>
-                                    <div class="row">
-                                       <div class="col-sm-6">
-                                             <div class="form-group">
-                                                <select class="country selectbox" name="country_id" data-state_id="@if(!empty($result)) {{ $result['state_id'] }} @else{{ '0' }}@endif" data-city_id="@if(!empty($result)) {{ $result['city_id'] }} @else{{ '0' }}@endif">
-                                                   <option value="">--Select--</option>
-                                                   @foreach($country as $con)
-                                                         <option value="{{ $con['id'] }}" @if(!empty($result) && $con['id']==$result['country_id']) {{ 'selected' }} @endif>{{ ucfirst($con['name']) }}</option>
-                                                   @endforeach
-                                                </select>
-                                             </div>
-                                       </div>
-
-                                       <div class="col-sm-6">
-                                             <div class="form-group">
-                                                <select class="selectbox statehtml" name="state_id" required data-placeholder="Select State">
-                                                   <option value="">--Select--</option>
-                                                </select>
-                                             </div>
-                                       </div>
-                                       
-                                       <div class="col-sm-6">
-                                             <div class="form-group">
-                                                <select class="selectbox cityHtml" name="city_id">
-                                                   <option value="">--Select--</option>
-                                                </select>
-                                             </div>
-                                       </div>
-                                       
-                                       <div class="col-sm-6">
-                                             <div class="form-group">
-                                                <input required class="form-control pincodesssss" 
-                                                   placeholder="pincode*" type="tel" value="@if(!empty($result)){{ $result['pincode'] }}@endif" name="pincode" onkeypress="return /[0-9 ]/i.test(event.key)" minlength="6" maxlength="6">
-                                             </div>
-                                       </div>
-
-                                       <div class="col-sm-12">
-                                             <div class="form-group">
-                                                <input required class="form-control" 
-                                                   placeholder="Address 1(House No, Building, Street, Area)*" type="text" value="@if(!empty($result)) {{ $result['address_line1'] }} @endif" name="address_line1">
-                                             </div>
-                                       </div>
-                                       
-
-                                       <div class="col-sm-12">
-                                             <div class="form-group">
-                                                <input required="" class="form-control"
-                                                   placeholder="Address 2(House No, Building, Street, Area)" type="text" value="@if(!empty($result)) {{ $result['address_line2'] }} @endif" name="address_line2">
-                                             </div>
-                                       </div>
-                                       
-                                       <div class="col-sm-12">
-                                             <div class="form-group">
-                                                <select class="form-control" name="type_id" required >
-                                                   <option value="">Type</option>
-                                                   <option value="1" @if(!empty($result) && $result['type']=='1') selected @endif>Home</option>
-                                                   <option value="2" @if(!empty($result) && $result['type']=='2') selected @endif>Office</option>
-                                                </select>
-                                             </div>
-                                       </div>
-                                    </div>
-
-                                    <div class="row">
+                                    <div class="row m-20">
                                        <div class="col-sm-12">
                                              <button name="signupBtn" type="submit" value="true" id=""
-                                                class="submit-address d-flex btn btn-primary" style="align-items:center;">
-                                                Submit
-                                                <pre class="spinner-border spinner-border-sm addressloader"
-                                                         style="color:white;font-size: 100%;position:relative;top:32%; margin-left:10px;display:none"></pre>
+                                                class="submit-address d-flex btn btn-primary primary__btn" style="align-items:center;">
+                                                Submit <i class="fa fa-spinner fa-spin loading addressloader" style="font-size:16px;line-height: 2;display:none"></i>
+
                                              </button>
                                        </div>
                                     </div>
@@ -216,7 +192,7 @@ getCity();
 
 
 $("form#address").submit(function(e) {
-
+   
     e.preventDefault();
 
     var formId = $(this).attr('id');
@@ -243,16 +219,17 @@ $("form#address").submit(function(e) {
             $('.addressloader').css('display', 'none');
         },
         success: function(data) {
+            
+            $('#add-address-modal-update').removeClass('is-visible');
+            $('#add-address-modal-update').modal('toggle');
+
+            getSavedAddress();
             if (data.error) {
                 showMsg('error', data.message);
             } else {
                 showMsg('success', data.message);
             }
             
-            $('#add-address-modal-update').modal('toggle');
-
-            getSavedAddress();
-
             $('.addressloader').css('display', 'none');
         },
         cache: false,

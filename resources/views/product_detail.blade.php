@@ -146,22 +146,70 @@
                                 @endif
                             </div>
                             
-                            <div class="product__variant--list quantity d-flex align-items-center mb-20">
-                                <div class="quantity__box">
-                                    <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
-                                    <label>
-                                        <input type="number" class="quantity__number quickview__value--number qty" value="1" />
-                                    </label>
-                                    <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
-                                </div>
-                                <button class="quickview__cart--btn primary__btn addtocart" data-type="addtocart" data-product_id="{{ $result['provariantid'] }}">Add To Cart</button>
-                            </div>
+                            @if($result['type'] != 'Rent')
+                                <div class="product__variant--list quantity d-flex align-items-center mb-20">
+                                    <div class="quantity__box">
+                                        <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
+                                        <label>
+                                            <input type="number" class="quantity__number quickview__value--number qty" value="1" />
+                                        </label>
+                                        <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
+                                    </div>
+                                    <button class="quickview__cart--btn primary__btn addtocart" data-type="addtocart" data-product_id="{{ $result['provariantid'] }}">Add To Cart <i class="fa fa-spinner fa-spin loading" style="font-size:16px;line-height: 2;display:none"></i></button>
+                                </div>  
+                            @endif
                             <div class="product__variant--list mb-15">
-                                <a data-productid="{{ $result['provariantid'] }}" class="heart-btn wishlist variant__wishlist--icon mb-15" href="javascript:void();" title="Add to wishlist">
+                                <!-- <a data-productid="{{ $result['provariantid'] }}" class="heart-btn wishlist variant__wishlist--icon mb-15" href="javascript:void();" title="Add to wishlist">
                                     <svg class="quickview__variant--wishlist__svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 512 512"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
                                     Add to Wishlist
-                                </a>
-                                <button class="variant__buy--now__btn primary__btn addtocart" data-type="buynow" data-product_id="{{ $result['provariantid'] }}" >Buy it now</button>
+                                </a> -->
+                                @if($result['type'] != 'Rent')
+                                    <button class="variant__buy--now__btn primary__btn addtocart" data-type="buynow" data-product_id="{{ $result['provariantid'] }}" >Buy it now <i class="fa fa-spinner fa-spin loading" style="font-size:16px;line-height: 2;display:none"></i></button>
+                                @else
+                                    <div class="">
+                                        <form action="{{ route('ondemand-enquiry') }}" method="post"  id="ondemand" class="">
+                                        @csrf
+                                        
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="contact__form--list mb-20">
+                                                        <label class="contact__form--label" for="input1">Enter Name <span class="contact__form--label__star">*</span></label>
+                                                        <input class="contact__form--input" name="name" id="input1" placeholder="Your Name" type="text">
+                                                        <input class="contact__form--input" name="product_id" value="{{ $result['provariantid'] }}" placeholder="Your Name" type="hidden">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="contact__form--list mb-20">
+                                                        <label class="contact__form--label" for="input3">Contact Number (Required) <span class="contact__form--label__star">*</span></label>
+                                                        <input class="contact__form--input" name="mobile" id="input3" placeholder="Phone number" type="tel">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="contact__form--list mb-20">
+                                                        <label class="contact__form--label" for="input4">Email <span class="contact__form--label__star">*</span></label>
+                                                        <input class="contact__form--input" name="email" id="input4" placeholder="Email" type="email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="contact__form--list mb-20">
+                                                        <label class="contact__form--label" for="input2">Rental Start Date (Mon-Fri Only) <span class="contact__form--label__star">*</span></label>
+                                                        <input class="contact__form--input" name="date" id="input2" placeholder="Enter Rental Start Date (Mon-Fri Only)" type="date">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="contact__form--list mb-10">
+                                                        <label class="contact__form--label" for="input5">Write Your Message <span class="contact__form--label__star">*</span></label>
+                                                        <textarea class="contact__form--textarea" name="description" id="input5" placeholder="Write Your Message"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="contact__form--btn primary__btn" id="ondemandSubmit" type="submit">Submit Now 
+                                                    &nbsp;&nbsp;
+                                                    <i class="fa fa-spinner fa-spin loading" style="font-size:16px;line-height: 2;display:none"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
                             <div class="product__variant--list mb-15">
                                 <div class="product__details--info__meta">
@@ -725,7 +773,7 @@
             dataType: 'json',
             type: 'post',
             beforeSend: function() {
-                $('#' + formId + 'Loader').css('display', 'inline-block');
+                $('.loading').css('display', 'inline-block');
                 $('#' + formId + 'Submit').prop('disabled', true);
             },
             error: function(xhr, textStatus) {
@@ -736,14 +784,14 @@
                     showMsg('error', xhr.status + ': ' + xhr.statusText);
                 }
 
-                $('#' + formId + 'Loader').css('display', 'none');
+                $('.loading').css('display', 'none');
                 $('#' + formId + 'Submit').prop('disabled', false);
                 
             },
             success: function(data) {
                 showMsg('success', data.message);
-                $('#enquiry').modal('hide')
-                $('#' + formId + 'Loader').css('display', 'none');
+                $('#'+formId)[0].reset();
+                $('.loading').css('display', 'none');
                 $('#' + formId + 'Submit').prop('disabled', false);
             },
             cache: false,

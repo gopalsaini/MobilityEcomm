@@ -38,10 +38,10 @@ Route::group([
 	Route::post("check-coupon-code","API\PostLoginController@checkCouponCode");
 	Route::get("logout","API\PostLoginController@logout");
 	
-	Route::post("ondemand-enquiry","API\PostLoginController@ondemandEnquiry");
 	Route::post("product-customizations","API\PostLoginController@productCustomizations");
 });
 
+Route::post("ondemand-enquiry","API\PostLoginController@ondemandEnquiry");
 Route::post('emailuser-registration', [preLoginController::class, 'emailRegistration']);
 Route::post('mail-getotp', [preLoginController::class, 'sendOtpOnMail']);
 Route::post('mobileuser-registration', [preLoginController::class, 'mobileRegistration']);

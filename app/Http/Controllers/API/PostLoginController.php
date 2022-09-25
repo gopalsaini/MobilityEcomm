@@ -112,8 +112,7 @@ class PostLoginController extends Controller
 				$rules['city_id']='required|exists:cities,id';
 			}
 
-			$rules['first_name']='required|string';
-			$rules['last_name']='required|string';
+			$rules['name']='required|string';
 			$rules['email']='required|email';
 			$rules['country_id']='required|exists:countries,id';
 			$rules['state_id']='required|exists:states,id';
@@ -165,7 +164,7 @@ class PostLoginController extends Controller
 
 				$address->user_id=$request->user()->id;
 				
-				$address->name = $request->json()->get('first_name').' '.$request->json()->get('last_name');
+				$address->name = $request->json()->get('name');
 				$address->email = $request->json()->get('email');
 				$address->mobile = $request->json()->get('mobile');
 				$address->phone_code = $request->json()->get('phone_code') ?? '';
@@ -1096,7 +1095,11 @@ class PostLoginController extends Controller
 		$rules = [
 
             'product_id' => 'required|numeric|exists:variantproducts,id',
-            'description' => 'required|min:3',
+            'name' => 'required|min:3',
+			'email' => 'required|min:3',
+			'mobile' => 'required',
+			'date' => 'required',
+			'description' => 'required|min:3',
 		];
 
 
@@ -1117,25 +1120,20 @@ class PostLoginController extends Controller
 			try{
 					
 				$data=new \App\Models\ProductQuery();
-				$data->user_id=$request->user()->id;				
-				$data->sales_admin_id=\App\Helpers\commonHelper::getSalesAdministrationId($request->user()->used_reference_code);
+				$data->name=$request->json()->get('name');
+				$data->email=$request->json()->get('email');
+				$data->mobile=$request->json()->get('mobile');
+				$data->date=$request->json()->get('date');			
+				$data->sales_admin_id=1;
 				$data->product_id=$request->json()->get('product_id');
 				$data->message=$request->json()->get('description');
 				$data->save();
 
-				
-				$notification = new \App\Models\Notification();
-				$notification->user_id = \App\Helpers\commonHelper::getSalesAdministrationId($request->user()->used_reference_code);
-				$notification->title = 'Product Enquiry by user '.$request->user()->name;
-				$notification->message = $request->json()->get('description');
-				$notification->save();
-				
 				return response(array('message'=>'Thank you, your enquiry has been submitted successfully'),200);
 				
 			}catch (\Exception $e){
 				
-				return response(array("error" 
-						=> true, "message" => $e->getMessage()),403); 
+				return response(array("error"=> true, "message" => $e->getMessage()),403); 
 			
 			}
 		}

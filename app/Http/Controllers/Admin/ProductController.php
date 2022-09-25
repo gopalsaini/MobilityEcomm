@@ -81,12 +81,9 @@ class ProductController extends Controller
 						$variants=$request->post('variant_id');
 						sort($variants);
 						
-						$product->artisan_id=$request->post('artisan_id');
 						$product->category_id=$request->post('category_id');
 						$product->variant_id=implode(',',$variants);
 						$product->name=$request->post('name');
-						$product->whole_collection_status=implode(',',$request->post('collection_id')) ?? '0';
-						$product->tax_ratio=$request->post('tax_ratio');
 						$product->short_description=$request->post('short_description');
 						$product->description=$request->post('description');
 						
@@ -197,7 +194,7 @@ class ProductController extends Controller
 		
 		Product::where('id',$request->post('id'))->update(['top_selling'=>$request->post('status')]);
 		
-		return response(array('message'=>'Top selling product status changed successfully.'),200);
+		return response(array('message'=>'Featured product status changed successfully.'),200);
 	}
 	
 	
@@ -205,7 +202,7 @@ class ProductController extends Controller
 		
 		Product::where('id',$request->post('id'))->update(['deals_oftheday'=>$request->post('status')]);
 		
-		return response(array('message'=>'Deals of the day status changed successfully.'),200);
+		return response(array('message'=>'New product status changed successfully.'),200);
 	}
 	
 	
@@ -228,10 +225,7 @@ class ProductController extends Controller
 				'discount_amount'=>'required',
 				'stock'=>'required',
 				'sale_price'=>'required',
-				'package_length'=>'required',
-				'package_breadth'=>'required',
-				'package_height'=>'required',
-				'package_weight'=>'required',
+				'type'=>'required',
 				'package_label'=>'required',
 				'meta_title'=>'required',
 				'meta_keywords'=>'required',
@@ -375,10 +369,10 @@ class ProductController extends Controller
 							$variProduct->discount_type=$request->post('discount_type');   
 							$variProduct->discount_amount=$request->post('discount_amount');   
 							$variProduct->stock=$request->post('stock');  
-							$variProduct->package_length=$request->post('package_length');   
-							$variProduct->package_breadth=$request->post('package_breadth');   
-							$variProduct->package_height=$request->post('package_height');   
-							$variProduct->package_weight=$request->post('package_weight');   
+							$variProduct->type=$request->post('type');   
+							$variProduct->package_breadth=$request->post('package_breadth') ?? 0;   
+							$variProduct->package_height=$request->post('package_height') ?? 0;   
+							$variProduct->package_weight=$request->post('package_weight') ?? 0;   
 							$variProduct->package_label=$request->post('package_label');   
 							$variProduct->images=$productImage;
 							$variProduct->meta_title=$request->post('meta_title');

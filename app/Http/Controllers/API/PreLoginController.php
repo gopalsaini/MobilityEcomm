@@ -636,19 +636,19 @@ class PreLoginController extends Controller
 			
 			if($request->get('category_slug')){
 
+				
 				$getSlugCategoryId=\App\Models\Category::where('slug',$request->get('category_slug'))->first();
 				
+				$query->where('products.category_id',$getSlugCategoryId->id);
+
 				if($getSlugCategoryId){
 
 					$childCategory=\App\Helpers\commonHelper::getCategoryTreeidsArray($getSlugCategoryId->id);
 
 					if($childCategory){
 
-						$query->whereIn('products.category_id',$childCategory);
+						$query->orwhereIn('products.category_id',$childCategory);
 
-					}else{
-
-						$query->where('products.category_id',$getSlugCategoryId->id);
 					}
 				}
 
@@ -673,6 +673,13 @@ class PreLoginController extends Controller
 					});
 					
 				}
+			}
+			
+			if($request->get('type') != ''){
+				
+				$query->where('variantproducts.type','Rent');
+			}else{
+				$query->where('variantproducts.type','Sale');
 			}
 
 
@@ -725,7 +732,7 @@ class PreLoginController extends Controller
 
 		$offset=$request->get('offset');
 		$limit=$request->get('limit'); 
-	
+		
 		try{
 			
 			$orderCol='sale_price';
@@ -897,6 +904,7 @@ class PreLoginController extends Controller
 					'meta_title'=>$productResult->meta_title,
 					'meta_keywords'=>$productResult->meta_keywords,
 					'meta_description'=>$productResult->meta_description,
+					'type'=>$productResult->type,
 					'category'=>\App\Helpers\commonHelper::getProductCategoryNameById($productResult->category_id),
 				];
 				

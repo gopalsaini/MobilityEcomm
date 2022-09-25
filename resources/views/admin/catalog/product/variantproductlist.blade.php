@@ -42,10 +42,15 @@
                                                         aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                                         style="width: 48.4167px;" aria-sort="ascending"
                                                         aria-label="#: activate to sort column descending"># ID</th>
-                                                    <th class="center sorting" tabindex="0"
+														<th class="center sorting" tabindex="0"
                                                         aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                                         style="width: 193.017px;"
                                                         aria-label=" Email : activate to sort column ascending"> SKU No
+                                                    </th>
+													<th class="center sorting" tabindex="0"
+                                                        aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                        style="width: 193.017px;"
+                                                        aria-label=" Email : activate to sort column ascending"> Type
                                                     </th>
                                                     <th class="center sorting" tabindex="0"
                                                         aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
@@ -82,6 +87,7 @@
 														<tr class="gradeX odd">
 															<td class="center">{{ $key+1}}</td>
 															<td class="center">{{ $value['sku_id'] }}</td>
+															<td class="center">{{ $value['type'] }}</td>
 															<td class="center">{{ $value['sale_price'] }}</td>
 															<td class="center">{{ $value['stock'] }} @if($value['stock'] != 'NA') Pc @endif</td>
 															<td class="center">  
@@ -147,6 +153,7 @@
                                                 <tr>
                                                     <th class="center" rowspan="1" colspan="1">#</th>
                                                     <th class="center" rowspan="1" colspan="1"> SKU No </th>
+                                                    <th class="center" rowspan="1" colspan="1"> Type </th>
                                                     <th class="center" rowspan="1" colspan="1"> Sale Price </th>
                                                     <th class="center" rowspan="1" colspan="1">  Stock </th>
                                                     <th class="center" rowspan="1" colspan="1"> Attributes </th>

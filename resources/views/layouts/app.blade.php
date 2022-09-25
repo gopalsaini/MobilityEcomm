@@ -10,16 +10,16 @@
     <meta name="title" content="@yield('title')" />
     <meta name="description" content="@yield('meta_description')" />
     <meta name="keywords" content="@yield('meta_keywords')" />
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @stack('custom_css')
 
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper-bundle.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/glightbox.min.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+   
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css')}}" /> -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 
-    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css')}}" /> -->
     <link rel='stylesheet' href='https://unpkg.com/fullpage.js/dist/fullpage.min.css'>
     <!--favicon-->
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/favicon.png')}}" />
@@ -55,6 +55,8 @@
             width: 64px !important;
          }  
     </style>
+    
+
     <style>
          
          .toast {
@@ -176,8 +178,44 @@
             
             padding: 13px 20px 20px !important;
          }
-      </style>
+         .goog-logo-link{
+            display:none;
+         }
+        div.goog-te-gadget {
+            color: transparent !important;
+        }
+        .language__switcher {
+            font-size: 1.6rem;
+            line-height: 0px !important;
+        }
+        .goog-te-combo, .goog-te-banner *, .goog-te-ftab *, .goog-te-menu *, .goog-te-menu2 *, .goog-te-balloon * {
+            font-family: arial;
+            font-size: 12pt !important;
+        }
+        .goog-te-gadget .goog-te-combo {
+            margin: -2px 0 !important;
+        }
+        .account__currency--link {
+            font-size: 13px;
+            line-height: 2rem !important;
+        }
+        .account__menu--list {
+            background-color: #006237;
+            padding: 10px;
+            color: #fff;
+        }
 
+        .account__menu--list a:hover {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .address-box {
+            padding: 10px;
+            margin: 4px;
+            background-color: #a0ffd63d;
+        }
+        </style>
+        
     <script>
         var baseUrl = "{{ url('/') }}";
 
@@ -202,36 +240,46 @@
                         <ul class="d-flex align-items-center">
                             <li class="language__currency--list">
                                 <a class="account__currency--link text-white" href="#">
-                                    <img src="assets/img/icon/usd-icon.webp" alt="currency">
-                                    <span>Currency</span> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" width="15px">
+                                        <path d="M50 8.1c23.2 0 41.9 18.8 41.9 41.9 0 23.2-18.8 41.9-41.9 41.9C26.8 91.9 8.1 73.2 8.1 50S26.8 8.1 50 8.1M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0zm0 11.3c-21.4 0-38.7 17.3-38.7 38.7S28.6 88.7 50 88.7 88.7 71.4 88.7 50 71.4 11.3 50 11.3zm0 8.9c4 0 7.3 3.2 7.3 7.3S54 34.7 50 34.7s-7.3-3.2-7.3-7.3 3.3-7.2 7.3-7.2zm23.7 19.7c-5.8 1.4-11.2 2.6-16.6 3.2.2 20.4 2.5 24.8 5 31.4.7 1.9-.2 4-2.1 4.7-1.9.7-4-.2-4.7-2.1-1.8-4.5-3.4-8.2-4.5-15.8h-2c-1 7.6-2.7 11.3-4.5 15.8-.7 1.9-2.8 2.8-4.7 2.1-1.9-.7-2.8-2.8-2.1-4.7 2.6-6.6 4.9-11 5-31.4-5.4-.6-10.8-1.8-16.6-3.2-1.7-.4-2.8-2.1-2.4-3.9.4-1.7 2.1-2.8 3.9-2.4 19.5 4.6 25.1 4.6 44.5 0 1.7-.4 3.5.7 3.9 2.4.7 1.8-.3 3.5-2.1 3.9z"></path>
+                                    </svg>
+                                    <span>Accessibility</span> 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
                                         <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
                                     </svg>
                                 </a>
-                                <div class="dropdown__currency">
-                                    <ul>
-                                        <li class="currency__items"><a class="currency__text" href="#">CAD</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">CNY</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">EUR</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">GBP</a></li>
+                                <div class="dropdown__currency" style="width: 144px;">
+                                    <ul style="width: 159px;padding: 10px;"> 
+                                        <li class="currency__items"><a class="zoomin"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M256 200v16c0 4.25-3.75 8-8 8h-56v56c0 4.25-3.75 8-8 8h-16c-4.25 0-8-3.75-8-8v-56h-56c-4.25 0-8-3.75-8-8v-16c0-4.25 3.75-8 8-8h56v-56c0-4.25 3.75-8 8-8h16c4.25 0 8 3.75 8 8v56h56c4.25 0 8 3.75 8 8zM288 208c0-61.75-50.25-112-112-112s-112 50.25-112 112 50.25 112 112 112 112-50.25 112-112zM416 416c0 17.75-14.25 32-32 32-8.5 0-16.75-3.5-22.5-9.5l-85.75-85.5c-29.25 20.25-64.25 31-99.75 31-97.25 0-176-78.75-176-176s78.75-176 176-176 176 78.75 176 176c0 35.5-10.75 70.5-31 99.75l85.75 85.75c5.75 5.75 9.25 14 9.25 22.5z"></path></svg>
+                                            Increase Text
+                                            </a>
+                                        </li>
+                                        
+                                        <li class="currency__items"><a class="zoomout">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M256 200v16c0 4.25-3.75 8-8 8h-144c-4.25 0-8-3.75-8-8v-16c0-4.25 3.75-8 8-8h144c4.25 0 8 3.75 8 8zM288 208c0-61.75-50.25-112-112-112s-112 50.25-112 112 50.25 112 112 112 112-50.25 112-112zM416 416c0 17.75-14.25 32-32 32-8.5 0-16.75-3.5-22.5-9.5l-85.75-85.5c-29.25 20.25-64.25 31-99.75 31-97.25 0-176-78.75-176-176s78.75-176 176-176 176 78.75 176 176c0 35.5-10.75 70.5-31 99.75l85.75 85.75c5.75 5.75 9.25 14 9.25 22.5z"></path></svg>
+                                            Decrease Text</a>
+                                        </li>
+                                            
+                                        <li class="currency__items"><a class="high-contrast" >
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M192 360v-272c-75 0-136 61-136 136s61 136 136 136zM384 224c0 106-86 192-192 192s-192-86-192-192 86-192 192-192 192 86 192 192z"></path></svg>
+                                            High Constract</a>
+                                        </li class="currency__items">
+                                            <li class="currency__items"><a class="links-underline">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M416 240c-23.75-36.75-56.25-68.25-95.25-88.25 10 17 15.25 36.5 15.25 56.25 0 61.75-50.25 112-112 112s-112-50.25-112-112c0-19.75 5.25-39.25 15.25-56.25-39 20-71.5 51.5-95.25 88.25 42.75 66 111.75 112 192 112s149.25-46 192-112zM236 144c0-6.5-5.5-12-12-12-41.75 0-76 34.25-76 76 0 6.5 5.5 12 12 12s12-5.5 12-12c0-28.5 23.5-52 52-52 6.5 0 12-5.5 12-12zM448 240c0 6.25-2 12-5 17.25-46 75.75-130.25 126.75-219 126.75s-173-51.25-219-126.75c-3-5.25-5-11-5-17.25s2-12 5-17.25c46-75.5 130.25-126.75 219-126.75s173 51.25 219 126.75c3 5.25 5 11 5 17.25z"></path></svg>
+                                            Links Underline</a></li>
+                                            <li class="currency__items"><a class="readable-font">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M364 304c0-6.5-2.5-12.5-7-17l-52-52c-4.5-4.5-10.75-7-17-7-7.25 0-13 2.75-18 8 8.25 8.25 18 15.25 18 28 0 13.25-10.75 24-24 24-12.75 0-19.75-9.75-28-18-5.25 5-8.25 10.75-8.25 18.25 0 6.25 2.5 12.5 7 17l51.5 51.75c4.5 4.5 10.75 6.75 17 6.75s12.5-2.25 17-6.5l36.75-36.5c4.5-4.5 7-10.5 7-16.75zM188.25 127.75c0-6.25-2.5-12.5-7-17l-51.5-51.75c-4.5-4.5-10.75-7-17-7s-12.5 2.5-17 6.75l-36.75 36.5c-4.5 4.5-7 10.5-7 16.75 0 6.5 2.5 12.5 7 17l52 52c4.5 4.5 10.75 6.75 17 6.75 7.25 0 13-2.5 18-7.75-8.25-8.25-18-15.25-18-28 0-13.25 10.75-24 24-24 12.75 0 19.75 9.75 28 18 5.25-5 8.25-10.75 8.25-18.25zM412 304c0 19-7.75 37.5-21.25 50.75l-36.75 36.5c-13.5 13.5-31.75 20.75-50.75 20.75-19.25 0-37.5-7.5-51-21.25l-51.5-51.75c-13.5-13.5-20.75-31.75-20.75-50.75 0-19.75 8-38.5 22-52.25l-22-22c-13.75 14-32.25 22-52 22-19 0-37.5-7.5-51-21l-52-52c-13.75-13.75-21-31.75-21-51 0-19 7.75-37.5 21.25-50.75l36.75-36.5c13.5-13.5 31.75-20.75 50.75-20.75 19.25 0 37.5 7.5 51 21.25l51.5 51.75c13.5 13.5 20.75 31.75 20.75 50.75 0 19.75-8 38.5-22 52.25l22 22c13.75-14 32.25-22 52-22 19 0 37.5 7.5 51 21l52 52c13.75 13.75 21 31.75 21 51z"></path></svg>
+                                            Readable Font</a></li>
+                                            <li class="currency__items"><a class="reset-accessibility">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M181.25 139.75l-42.5 112.5c24.75 0.25 49.5 1 74.25 1 4.75 0 9.5-0.25 14.25-0.5-13-38-28.25-76.75-46-113zM0 416l0.5-19.75c23.5-7.25 49-2.25 59.5-29.25l59.25-154 70-181h32c1 1.75 2 3.5 2.75 5.25l51.25 120c18.75 44.25 36 89 55 133 11.25 26 20 52.75 32.5 78.25 1.75 4 5.25 11.5 8.75 14.25 8.25 6.5 31.25 8 43 12.5 0.75 4.75 1.5 9.5 1.5 14.25 0 2.25-0.25 4.25-0.25 6.5-31.75 0-63.5-4-95.25-4-32.75 0-65.5 2.75-98.25 3.75 0-6.5 0.25-13 1-19.5l32.75-7c6.75-1.5 20-3.25 20-12.5 0-9-32.25-83.25-36.25-93.5l-112.5-0.5c-6.5 14.5-31.75 80-31.75 89.5 0 19.25 36.75 20 51 22 0.25 4.75 0.25 9.5 0.25 14.5 0 2.25-0.25 4.5-0.5 6.75-29 0-58.25-5-87.25-5-3.5 0-8.5 1.5-12 2-15.75 2.75-31.25 3.5-47 3.5z"></path></svg>
+                                            Reset</a></li>
                                     </ul>
                                 </div>
                             </li>
                             <li class="language__currency--list">
-                                <a class="language__switcher text-white" href="#">
-                                    <img class="language__switcher--icon__img" src="assets/img/icon/language-icon.webp" alt="currency">
-                                    <span>Language</span> 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
-                                        <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
-                                    </svg>
+                                <a class="language__switcher google-trans-element text-white" href="#" id="google_translate_element_2">
+                                    
                                 </a>
-                                <div class="dropdown__language">
-                                    <ul>
-                                        <li class="language__items"><a class="language__text" href="#">France</a></li>
-                                        <li class="language__items"><a class="language__text" href="#">Russia</a></li>
-                                        <li class="language__items"><a class="language__text" href="#">Spanish</a></li>
-                                    </ul>
-                                </div>
                             </li>
                         </ul>
                     </div>
@@ -265,7 +313,7 @@
                                           <ul class="header__mega--menu d-flex">
                                                 @foreach($category['result'] as $cat)
                                                    <li class="header__mega--menu__li">
-                                                         <span class="header__mega--subtitle">{{ ucfirst($cat['name']) }}</span>
+                                                         <span class="header__mega--subtitle"><a href="{{ url('product-listing/'.$cat['slug']) }}">{{ ucfirst($cat['name']) }}</a></span>
                                                          @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
                                                             <ul class="header__mega--sub__menu">
                                                                @foreach($cat['child'] as $fchild)
@@ -286,11 +334,11 @@
                                           <ul class="header__mega--menu d-flex">
                                                 @foreach($category['result'] as $cat)
                                                    <li class="header__mega--menu__li">
-                                                         <span class="header__mega--subtitle">{{ ucfirst($cat['name']) }}</span>
+                                                         <span class="header__mega--subtitle"><a href="{{ url('product-listing/'.$cat['slug'].'?type=hire') }}">{{ ucfirst($cat['name']) }}</a></span>
                                                          @if(isset($cat['child']) && !empty($cat['child']) && $cat['child'][0]!='')
                                                             <ul class="header__mega--sub__menu">
                                                                @foreach($cat['child'] as $fchild)
-                                                                  <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="{{ url('product-listing/'.$fchild['slug']) }}">{{ ucfirst($fchild['name'] )}}</a></li>
+                                                                  <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="{{ url('product-listing/'.$fchild['slug'].'?type=hire') }}">{{ ucfirst($fchild['name'] )}}</a></li>
                                                                @endforeach
                                                             </ul>
                                                          @endif
@@ -329,7 +377,7 @@
                               </li>
                               
                               <li class="header__account--items">
-                                 <a class="header__account--btn" href="{{ url('logout') }}"> <span><svg id="Layer_1" width="35" height="25" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><title>Trade_Icons</title><polygon points="10.95 15.84 -0.05 15.84 -0.05 0.17 10.95 0.17 10.95 4.05 9.95 4.05 9.95 1.17 0.95 1.17 0.95 14.84 9.95 14.84 9.95 12.01 10.95 12.01 10.95 15.84"/><rect x="5" y="8" width="6" height="1"/><polygon points="11 5.96 15.4 8.5 11 11.04 11 5.96"/></svg></span> </a>
+                                 <a class="header__account--btn" href="{{ url('logout') }}"> <span><svg id="Layer_1" width="25" height="20" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><title>Trade_Icons</title><polygon points="10.95 15.84 -0.05 15.84 -0.05 0.17 10.95 0.17 10.95 4.05 9.95 4.05 9.95 1.17 0.95 1.17 0.95 14.84 9.95 14.84 9.95 12.01 10.95 12.01 10.95 15.84"/><rect x="5" y="8" width="6" height="1"/><polygon points="11 5.96 15.4 8.5 11 11.04 11 5.96"/></svg></span> </a>
                               </li>
                            @else
                               <li class="header__account--items">
@@ -374,21 +422,21 @@
                         <ul class="d-flex align-items-center">
                             @foreach($category['result'] as $cat)
                                 <li class="language__currency--list">
-                                    <a class="language__switcher text-white" href="#">
+                                    <a class="account__currency--link text-white" href="#">
                                         <img class="language__switcher--icon__img" src="{{ asset('uploads/category/'.$cat['image']) }}" alt="{{ ucfirst($cat['name']) }}" style="width: 26px;">
                                         <span>{{ ucfirst($cat['name']) }}</span> 
-                                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
                                             <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
-                                        </svg> -->
+                                        </svg>
                                     </a>
-                                    <!-- <div class="dropdown__currency">
+                                    <div class="dropdown__currency">
                                         <ul>
                                             <li class="currency__items"><a class="currency__text" href="#">CAD</a></li>
                                             <li class="currency__items"><a class="currency__text" href="#">CNY</a></li>
                                             <li class="currency__items"><a class="currency__text" href="#">EUR</a></li>
                                             <li class="currency__items"><a class="currency__text" href="#">GBP</a></li>
                                         </ul>
-                                    </div> -->
+                                    </div>
                                 </li>
                             @endforeach
                             
@@ -541,7 +589,7 @@
                 <h2 class="predictive__search--title">Search Products</h2>
                 <form class="predictive__search--form" action="#">
                     <label>
-                        <input class="predictive__search--input" placeholder="Search Here" type="text">
+                        <input class="predictive__search--input search" placeholder="Search Here" type="text">
                     </label>
                </form>
             </div>
@@ -823,6 +871,65 @@
 
       
    </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit2() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element_2');
+        var removePopup = document.getElementById('goog-gt-tt');
+        removePopup.parentNode.removeChild(removePopup);
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+
+    <script src="https://www.accessfoundation.com.au/js/vendors/color-switcher.js"></script>
+    <script src="https://www.accessfoundation.com.au/js/fontsize.js?v=0.1121"></script>
+    <script>
+        $(document).ready(function(){
+        
+        $(".zoomout").css("pointer-events", "none");
+        $(".high-contrast").click(function(){
+                $('section,footer,body,.container-fluid.back-header').toggleClass('high-contrast-color');
+                $('.accessibility-tool-constract').toggleClass('high-contrast-color');
+            
+
+        });
+        $(".links-underline").click(function(){
+                $('a').toggleClass('underline');
+        });
+        $(".readable-font").click(function(){
+            $('option,select,button,a,span,p,h1,h2,h3,h4,h5,h6,span,section,footer,body,div').toggleClass("ubuntu-font-family");
+        });
+        $(".reset-accessibility").click(function(){
+            $('section,footer,body,.container-fluid.back-header').removeClass('high-contrast-color');
+                $('.accessibility-tool-constract').removeClass('high-contrast-color');
+            $('a').removeClass('underline');
+            $('option,select,button,a,span,p,h1,h2,h3,h4,h5,h6,span,section,footer,body,div').css("font-size","");
+            $(".zoomout").css("pointer-events", "none");
+            $('option,select,button,a,span,p,h1,h2,h3,h4,h5,h6,span,section,footer,body,div').removeClass("ubuntu-font-family");
+            $('a').removeClass("negative-contrast-color");
+            $('section,footer,body,.container-fluid.back-header,.dropdownemail,.dropdownphone').removeClass('negative-contrast-color-bg');
+            $('.accessibility-tool-constract').removeClass('negative-contrast-color-bg');
+
+        });
+        $(".zoomin").click(function(){
+                $(".zoomout").removeAttr("disabled");
+                $(".zoomout").css("pointer-events", "");
+                
+        });
+        $(".negative-contrast").click(function(){
+            
+                $('a').toggleClass("negative-contrast-color");
+                // $('section,footer,body').toggleClass('negative-contrast-color-bg');
+                $('section,footer,body,.container-fluid.back-header,.dropdownemail,.dropdownphone').toggleClass('negative-contrast-color-bg');
+                $('.accessibility-tool-constract').toggleClass('negative-contrast-color-bg');
+                
+        });
+        });
+        $('#wrap').FontSize({
+                    increaseTimes: 10, 
+                    reduceTimes: 10,
+                });
+    </script>
 </body>
 
 </html>

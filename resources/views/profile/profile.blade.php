@@ -5,102 +5,125 @@
 @endpush
 
 @section('content')
-    <div class="va-page-strip-tag">
-        <ul>
-            <li> <a href="{{url('/')}}">Home</a> </li>
-            <li>/ &nbsp; Profile </li>
-        </ul>
-    </div>
 
-    <div class="dasboard-main-wrap">
-         <div class="container-fluid pd-50">
-            <div class="row">
+<main class="main__content_wrapper">
 
-                @include('profile.sidebar')
+   <!-- Start breadcrumb section -->
+   <section class="breadcrumb__section breadcrumb__bg">
+      <div class="container">
+         <div class="row row-cols-1">
+               <div class="col">
+                  <div class="breadcrumb__content">
+                     <h1 class="breadcrumb__content--title text-white mb-10">My Account</h1>
+                     <ul class="breadcrumb__content--menu d-flex">
+                           <li class="breadcrumb__content--menu__items"><a class="text-white" href="{{url('/')}}">Home</a></li>
+                           <li class="breadcrumb__content--menu__items"><span class="text-white">My Account</span></li>
+                     </ul>
+                  </div>
+               </div>
+         </div>
+      </div>
+   </section>
 
-                <div class="col-lg-8 col-md-12 col-sm-12 col-12 ">
-                  <div class="profile-sec">
-                     <h3>Personal Information</h3>
-                     <form action="{{ url('update-profile') }}" method="Post" class="m-0" id="checkout" autocomplete="off">
-                        @csrf
-                        <div class="form-group row">
-                           <div class="col-md-6 col-12">
-                              <label>Name <span>*</span></label>
-                              <input type="text" class="form-control" placeholder="Enter Here" value="{{$resultData['data']['name']}}" required="" name="name" onkeypress="return /[A-Za-z ]/i.test(event.key)">
+   <section class="my__account--section section--padding">
+      <div class="dasboard-main-wrap">
+            <div class="container-fluid pd-50">
+               <div class="row">
+
+                  @include('profile.sidebar')
+
+                  <div class="col-lg-8 col-md-12 col-sm-12 col-12  ">
+                     <div class="profile-sec contact__form">
+                        <h3>Personal Information</h3>
+                        <form action="{{ url('update-profile') }}" method="Post" class="m-0" id="checkout" autocomplete="off">
+                           @csrf
+                           <div class="form-group row mb-10">
+                              <div class="col-md-6 col-12 mb-10">
+                                 <label>Name <span>*</span></label>
+                                 <input type="text" class="form-control contact__form--input" placeholder="Enter Here" value="{{$resultData['data']['name']}}" required="" name="name" onkeypress="return /[A-Za-z ]/i.test(event.key)">
+                              </div>
+                              
+                              <div class="col-md-6 col-12 mb-10">
+                              
+                                 <label>Gender</label>
+                                 <div class="switchToggle" style="display:flex">
+                                    <span style="display:flex">
+                                       <input type="radio" style="height: 28px;" id="male" name="gender" class="" value="1" @if($resultData['data']['gender'] == '1') checked @endif>
+                                       <label class="" for="male">&nbsp;&nbsp;Male</label>
+                                    </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span style="display:flex">
+                                       <input type="radio" style="height: 28px;"  id="female" name="gender" class="" value="2" @if($resultData['data']['gender'] == '2') checked @endif>
+                                       <label class="" for="female">&nbsp;&nbsp;Female</label>
+                                    </span>
+                                 </div>
+                              </div>
+                              
                            </div>
-                           <div class="col-md-6 col-12">
                            
-                              <label>Gender</label>
-                              <div class="switchToggle" style="display:flex">
-                                 <span style="display:flex">
-                                    <input type="radio" style="height: 28px;" id="male" name="gender" class="" value="1" @if($resultData['data']['gender'] == '1') checked @endif>
-                                    <label class="" for="male">&nbsp;&nbsp;Male</label>
-                                 </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                 <span style="display:flex">
-                                    <input type="radio" style="height: 28px;"  id="female" name="gender" class="" value="2" @if($resultData['data']['gender'] == '2') checked @endif>
-                                    <label class="" for="female">&nbsp;&nbsp;Female</label>
-                                 </span>
+                           <div class="form-group row">
+                              <!-- <div class="col-md-6 col-12">
+                                 <label>Display Name<span>*</span></label>
+                                 <input type="text" class="form-control" placeholder="Enter Here">
+                              </div> -->
+                              <div class="col-md-6 col-12 mb-10">
+                                 <label>Email Address<span>*</span></label>
+                                 <input type="email" value="{{$resultData['data']['email']}}" readonly class="form-control contact__form--input" placeholder="Enter Here">
+                              </div>
+                              <div class="col-md-6 col-12 mb-10">
+                                 <label>Mobile Number *<span>*</span></label>
+                                 <input type="tel" value="{{$resultData['data']['mobile']}}" class="form-control contact__form--input" placeholder="Enter Here">
                               </div>
                            </div>
-                        </div>
-                        <div class="form-group row">
-                           <!-- <div class="col-md-6 col-12">
-                              <label>Display Name<span>*</span></label>
-                              <input type="text" class="form-control" placeholder="Enter Here">
-                           </div> -->
-                           <div class="col-md-6 col-12">
-                              <label>Email Address<span>*</span></label>
-                              <input type="email" value="{{$resultData['data']['email']}}" readonly class="form-control" placeholder="Enter Here">
-                           </div>
-                           <div class="col-md-6 col-12">
-                              <label>Mobile Number *<span>*</span></label>
-                              <input type="tel" value="{{$resultData['data']['mobile']}}" class="form-control" placeholder="Enter Here">
-                           </div>
-                        </div>
-
-                        <button type="submit" class="cart-pr-btn va_btn" id="checkoutSubmit" style="border: navajowhite;">Update
-                        &nbsp;&nbsp;<pre class="spinner-border spinner-border-sm checkoutloader"  style="color:white;font-size: 100%;position:relative;top:-3%;display:none"></pre>
-                        </button>
-                                                          
-                     </form>
-                     <h3 class="mt-5">Change Password</h3>
-                     <form action="{{ url('update-password') }}" method="Post" class="m-0" id="password" autocomplete="off">
-                        @csrf
-                        <div class="form-group row">
-                           <div class="col-md-6 col-12">
-                              <label>Current Password<span>*</span></label>
-                              <div class="position-relative hide-password">
-                                 <input type="password" required class="form-control" placeholder="Enter Here" name="old_password">
-                                 <i class="toggle-password fa fa-fw fa-eye-slash"></i>
+                           <br>
+                           <button type="submit" class="cart-pr-btn va_btn primary__btn" id="checkoutSubmit" style="border: navajowhite;">Update
+                           &nbsp;&nbsp; <i class="fa fa-spinner fa-spin loading checkoutloader" style="font-size:16px;line-height: 2;display:none"></i>
+                           </button>
+                                                            
+                        </form>
+                        <br><br>
+                        <h3 class="mt-5">Change Password</h3>
+                        <form action="{{ url('update-password') }}" method="Post" class="m-0" id="password" autocomplete="off">
+                           @csrf
+                           <div class="form-group row">
+                              <div class="col-md-6 col-12">
+                                 <label>Current Password<span>*</span></label>
+                                 <div class="position-relative hide-password">
+                                    <input type="password" required class="form-control contact__form--input" placeholder="Enter Here" name="old_password">
+                                    
+                                 </div>
+                              </div>
+                              <div class="col-md-6 col-12">
+                                 <label>New Password <span>*</span></label>
+                                 <div class="position-relative hide-password">
+                                    <input type="password" required  class="form-control contact__form--input" placeholder="Enter Here" name="password">
+                                    
+                                 </div>
                               </div>
                            </div>
-                           <div class="col-md-6 col-12">
-                              <label>New Password <span>*</span></label>
-                              <div class="position-relative hide-password">
-                                 <input type="password" required  class="form-control" placeholder="Enter Here" name="password">
-                                 <i class="toggle-password fa fa-fw fa-eye-slash"></i>
+                           <br>
+                           <div class="form-group row">
+                              <div class="col-md-6 col-12">
+                                 <label>Confirm Password<span>*</span></label>
+                                 <div class="position-relative hide-password">
+                                    <input type="password" required class="form-control contact__form--input" placeholder="Enter Here" name="confirm_password">
+                                    
+                                 </div>
                               </div>
                            </div>
-                        </div>
-                        <div class="form-group row">
-                           <div class="col-md-6 col-12">
-                              <label>Confirm Password<span>*</span></label>
-                              <div class="position-relative hide-password">
-                                 <input type="password" required class="form-control" placeholder="Enter Here" name="confirm_password">
-                                 <i class="toggle-password fa fa-fw fa-eye-slash"></i>
-                              </div>
-                           </div>
-                        </div>
-                        <button type="submit" class="cart-pr-btn btn-primary va_btn"  style="border: navajowhite;" id="passwordSubmit">Update
-                           &nbsp;&nbsp;<pre class="spinner-border spinner-border-sm passwordloader"  style="color:white;font-size: 100%;position:relative;top:-3%;display:none"></pre>
-                        </button>
-                     </form>
+                           <br>
+                           <button type="submit" class="cart-pr-btn btn-primary va_btn  primary__btn"  style="border: navajowhite;" id="passwordSubmit">Update
+                              &nbsp;&nbsp; <i class="fa fa-spinner fa-spin loading passwordloader" style="font-size:16px;line-height: 2;display:none"></i> 
+                           </button>
+                        </form>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-   </div>
+      </div>
 
+   </section>
+
+</main>
 
 
 

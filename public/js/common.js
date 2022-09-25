@@ -117,7 +117,7 @@ $(function() {   
 });
 
 function addToCart() {
-
+   
     $(".addtocart").click(function(e) {
 
         e.preventDefault();
@@ -154,8 +154,7 @@ function addToCart() {
             type: 'post',
             beforeSend: function() {
 
-                button.find('.loader').css('display', 'inline-block');
-                button.find('.IconCart').css('display', 'none');
+                button.find('.loading').css('display', 'inline-block');
                 button.prop('disabled', true);
 
             },
@@ -167,17 +166,15 @@ function addToCart() {
                     showMsg('error', xhr.statusText);
                 }
 
-                button.find('.loader').css('display', 'none');
+                button.find('.loading').css('display', 'none');
                 button.prop('disabled', false);
-                button.find('.IconCart').css('display', 'block');
             },
             success: function(data) {
 
                 showMsg('success', data.message);
 
-                button.find('.loader').css('display', 'none');
+                button.find('.loading').css('display', 'none');
                 button.prop('disabled', false);
-                button.find('.IconCart').css('display', 'block');
                 getTotalCartProduct();
 
                 if (button.data('type') == 'buynow') {

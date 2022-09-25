@@ -47,7 +47,7 @@ class HomeController extends Controller
 		
 		$topSelling=\App\Helpers\commonHelper::callAPI('GET','/topselling-product');
 		
-        $newProduct=\App\Helpers\commonHelper::callAPI('GET','/new-product');
+        $newProduct=\App\Helpers\commonHelper::callAPI('GET','/dealsoftheday-product');
         
         $wishlist=[];
 

@@ -100,12 +100,12 @@
 															style="width: 193.017px;"
 															aria-label=" Email : activate to sort column ascending"> Featured Product
 														</th>
-														<!-- <th class="center sorting" tabindex="0"
+														<th class="center sorting" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 															style="width: 193.017px;"
-															aria-label=" Email : activate to sort column ascending"> Deals of the day
+															aria-label=" Email : activate to sort column ascending"> New Product
 														</th>
-														<th class="center sorting" tabindex="0"
+														<!-- <th class="center sorting" tabindex="0"
 															aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 															style="width: 193.017px;"
 															aria-label=" Email : activate to sort column ascending"> Deals of the week
@@ -143,7 +143,7 @@
 																		</label>
 																	</div>
 																</td>
-																<!-- <td class="center">
+																<td class="center">
 																	<div class="switch mt-3">
 																		<label>
 																			<input type="checkbox" class="-dealsofthday" data-id="{{ $value['id'] }}" @if($value['deals_oftheday']=='1'){{ 'checked' }} @endif>
@@ -151,7 +151,7 @@
 																		</label>
 																	</div>
 																</td>
-																<td class="center">
+																<!-- <td class="center">
 																	<div class="switch mt-3">
 																		<label>
 																			<input type="checkbox" class="-dealsofthweek" data-id="{{ $value['id'] }}" @if($value['deals_oftheweek']=='1'){{ 'checked' }} @endif>
@@ -189,8 +189,8 @@
 													@if(\Auth::user()->designation_id=='1' || \Auth::user()->designation_id=='4')
 														<th class="center" rowspan="1" colspan="1"> Status </th>
 														<th class="center" rowspan="1" colspan="1"> Featured Product </th>
-														<!-- <th class="center" rowspan="1" colspan="1"> Deals of the day </th>
-														<th class="center" rowspan="1" colspan="1"> Deals of the week </th> -->
+														<th class="center" rowspan="1" colspan="1"> New Product </th>
+														<!-- <th class="center" rowspan="1" colspan="1"> Deals of the week </th> -->
 														<th class="center" rowspan="1" colspan="1"> Action </th>
 													@endif
                                                 </tr>
