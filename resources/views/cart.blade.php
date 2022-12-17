@@ -72,6 +72,8 @@
                                 <div class="cart__summary--footer">
                                     <ul class="d-flex justify-content-between">
                                         <li><a class="cart__summary--footer__btn primary__btn checkout" href="{{ url('checkout')}}">Check Out</a></li>
+                                        <li><a class="cart__summary--footer__btn primary__btn " href="{{ url('guest-checkout')}}">Guest Check Out</a></li>
+
                                     </ul>
                                 </div>
                             </div>

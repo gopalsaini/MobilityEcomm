@@ -32,32 +32,32 @@ class SalesController extends Controller
 
 		if($type=='failed'){
 
-			$query=Sales::select('sales.*')->where('sales_details.payment_status','1')->orderBy('sales.id','DESC')->join('users','users.id','=','sales.user_id')->join('sales_details','sales_details.sale_id','=','sales.id');
+			$query=Sales::select('sales.*')->where('sales_details.payment_status','1')->orderBy('sales.id','DESC')->join('sales_details','sales_details.sale_id','=','sales.id');
 			$title='Failed Sales List';
 			
 		}else if($type=='pending'){
 
-			$query=Sales::select('sales.*')->where('sales_details.order_status','1')->orderBy('sales.id','DESC')->join('users','users.id','=','sales.user_id')->join('sales_details','sales_details.sale_id','=','sales.id');
+			$query=Sales::select('sales.*')->where('sales_details.order_status','1')->orderBy('sales.id','DESC')->join('sales_details','sales_details.sale_id','=','sales.id');
 			$title='Pending Sales List';
 			
 		}else if($type=='rejected'){
 			
-			$query=Sales::select('sales.*','sales_details.suborder_id')->where('sales_details.order_status','7')->orderBy('sales.id','DESC')->join('users','users.id','=','sales.user_id')->join('sales_details','sales_details.sale_id','=','sales.id');
+			$query=Sales::select('sales.*','sales_details.suborder_id')->where('sales_details.order_status','7')->orderBy('sales.id','DESC')->join('sales_details','sales_details.sale_id','=','sales.id');
 			$title='Cancel By Admin Sales List';
 			
 		}else if($type=='confirmed'){
 
-			$query=Sales::select('sales.*','sales_details.suborder_id','sales_details.waybill_no')->where('sales_details.order_status','2')->join('users','users.id','=','sales.user_id')->orderBy('sales.id','DESC')->join('sales_details','sales_details.sale_id','=','sales.id')->groupBy('sales_details.suborder_id');
+			$query=Sales::select('sales.*','sales_details.suborder_id','sales_details.waybill_no')->where('sales_details.order_status','2')->orderBy('sales.id','DESC')->join('sales_details','sales_details.sale_id','=','sales.id')->groupBy('sales_details.suborder_id');
 			$title='Confirmed Sales List';
 			
 		}else if($type=='shipped'){
 			
-			$query=Sales::select('sales.*','sales_details.suborder_id','sales_details.waybill_no')->where('sales_details.order_status','10')->join('users','users.id','=','sales.user_id')->orderBy('sales.id','DESC')->join('sales_details','sales_details.sale_id','=','sales.id')->groupBy('sales_details.suborder_id');
+			$query=Sales::select('sales.*','sales_details.suborder_id','sales_details.waybill_no')->where('sales_details.order_status','10')->orderBy('sales.id','DESC')->join('sales_details','sales_details.sale_id','=','sales.id')->groupBy('sales_details.suborder_id');
 			$title='Shipped Sales List';
 			
 		}else if($type=='delivered'){
 			
-			$query=Sales::select('sales.*','sales_details.suborder_id','sales_details.waybill_no')->where('sales_details.order_status','9')->join('users','users.id','=','sales.user_id')->orderBy('sales.id','DESC')->join('sales_details','sales_details.sale_id','=','sales.id')->groupBy('sales_details.suborder_id');
+			$query=Sales::select('sales.*','sales_details.suborder_id','sales_details.waybill_no')->where('sales_details.order_status','9')->orderBy('sales.id','DESC')->join('sales_details','sales_details.sale_id','=','sales.id')->groupBy('sales_details.suborder_id');
 			$title='Delivered Sales List';
 			
 		}else{
@@ -65,9 +65,6 @@ class SalesController extends Controller
 			return redirect()->back()->with('5fernsadminerror','Something went wrong. please try again.');
 		}
 
-		if(\Auth::user()->designation_id == '3'){
-			$query->where('users.used_reference_code',\Auth::user()->reference_code);
-		}
 
 		if($type!='failed'){
 
@@ -201,24 +198,6 @@ class SalesController extends Controller
 						
 						$orderStatus=2;
 
-						$user = \App\Models\User::where('id',$salesResult->user_id)->first();
-						
-						if($request->post('reference_code') && $user){
-							
-							$codeResult=\App\Models\User::where('reference_code',$request->post('reference_code'))->first();
-							if(!$codeResult){
-	
-								return response(array('message'=>'You have enter reference code does not exist. Please try another reference code.'),403);
-					
-							}else{
-
-								$user->used_reference_code = $request->post('reference_code');
-								$user->save();
-							}
-							
-
-						}
-
 					}
 
 					if($request->post('type')=='reject'){
@@ -227,78 +206,11 @@ class SalesController extends Controller
 
 					}
 
-					$delhivery['amount']=0;
-					$delhivery['shipping_name']=ucfirst($salesResult->name);
-					$delhivery['shipping_mobile']=$salesResult->mobile;
-					$delhivery['shipping_address']=$salesResult->address_line1.' '.$salesResult->address_line2;
-					$delhivery['shipping_pincode']=$salesResult->pincode;
-					$delhivery['shipping_country']=\App\Helpers\commonHelper::getCountryNameById($salesResult->country_id);
-
 					foreach($salesIds as $key=>$sale){
 
 						$suborderId=$salesResult->order_id.'_'.$salesResult->total_created_order;
 
-						if($request->post('type')=='reject'){
-
-							$refundAmount=$request->post('refund_amount')[$key];
-
-							$transactionDetail=\App\Models\Transaction::where('order_id',$request->post('order_id'))->first();
-
-							if($transactionDetail && isset($request->post('refund_amount')[$key])){
-
-								$api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
-
-								$transactionId=strtotime("now").rand(11,99);
-
-								$order = $api->refund->create(array(
-										'payment_id' => $transactionDetail->razorpay_paymentid,
-										'amount' => $refundAmount * 100,
-										"notes"=>[
-											"merchant_transactionid"=>$transactionId,
-											"sales_id"=>$sale
-										]
-									)
-								);
-
-								if($order->status=='processed'){
-
-									Sales_detail::where('id',$sale)->where('order_status','1')->update(['order_status'=>$orderStatus,'payment_status'=>'3','refund_amount'=>$refundAmount,'suborder_id'=>$suborderId]);
-		
-									$payment=new \App\Models\Transaction();
-									$payment->user_id=$transactionDetail->user_id;
-									$payment->order_id=$transactionDetail->order_id;
-									$payment->razorpay_order_id=$transactionDetail->razorpay_order_id;
-									$payment->razorpay_paymentid=$transactionDetail->razorpay_paymentid;
-									$payment->transaction_id=$transactionId;
-									$payment->amount=$refundAmount;
-									$payment->description='Amount Refund';
-									$payment->payment_status='3';
-									$payment->save();
-
-									// send Msg
-									$content="https://bulksmsapi.vispl.in/?username=fiveotp&password=five_1234&messageType=text&mobile=".$salesResult['phone_code'].$salesResult['mobile']."&senderId=FFERNS&ContentID=1707163894952079118&EntityID=1701163375929957226&message=Refund issued: Refund for order ID ".$salesResult['order_id'].", suborderID - ".$suborderId." has been processed.  It will take 5-7 days to process the refund to the original account from which payment was made. For any questions regarding this, you can reach out to our helpline - +91-7302036153 or write to us at ordersupport@fiveferns.in. - Team FiveFerns";
-									\App\Helpers\commonHelper::sendMsg($content);
-
-								}
-
-							}else{
-
-								return redirect('admin/sales/list/pending')->with('5fernsadminerror','Someting went wrong. Please try again');
-							}
-
-						}else{
-
-							$salesDetailResult= Sales_detail::find($sale);
-
-							// order mainifest on delhivery panel
-
-							$delhivery['order_id']=$suborderId;
-							$delhivery['product_name'][]=ucfirst($salesDetailResult->product_name);
-							$delhivery['amount']+=$salesDetailResult->amount;
-							$delhivery['sale_id'][]=$sale;
-
-							Sales_detail::where('id',$sale)->where('order_status','1')->update(['is_approve'=>'1','order_status'=>$orderStatus,'suborder_id'=>$suborderId]);
-						}
+						Sales_detail::where('id',$sale)->where('order_status','1')->update(['is_approve'=>'1','order_status'=>$orderStatus,'suborder_id'=>$suborderId]);
 						
 					}
 

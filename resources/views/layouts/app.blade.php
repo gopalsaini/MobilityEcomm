@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper-bundle.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/glightbox.min.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-   
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets1/css/jquery-ui.css')}}" />
+    
     <!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css')}}" /> -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 
@@ -46,10 +47,7 @@
                margin-top: -7px;
             }
          }
-         .ui-widget.ui-widget-content {
-            
-            z-index: 99999999 !important;
-         }
+        
          #exampleModal .modal-dialog .modal-body .popup-main-wrap .product-desp .product-cate .quantity input {
             
             width: 64px !important;
@@ -214,7 +212,140 @@
             margin: 4px;
             background-color: #a0ffd63d;
         }
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+             background: #006237 !important;
+        }
+        .ui-widget-header {
+             background: #006237 !important;
+        }
+        
         </style>
+
+        <!-- dark mode chnage css -->
+        <style> 
+            
+            .change { 
+                cursor: pointer; 
+                border: 1px solid #555; 
+                border-radius: 10%; 
+                width: 20px; 
+                text-align: center; 
+                padding: 8px; 
+                margin-left: 8px; 
+            } 
+            .dark{ 
+                background-color: #222; 
+                color: #e6e6e6; 
+            } 
+            .dark .header__sticky.sticky{ 
+                background-color: #222; 
+                color: #e6e6e6; 
+            }
+            .dark .header__mega--menu{ 
+                background-color: #222; 
+                color: #e6e6e6; 
+            }
+            .dark .shipping__section--inner{ 
+                background-color: #222; 
+                color: #e6e6e6; 
+            }
+            .dark .offCanvas__minicart{ 
+                background-color: #222; 
+                color: #fff; 
+            }
+            .dark .bg__gray--color{ 
+                background-color: #222; 
+                color: #fff; 
+            }
+            .dark .widget__form--check__label{ 
+                background-color: #222; 
+                color: #fff; 
+            }
+            .dark .testimonial__bg--two{ 
+                background-color: #222; 
+                color: #fff; 
+            }
+            .dark .testimonial__items--style2{ 
+                background-color: #222; 
+                color: #fff; 
+            }
+            .dark .contact__form{ 
+                background-color: #222; 
+                color: #fff; 
+            }
+            .dark .product__details--tab__section{ 
+                background-color: #222; 
+                color: #fff; 
+            }
+            .dark .account__login{ 
+                background-color: #000; 
+                color: #fff; 
+            }
+            .dark .footer__bg{ 
+                background-color: #222; 
+                color: #e6e6e6; 
+                background: url(../img/banner/footer-bg.webp);
+                background-repeat: no-repeat;
+                background-attachment: scroll;
+                background-position: center center;
+                background-size: cover;
+            }
+            .dark h1{ 
+                color: #fff;         
+            } 
+            .dark .header__menu--link{ 
+                color: #fff;         
+            }  
+            .dark .header__account--btn{ 
+                color: #fff;         
+            }  
+            .dark .current__price{ 
+                color: #fff;         
+            }  
+            .dark .blog__content--desc{ 
+                color: #fff;         
+            }  
+            .dark .blog__content--meta__text{ 
+                color: #fff;         
+            }  
+            .dark .testimonial__items--desc{ 
+                color: #fff;         
+            }  
+            .dark .footer__widget--title{ 
+                color: #fff;         
+            }   
+            .dark .footer__widget--desc{ 
+                color: #fff;         
+            }    
+            .dark .footer__widget--menu__text{ 
+                color: #fff;         
+            }    
+            .dark .copyright__content{ 
+                color: #fff;         
+            }    
+            .dark .copyright__content--link{ 
+                color: #fff;         
+            }     
+            .dark .footer__newsletter--desc{ 
+                color: #fff;         
+            }     
+            .dark .widget__title{ 
+                color: #fff;         
+            }     
+            .dark .about__content--desc{ 
+                color: #fff;         
+            }      
+            .dark .contact__section--hrading__desc{ 
+                color: #fff;         
+            }       
+            .dark .product__details--info__desc{ 
+                color: #fff;         
+            }        
+            .dark .product__details--tab__list.active{ 
+                color: #fff;         
+            }
+        </style> 
+    <!-- end dark mode chnage -->
         
     <script>
         var baseUrl = "{{ url('/') }}";
@@ -226,7 +357,7 @@
     </script>
 </head>
 
-<body>
+<body class="mode">
          
 
    
@@ -250,8 +381,9 @@
                                 </a>
                                 <div class="dropdown__currency" style="width: 144px;">
                                     <ul style="width: 159px;padding: 10px;"> 
-                                        <li class="currency__items"><a class="zoomin"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M256 200v16c0 4.25-3.75 8-8 8h-56v56c0 4.25-3.75 8-8 8h-16c-4.25 0-8-3.75-8-8v-56h-56c-4.25 0-8-3.75-8-8v-16c0-4.25 3.75-8 8-8h56v-56c0-4.25 3.75-8 8-8h16c4.25 0 8 3.75 8 8v56h56c4.25 0 8 3.75 8 8zM288 208c0-61.75-50.25-112-112-112s-112 50.25-112 112 50.25 112 112 112 112-50.25 112-112zM416 416c0 17.75-14.25 32-32 32-8.5 0-16.75-3.5-22.5-9.5l-85.75-85.5c-29.25 20.25-64.25 31-99.75 31-97.25 0-176-78.75-176-176s78.75-176 176-176 176 78.75 176 176c0 35.5-10.75 70.5-31 99.75l85.75 85.75c5.75 5.75 9.25 14 9.25 22.5z"></path></svg>
-                                            Increase Text
+                                        <li class="currency__items">
+                                            <a class="zoomin"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M256 200v16c0 4.25-3.75 8-8 8h-56v56c0 4.25-3.75 8-8 8h-16c-4.25 0-8-3.75-8-8v-56h-56c-4.25 0-8-3.75-8-8v-16c0-4.25 3.75-8 8-8h56v-56c0-4.25 3.75-8 8-8h16c4.25 0 8 3.75 8 8v56h56c4.25 0 8 3.75 8 8zM288 208c0-61.75-50.25-112-112-112s-112 50.25-112 112 50.25 112 112 112 112-50.25 112-112zM416 416c0 17.75-14.25 32-32 32-8.5 0-16.75-3.5-22.5-9.5l-85.75-85.5c-29.25 20.25-64.25 31-99.75 31-97.25 0-176-78.75-176-176s78.75-176 176-176 176 78.75 176 176c0 35.5-10.75 70.5-31 99.75l85.75 85.75c5.75 5.75 9.25 14 9.25 22.5z"></path></svg>
+                                                Increase Text
                                             </a>
                                         </li>
                                         
@@ -269,10 +401,8 @@
                                             Links Underline</a></li>
                                             <li class="currency__items"><a class="readable-font">
                                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M364 304c0-6.5-2.5-12.5-7-17l-52-52c-4.5-4.5-10.75-7-17-7-7.25 0-13 2.75-18 8 8.25 8.25 18 15.25 18 28 0 13.25-10.75 24-24 24-12.75 0-19.75-9.75-28-18-5.25 5-8.25 10.75-8.25 18.25 0 6.25 2.5 12.5 7 17l51.5 51.75c4.5 4.5 10.75 6.75 17 6.75s12.5-2.25 17-6.5l36.75-36.5c4.5-4.5 7-10.5 7-16.75zM188.25 127.75c0-6.25-2.5-12.5-7-17l-51.5-51.75c-4.5-4.5-10.75-7-17-7s-12.5 2.5-17 6.75l-36.75 36.5c-4.5 4.5-7 10.5-7 16.75 0 6.5 2.5 12.5 7 17l52 52c4.5 4.5 10.75 6.75 17 6.75 7.25 0 13-2.5 18-7.75-8.25-8.25-18-15.25-18-28 0-13.25 10.75-24 24-24 12.75 0 19.75 9.75 28 18 5.25-5 8.25-10.75 8.25-18.25zM412 304c0 19-7.75 37.5-21.25 50.75l-36.75 36.5c-13.5 13.5-31.75 20.75-50.75 20.75-19.25 0-37.5-7.5-51-21.25l-51.5-51.75c-13.5-13.5-20.75-31.75-20.75-50.75 0-19.75 8-38.5 22-52.25l-22-22c-13.75 14-32.25 22-52 22-19 0-37.5-7.5-51-21l-52-52c-13.75-13.75-21-31.75-21-51 0-19 7.75-37.5 21.25-50.75l36.75-36.5c13.5-13.5 31.75-20.75 50.75-20.75 19.25 0 37.5 7.5 51 21.25l51.5 51.75c13.5 13.5 20.75 31.75 20.75 50.75 0 19.75-8 38.5-22 52.25l22 22c13.75-14 32.25-22 52-22 19 0 37.5 7.5 51 21l52 52c13.75 13.75 21 31.75 21 51z"></path></svg>
-                                            Readable Font</a></li>
-                                            <li class="currency__items"><a class="reset-accessibility">
-                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><path fill="currentColor" d="M181.25 139.75l-42.5 112.5c24.75 0.25 49.5 1 74.25 1 4.75 0 9.5-0.25 14.25-0.5-13-38-28.25-76.75-46-113zM0 416l0.5-19.75c23.5-7.25 49-2.25 59.5-29.25l59.25-154 70-181h32c1 1.75 2 3.5 2.75 5.25l51.25 120c18.75 44.25 36 89 55 133 11.25 26 20 52.75 32.5 78.25 1.75 4 5.25 11.5 8.75 14.25 8.25 6.5 31.25 8 43 12.5 0.75 4.75 1.5 9.5 1.5 14.25 0 2.25-0.25 4.25-0.25 6.5-31.75 0-63.5-4-95.25-4-32.75 0-65.5 2.75-98.25 3.75 0-6.5 0.25-13 1-19.5l32.75-7c6.75-1.5 20-3.25 20-12.5 0-9-32.25-83.25-36.25-93.5l-112.5-0.5c-6.5 14.5-31.75 80-31.75 89.5 0 19.25 36.75 20 51 22 0.25 4.75 0.25 9.5 0.25 14.5 0 2.25-0.25 4.5-0.5 6.75-29 0-58.25-5-87.25-5-3.5 0-8.5 1.5-12 2-15.75 2.75-31.25 3.5-47 3.5z"></path></svg>
-                                            Reset</a></li>
+                                            Links without Underline</a></li>
+                                            
                                     </ul>
                                 </div>
                             </li>
@@ -388,7 +518,7 @@
                               </li>
                            @endif
                             
-                            <li class="header__account--items d-md-none">
+                            <!-- <li class="header__account--items d-md-none">
                                 <a class="header__account--btn" href="wishlist.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24.526" height="21.82" viewBox="0 0 24.526 21.82">
                                         <path  d="M12.263,21.82a1.438,1.438,0,0,1-.948-.356c-.991-.866-1.946-1.681-2.789-2.4l0,0a51.865,51.865,0,0,1-6.089-5.715A9.129,9.129,0,0,1,0,7.371,7.666,7.666,0,0,1,1.946,2.135,6.6,6.6,0,0,1,6.852,0a6.169,6.169,0,0,1,3.854,1.33,7.884,7.884,0,0,1,1.558,1.627A7.885,7.885,0,0,1,13.821,1.33,6.169,6.169,0,0,1,17.675,0,6.6,6.6,0,0,1,22.58,2.135a7.665,7.665,0,0,1,1.945,5.235,9.128,9.128,0,0,1-2.432,5.975,51.86,51.86,0,0,1-6.089,5.715c-.844.719-1.8,1.535-2.794,2.4a1.439,1.439,0,0,1-.948.356ZM6.852,1.437A5.174,5.174,0,0,0,3,3.109,6.236,6.236,0,0,0,1.437,7.371a7.681,7.681,0,0,0,2.1,5.059,51.039,51.039,0,0,0,5.915,5.539l0,0c.846.721,1.8,1.538,2.8,2.411,1-.874,1.965-1.693,2.812-2.415a51.052,51.052,0,0,0,5.914-5.538,7.682,7.682,0,0,0,2.1-5.059,6.236,6.236,0,0,0-1.565-4.262,5.174,5.174,0,0,0-3.85-1.672A4.765,4.765,0,0,0,14.7,2.467a6.971,6.971,0,0,0-1.658,1.918.907.907,0,0,1-1.558,0A6.965,6.965,0,0,0,9.826,2.467a4.765,4.765,0,0,0-2.975-1.03Zm0,0" transform="translate(0 0)" fill="currentColor"/>
@@ -396,7 +526,7 @@
                                       
                                     <span class="items__count wishlist">02</span> 
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="header__account--items">
                                 <a class="header__account--btn minicart__open--btn" href="javascript:void(0)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18.897" height="21.565" viewBox="0 0 18.897 21.565">
@@ -748,6 +878,10 @@
     <script src="{{ asset('assets/js/plugins/glightbox.min.js')}}" defer="defer"></script>
     <script src="{{ asset('assets/js/script.js')}}" defer="defer"></script>
     <script src="{{ asset('js/fSelect.js') }}"></script>
+    
+    <script src="{{ asset('assets/js/rangeSlider.js')}}"></script>
+    
+    <script src="{{ asset('assets/js/range.js')}}"></script>
     <script>
 
 
@@ -930,6 +1064,48 @@
                     reduceTimes: 10,
                 });
     </script>
+
+    <script> 
+        $( ".high-contrast" ).on("click", function() { 
+            if( $( "body" ).hasClass( "dark" )) { 
+                $( "body" ).removeClass( "dark" );
+            } else { 
+                $( "body" ).addClass( "dark" );
+            } 
+        });  
+
+        $( ".zoomin" ).on("click", function() { 
+
+            $('a').css("font-size", "25px"); 
+            $('body').css("font-size", "25px"); 
+            $('div').css("font-size", "25px"); 
+            $('p').css("font-size", "25px"); 
+            $('span').css("font-size", "25px");
+        });
+
+        $( ".zoomout" ).on("click", function() { 
+
+            $('a').css("font-size", ""); 
+            $('body').css("font-size", ""); 
+            $('div').css("font-size", ""); 
+            $('p').css("font-size", ""); 
+            $('span').css("font-size", "");
+        }); 
+       
+        
+        $( ".links-underline" ).on("click", function() { 
+
+            $('a').css("text-decoration", "underline");  
+            $('p').css("text-decoration", "underline"); 
+        });
+
+        $( ".readable-font" ).on("click", function() { 
+
+            $('a').css("text-decoration", "");  
+            $('p').css("text-decoration", ""); 
+        });
+         
+    </script> 
 </body>
 
 </html>

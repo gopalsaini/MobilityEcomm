@@ -599,48 +599,93 @@ class PostLoginController extends Controller
 
 				$sales->order_id=$orderId;
 
-				$addressResult=\App\Models\Addressbook::where('id',$request->json()->get('address_id'))->first();
-		
-				$sales->user_id=$request->user()->id; 
-				$sales->checkout_type='2';
-				$sales->name=$addressResult->name;
-				$sales->email=$addressResult->email;
-				$sales->mobile=$addressResult->phone_code.' '.$addressResult->mobile;
-				$sales->currency_id=$request->json()->get('currency_id');
-				$sales->country_id=$addressResult->country_id;
-				$sales->state_id=$addressResult->state_id;
-				$sales->city_id=$addressResult->city_id;
-				$sales->address_line1=$addressResult->address_line1;
-				$sales->address_line2=$addressResult->address_line2;
-				$sales->pincode=$addressResult->pincode;
-				$sales->type=$addressResult->type;
+				if($request->json()->get('type')=='1'){
+					
+					$cartData=\App\Models\Addtocart::where('user_id',$request->user()->id)->get();
+	
+					$addressResult=\App\Models\Addressbook::where('id',$request->json()->get('address_id'))->first();
+			
+					$sales->user_id=$request->user()->id; 
+					$sales->checkout_type='2';
+					$sales->name=$addressResult->name;
+					$sales->email=$addressResult->email;
+					$sales->mobile=$addressResult->phone_code.' '.$addressResult->mobile;
+					$sales->currency_id=$request->json()->get('currency_id');
+					$sales->country_id=$addressResult->country_id;
+					$sales->state_id=$addressResult->state_id;
+					$sales->city_id=$addressResult->city_id;
+					$sales->address_line1=$addressResult->address_line1;
+					$sales->address_line2=$addressResult->address_line2;
+					$sales->pincode=$addressResult->pincode;
+					$sales->type=$addressResult->type;
 
-				if($addressResult->billing_name != null){
-					$sales->billing_name=$addressResult->billing_name;
-					$sales->billing_email=$addressResult->billing_email;
-					$sales->billing_mobile=$addressResult->phone_code.' '.$addressResult->billing_mobile;
-					$sales->billing_country_id=$addressResult->billing_country_id;
-					$sales->billing_state_id=$addressResult->billing_state_id;
-					$sales->billing_city_id=$addressResult->billing_city_id;
-					$sales->billing_address_line1=$addressResult->billing_address1;
-					$sales->billing_address_line2=$addressResult->address_line2;
-					$sales->billing_pincode=$addressResult->billing_pin_code;
-					
+					if($addressResult->billing_name != null){
+						$sales->billing_name=$addressResult->billing_name;
+						$sales->billing_email=$addressResult->billing_email;
+						$sales->billing_mobile=$addressResult->phone_code.' '.$addressResult->billing_mobile;
+						$sales->billing_country_id=$addressResult->billing_country_id;
+						$sales->billing_state_id=$addressResult->billing_state_id;
+						$sales->billing_city_id=$addressResult->billing_city_id;
+						$sales->billing_address_line1=$addressResult->billing_address1;
+						$sales->billing_address_line2=$addressResult->address_line2;
+						$sales->billing_pincode=$addressResult->billing_pin_code;
+						
+					}else{
+						$sales->billing_name=$addressResult->name;
+						$sales->billing_email=$addressResult->email;
+						$sales->billing_mobile=$addressResult->phone_code.' '.$addressResult->mobile;
+						$sales->billing_country_id=$addressResult->country_id;
+						$sales->billing_state_id=$addressResult->state_id;
+						$sales->billing_city_id=$addressResult->city_id;
+						$sales->billing_address_line1=$addressResult->address_line1;
+						$sales->billing_address_line2=$addressResult->address_line2;
+						$sales->billing_pincode=$addressResult->pincode;
+						
+					}
+
 				}else{
-					$sales->billing_name=$addressResult->name;
-					$sales->billing_email=$addressResult->email;
-					$sales->billing_mobile=$addressResult->phone_code.' '.$addressResult->mobile;
-					$sales->billing_country_id=$addressResult->country_id;
-					$sales->billing_state_id=$addressResult->state_id;
-					$sales->billing_city_id=$addressResult->city_id;
-					$sales->billing_address_line1=$addressResult->address_line1;
-					$sales->billing_address_line2=$addressResult->address_line2;
-					$sales->billing_pincode=$addressResult->pincode;
-					
+
+					$cartData=$request->json()->get('cart_data');
+
+					$sales->checkout_type='1';
+					$sales->name=$request->json()->get('name');
+					$sales->email=$request->json()->get('email');
+					$sales->mobile=$request->json()->get('mobile');
+					$sales->currency_id=$request->json()->get('currency_id');
+					$sales->country_id=$request->json()->get('country_id');
+					$sales->state_id=$request->json()->get('state_id');
+					$sales->city_id=$request->json()->get('city_id');
+					$sales->address_line1=$request->json()->get('address_line1');
+					$sales->address_line2=$request->json()->get('address_line2');
+					$sales->pincode=$request->json()->get('pincode');
+					$sales->type=$request->json()->get('type');
+
+					if($request->json()->get('billing_name') != null){
+						$sales->billing_name=$request->json()->get('billing_name');
+						$sales->billing_email=$request->json()->get('billing_email');
+						$sales->billing_mobile=$request->json()->get('billing_mobile');
+						$sales->billing_country_id=$request->json()->get('billing_country_id');
+						$sales->billing_state_id=$request->json()->get('billing_state_id');
+						$sales->billing_city_id=$request->json()->get('billing_city_id');
+						$sales->billing_address_line1=$request->json()->get('billing_address1');
+						$sales->billing_address_line2=$request->json()->get('billing_address2');
+						$sales->billing_pincode=$request->json()->get('billing_pin_code');
+						
+					}else{
+						$sales->billing_name=$request->json()->get('name');
+						$sales->billing_email=$request->json()->get('email');
+						$sales->billing_mobile=$request->json()->get('mobile');
+						$sales->billing_country_id=$request->json()->get('country_id');
+						$sales->billing_state_id=$request->json()->get('state_id');
+						$sales->billing_city_id=$request->json()->get('city_id');
+						$sales->billing_address_line1=$request->json()->get('address_line1');
+						$sales->billing_address_line2=$request->json()->get('address_line2');
+						$sales->billing_pincode=$request->json()->get('pincode');
+						
+					}
 				}
 				
-				$cartData=\App\Models\Addtocart::where('user_id',$request->user()->id)->get();
-	
+				
 				$sales->payment_type=$request->json()->get('payment_type');
 
 				$subTotal=0; $totalShipping=0; $discount=0; $couponId=0; $couponAmount=0; $netAmount=0;
@@ -741,10 +786,10 @@ class PostLoginController extends Controller
 
 						$offerPrice=\App\Helpers\commonHelper::getOfferProductPrice($productResult->sale_price,$productResult->discount_type,$productResult->discount_amount);
 
-						// if($request->json()->get('type')=='2'){
-						// 	$salesDetail->user_id=$request->user()->id; 
-						// }
-						$salesDetail->user_id=$request->user()->id; 
+						if($request->json()->get('type')=='1'){
+							$salesDetail->user_id=$request->user()->id; 
+						}
+						
 						$salesDetail->sale_id=$saleId;
 						$salesDetail->order_id=$orderId;
 						$salesDetail->currency_id=$request->json()->get('currency_id');

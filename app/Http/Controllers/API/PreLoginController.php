@@ -610,20 +610,32 @@ class PreLoginController extends Controller
 			}
 
 
+			
 			$query=\App\Models\Product::Select('products.name','products.category_id','variantproducts.id as variantproductid','variantproducts.sale_price','variantproducts.discount_type','variantproducts.discount_amount','variantproducts.slug','variantproducts.images')->where([
-																	['products.status','=','1'],
-																	['products.recyclebin_status','=','0'],
-																	['variantproducts.status','=','1'],
-																	['variantproducts.recyclebin_status','=','0'],
-																	['variantproducts.sale_price','>=',$minPrice],
-																	['variantproducts.sale_price','<=',$maxPrice]
-																	])->join('variantproducts','variantproducts.product_id','=','products.id')->offset($offset)->limit($limit)->groupBy('variantproducts.product_id')->orderBy($orderCol,$orderBy);
-		
+							['products.status','=','1'],
+							['products.recyclebin_status','=','0'],
+							['variantproducts.status','=','1'],
+							['categories.recyclebin_status','=','0'],
+							['categories.status','=','1'],
+							['variantproducts.recyclebin_status','=','0'],
+							])->join('variantproducts','variantproducts.product_id','=','products.id')
+							->join('categories','products.category_id','=','categories.id')->groupBy('variantproducts.product_id')->orderBy($orderCol,$orderBy);
+			
+			if($request->get('min_price')){
+
+				$query->where('variantproducts.sale_price','>=',$request->get('min_price'));
+
+			}if($request->get('max_price')){ 
+
+				//echo $request->get('max_price');
+				$query->where('variantproducts.sale_price','<=',$request->get('max_price'));
+
+			}
 
 			if($request->get('collection')){
-				
+
 				$collection = $request->get('collection');
-				
+
 				$query->where(function($query1) use($collection){
 
 					$query1->orWhere('products.whole_collection_status',$collection);
@@ -631,26 +643,23 @@ class PreLoginController extends Controller
 					$query1->OrWhere('products.whole_collection_status','LIKE',$collection.',%');
 					$query1->OrWhere('products.whole_collection_status','LIKE','%,'.$collection.',%');
 				});
-				
+
 			}
-			
+
 			if($request->get('category_slug')){
 
-				
 				$getSlugCategoryId=\App\Models\Category::where('slug',$request->get('category_slug'))->first();
-				
-				$query->where('products.category_id',$getSlugCategoryId->id);
 
+				$childCategory=[];
 				if($getSlugCategoryId){
 
-					$childCategory=\App\Helpers\commonHelper::getCategoryTreeidsArray($getSlugCategoryId->id);
+					$childCategory=\App\Helpers\commonHelper::getCategoryTreeidsArray($getSlugCategoryId->id); 
 
-					if($childCategory){
-
-						$query->orwhereIn('products.category_id',$childCategory);
-
-					}
 				}
+
+				$childCategory[]=$getSlugCategoryId->id;
+
+				$query->whereIn('products.category_id',$childCategory);
 
 			}
 
@@ -1308,6 +1317,7 @@ class PreLoginController extends Controller
 													['products.status','=','1'],
 													['products.recyclebin_status','=','0'],
 													['variantproducts.status','=','1'],
+													['variantproducts.type','=','Sale'],
 													['variantproducts.recyclebin_status','=','0']
 												])->join('variantproducts','variantproducts.product_id','=','products.id');
 		
@@ -1367,6 +1377,7 @@ class PreLoginController extends Controller
 													['products.status','=','1'],
 													['products.recyclebin_status','=','0'],
 													['variantproducts.status','=','1'],
+													['variantproducts.type','=','Sale'],
 													['variantproducts.recyclebin_status','=','0']
 												])->join('variantproducts','variantproducts.product_id','=','products.id');
 		

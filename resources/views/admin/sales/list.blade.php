@@ -95,21 +95,21 @@
                         </div>
                         @endif
                                               
-						<div class="btn-group top-head-btn">
+						<!-- <div class="btn-group top-head-btn">
                             <a class="btn-primary" style="background-color:#343a40"  href="{{ url('admin/sales/mannual-orders/create-order')}}">
                             <i class="fas fa-check"></i> Create Order 
 							</a>
-                        </div>               
+                        </div>                -->
 						<div class="btn-group top-head-btn">
                             <a class="btn-primary" style="background-color:blue"  href="{{ url('admin/sales/product-query')}}">
                             <i class="fas fa-check"></i> Product Query
 							</a>
                         </div>               
-						<div class="btn-group top-head-btn">
+						<!-- <div class="btn-group top-head-btn">
                             <a class="btn-primary" style="background-color:#343a40"  href="{{ url('admin/sales/product-customizations')}}">
                             <i class="fas fa-check"></i> Product Customizations
 							</a>
-                        </div>
+                        </div> -->
 					</div>
 				</div>
 			</div>

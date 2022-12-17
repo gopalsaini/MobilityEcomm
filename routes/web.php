@@ -83,6 +83,7 @@ use Illuminate\Support\Facades\Route;
 	Route::get('blog/{slug}', "HomeController@getSingleBlog")->name('single.blog');
 
 	Route::post('subscribeNewsletter', "HomeController@subscribeNewsletter")->name('subscribe');
+	Route::match(['get','post'],'guest-checkout', "ProductController@checkout");
 
 	Route::group(['middleware'=>'Userauth'],function(){
 		Route::get('myprofile', "ProfileController@profile");
@@ -103,6 +104,7 @@ use Illuminate\Support\Facades\Route;
 		Route::match(['post'],'get-shipping-option-using-address','ProductController@getShippingOptionUsingAddressId');
 	});
 
+	Route::get('cart', "ProductController@cart");
 	Route::post('stripe', 'ProductController@stripePost')->name('stripe.post');
 
 	Route::get('order-placed/{orderid}','ProductController@orderPlaced');

@@ -350,6 +350,7 @@ class ProductController extends Controller
 		if(!Session::has('5ferns_user')){
 			
 			$result=Session::get('5ferns_cartuser');
+			$resultData=[];
 
 		}else{
 
@@ -364,19 +365,19 @@ class ProductController extends Controller
 				$result=$resultData['result'];
 			}
 
+			$profileData=\App\Helpers\commonHelper::callAPI('userTokenget','/user-profile');
+
+      		$resultData=json_decode($profileData->content,true);
+
 		}
 
 		$country=\App\Models\Country::select('id','name','phonecode')->get();
 
-		$profileData=\App\Helpers\commonHelper::callAPI('userTokenget','/user-profile');
-
-      	$resultData=json_decode($profileData->content,true);
-		// print_r($resultData); die;
 		if($request->ajax()){
 
 			$html=view('render_page.cart',compact('result','country'))->render();
 
-			return response(array('message'=>$resultData['message'],'html'=>$html),200);
+			return response(array('message'=>'cart details fetch success','html'=>$html),200);
 
 		}
 
@@ -540,24 +541,6 @@ class ProductController extends Controller
 
 		$totalItems=count($result);
 
-		// if($request->get('countryId')=='101'){
-			
-		// 	$freeShippingAmount=\App\Helpers\commonHelper::callAPI('GET','/getfreeshippingamount');
-
-		// 	if($freeShippingAmount->status==200){
-
-		// 		$freeShippingResult=json_decode($freeShippingAmount->content,true);
-
-		// 		if($finalAmount>=(float) $freeShippingResult['amount']){
-
-		// 			$totalShipping=0;
-
-		// 		}
-
-		// 	}
-
-		// }
-
 		$finalAmount+=$totalShipping;
 
 		$html=view('cart_price_details',compact('totalItems','totalMrp','totalShipping','discountAmount','finalAmount','couponAmount','amountForCoupon'))->render();
@@ -605,28 +588,45 @@ class ProductController extends Controller
 					// print_r($apiData); die;
 				}else{
 		
+					
 					$cartData=Session::has('5ferns_cartuser');
 
 					if($cartData){
 		
 						$data=array(
-							'type'=>'1',
-							'name'=>$request->post('name'),
+							'type'=>'2',
+							'name'=>$request->post('first_name').' '.$request->post('last_name'),
 							'email'=>$request->post('email'),
-							'phone_code'=>$request->post('phone_code'),
 							'mobile'=>$request->post('mobile'),
 							'country_id'=>$request->post('country_id'),
 							'state_id'=>$request->post('state_id'),
 							'city_id'=>$request->post('city_id'),
-							'address_line1'=>$request->post('address_1'),
-							'address_line2'=>$request->post('address_2'),
-							'pincode'=>$request->post('pincode'),
+							'address_line1'=>$request->post('address1'),
+							'address_line2'=>$request->post('address2'),
+							'pincode'=>$request->post('pin_code'),
+							'message'=>$request->post('message'),
+							'billing_address_checkbox'=>$request->post('billing_address_checkbox') ?? '0',
 							'payment_type'=>$request->post('payment_type'),
+							'address_id'=>$request->post('address_id'),
 							'coupon_id'=>$request->post('coupon_id'),
-							'cart_data'=>Session::get('5ferns_cartuser'),
+							'coupon_code'=>Session::get('coupon_code'),
 							'currency_id'=>Session::get('country_id'),
-							'shipping_id'=>Session::get('shipping_id'),
-						);
+							'shipping_id'=>0,
+							'cart_data'=>Session::get('5ferns_cartuser'),
+						  );
+				
+						  if(!$request->post('billing_address_checkbox') && $request->post('billing_address_checkbox') != '1'){
+				
+							$data['billing_name']=$request->post('billing_first_name').' '.$request->post('billing_first_name');
+							$data['billing_email']=$request->post('billing_email');
+							$data['billing_country_id']=$request->post('billing_country_id');
+							$data['billing_state_id']=$request->post('billing_state_id');
+							$data['billing_city_id']=$request->post('billing_city_id');
+							$data['billing_mobile']=$request->post('billing_mobile');
+							$data['billing_address1']=$request->post('billing_address1');
+							$data['billing_address2']=$request->post('billing_address2');
+							$data['billing_pin_code']=$request->post('billing_pin_code');
+						  }
 		
 						$apiData=\App\Helpers\commonHelper::callAPI('POST','/guest-checkout',json_encode($data));
 
@@ -635,7 +635,7 @@ class ProductController extends Controller
 						return response(array('message'=>'Cart is empty'),404);
 					}
 				}
-
+				// print_r($apiData); die;
 				$resultData=json_decode($apiData->content,true);
 				
 				if($request->post('payment_type')=='2'){
@@ -683,10 +683,16 @@ class ProductController extends Controller
 
 		$shipping=\App\Models\Setting::where('currency',Session::get('country_id'))->get();
 
-		
-		$profileData=\App\Helpers\commonHelper::callAPI('userTokenget','/address-list');
+		if(Session::has('5ferns_user')){
 
-      	$resultData=json_decode($profileData->content,true);
+			$profileData=\App\Helpers\commonHelper::callAPI('userTokenget','/address-list');
+
+			$resultData=json_decode($profileData->content,true);
+
+		}else{
+
+			$resultData = [];
+		}
 		
 		return view('checkout',compact('country','shipping','resultData'));
 		
@@ -725,20 +731,12 @@ class ProductController extends Controller
 				Session::forget('5ferns_cartuser');
 			}
 			
-			$user = \App\Models\User::where('id',$result['user_id'])->first();
-
-			$notification = new \App\Models\Notification();
-			$notification->user_id = \App\Helpers\commonHelper::getSalesAdministrationId($user->used_reference_code);
-			$notification->title = 'New Order Received ';
-			$notification->message = 'new order received by '.$user->user_type.'and order id: '.$orderId;
-			$notification->save();
-
-			\Mail::send('email_templates.order_place', compact('result'), function($message) use ($result)
-			{
-				$message->from(env('MAIL_USERNAME'),env('MAIL_FROM_NAME'));
-				$message->subject('Order Placed Successfully');
-				$message->to($result['email']);
-			});
+			// \Mail::send('email_templates.order_place', compact('result'), function($message) use ($result)
+			// {
+			// 	$message->from(env('MAIL_USERNAME'),env('MAIL_FROM_NAME'));
+			// 	$message->subject('Order Placed Successfully');
+			// 	$message->to($result['email']);
+			// });
 
 			return view('order_placed',compact('result'));
 

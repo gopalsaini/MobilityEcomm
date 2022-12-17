@@ -180,14 +180,10 @@
                         @endif
                         <div class="single__widget price__filter widget__bg">
                             <h2 class="widget__title position__relative h3">Filter By Price</h2>
-                            
-                            <div class="sidebar_widget">
-                                <div class="price-range-slider">
-                                        <div id="slider-range" class="range-bar"></div>
-                                        <p class="range-value">
-                                            Range:
-                                            <input type="text" id="amount" readonly>
-                                        </p>
+                            <div class="range-slider">
+                                <div id="price-range" data-min="0" data-max="6000" data-unit="$"></div>
+                                <div class="clearfix" style="display: flex;">
+                                    <input type='text' class='first-slider-value' disabled style='margin: 22px;width: 40%;'/><input type='text' class='second-slider-value' disabled style='margin: 22px;width: 40%;'/>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +219,7 @@
                 
                 <input type="hidden" id="number" class="qty" value="1" />
                 <input type="hidden" id="min_price" value="0" />
-                <input type="hidden" id="max_price" value="5000" />
+                <input type="hidden" id="max_price" value="600000" />
                 <div class="col-xl-9 col-lg-8">
                     <div class="shop__header bg__gray--color d-flex align-items-center justify-content-between mb-30">
                         <button class="widget__filter--btn d-none d-md-flex align-items-center">
@@ -284,28 +280,7 @@
 <script src="{{ asset('js/scroller.js') }}"></script>
     <script>
 
-    $(function() {
-		$( "#slider-range" ).slider({
-			range:true,
-			min: 0,
-			max: 1000,
-			values: [ 0,10000 ],
-			slide: function( event, ui ) {
-				$('#min_price').val(ui.values[ 0 ]);
-				$('#max_price').val(ui.values[ 1 ]);
-				$( "#amount" ).val( "₹ " + ui.values[ 0 ] + " - ₹" + ui.values[ 1 ] );
-			},
-			change: function( event, ui ) {
-				$('#min_price').val(ui.values[ 0 ]);
-				$('#max_price').val(ui.values[ 1 ]);
-				
-				setSortOrder();
-			},
-			
-		});
-		$( "#amount" ).val( "₹ " + $( "#slider-range" ).slider( "values", 0 ) +
-		   " - ₹ " + $( "#slider-range" ).slider( "values", 1 ) );
-	});
+    
         // $(function() {
         //     $( "#slider-range" ).slider({
         //         range: true,
@@ -410,7 +385,7 @@
                 }
                 $('#totalProduct').html(response.total);
                 
-                productWishlist();
+                // productWishlist();
 
                 productNotify();
                 

@@ -40,7 +40,7 @@ Route::group([
 	
 	Route::post("product-customizations","API\PostLoginController@productCustomizations");
 });
-
+Route::post("guest-checkout","API\PostLoginController@checkout");
 Route::post("ondemand-enquiry","API\PostLoginController@ondemandEnquiry");
 Route::post('emailuser-registration', [preLoginController::class, 'emailRegistration']);
 Route::post('mail-getotp', [preLoginController::class, 'sendOtpOnMail']);

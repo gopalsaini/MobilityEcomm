@@ -79,7 +79,13 @@
                                 <h2 class="section__header--title h3">Billing Details</h2>
                             </div>
                             <div class="section__shipping--address__content">
-                                <form action="{{ url('add-address') }}" method="Post" class="m-0" id="address" autocomplete="off">
+                                @if(Session::has('5ferns_user'))
+                                    <form action="{{ url('add-address') }}" method="Post" class="m-0" id="address" autocomplete="off">
+                                        
+                                @else
+                                    <form action="{{ url('guest-checkout') }}" method="Post" class="m-0" id="checkout" autocomplete="off">
+                                    <input type="hidden" name="address_id" value="0" > &nbsp; &nbsp;
+                                @endif
                                     @csrf
                                     <input type="hidden" name="id" value="0" >
                                     
@@ -222,27 +228,31 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <br><br>
-                                        <div class="checkout__discount--code ">
-                                            <button type="submit" class="primary__btn border-radius-5" style="" id="addressSubmit">Submit
+                                        @if(Session::has('5ferns_user'))
+                                            <br><br>
+                                            <div class="checkout__discount--code ">
+                                                <button type="submit" class="primary__btn border-radius-5" style="" id="addressSubmit">Submit
 
-                                                <pre class="spinner-border spinner-border-sm addressloader"
-                                                    style="color:white;font-size: 100%;position:relative;top:6%;display:none"></pre>
-                                            </button>
-                                        </div>
+                                                    <pre class="spinner-border spinner-border-sm addressloader"
+                                                        style="color:white;font-size: 100%;position:relative;top:6%;display:none"></pre>
+                                                </button>
+                                            </div>
+                                        @endif
                                     </div>
-                                
+                                @if(Session::has('5ferns_user'))
                                 </form>  
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6">
+                @if(Session::has('5ferns_user'))
                     <form action="{{ url('checkout') }}" method="Post" class="m-0" id="checkout" autocomplete="off">
                     @csrf
                         <aside class="checkout__sidebar sidebar border-radius-10">
                             
-                            @if(Session::has('5ferns_user'))
+                           
                                 @if(!empty($resultData))
                                     <div class="cart-form">
                                         <div class="form-group row">

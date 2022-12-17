@@ -47,16 +47,17 @@
                                  <div class="product-box">
                                     <div class="product-img">
                                        <img src="{{ $result['first_image']}}" alt="img">
+                                       <input type="hidden" id="number" class="qty" value="1" />
                                        <div class="social-icon">
-                                          <a href="#" class="getProductDetail" data-slug="{{ $result['slug']}}">
+                                          <a href="{{ url('product-detail/'.$result['slug']) }}" >
                                              <span>
-                                                <svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="27" height="22" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                    <path d="M11.9036 21.0002C13.9745 20.9997 15.9856 20.3065 17.6168 19.0308L22.7455 24.1595L24.3951 22.5098L19.2665 17.3812C20.5428 15.7498 21.2365 13.7382 21.237 11.6668C21.237 6.52066 17.0498 2.3335 11.9036 2.3335C6.75748 2.3335 2.57031 6.52066 2.57031 11.6668C2.57031 16.813 6.75748 21.0002 11.9036 21.0002ZM11.9036 4.66683C15.7641 4.66683 18.9036 7.80633 18.9036 11.6668C18.9036 15.5273 15.7641 18.6668 11.9036 18.6668C8.04315 18.6668 4.90365 15.5273 4.90365 11.6668C4.90365 7.80633 8.04315 4.66683 11.9036 4.66683Z" fill="#A56852"/>
                                                    <path d="M13.5498 10.0171C13.992 10.4604 14.2358 11.0461 14.2358 11.6668H16.5691C16.5702 11.0536 16.4497 10.4463 16.2146 9.88C15.9795 9.31369 15.6345 8.7996 15.1995 8.36743C13.4331 6.60343 10.3706 6.60343 8.60547 8.36743L10.2528 10.0194C11.1395 9.1351 12.6678 9.13743 13.5498 10.0171Z" fill="#A56852"/>
                                                 </svg>
                                              </span>&nbsp;
                                              <pre class="spinner-border spinner-border-sm loader" style="color:#a56852;font-size: 100%;position:relative;margin:0;display:none"></pre>
-                                          </a>
+                                          </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                           <a href="#" class="addtocart" data-type="addtocart" data-product_id="{{ $result['variant_productid'] }}">
                                              <span>
                                                 <svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,20 +66,10 @@
                                                    <path d="M20.7344 21.7814C21.7699 21.7814 22.6094 20.9419 22.6094 19.9064C22.6094 18.8709 21.7699 18.0314 20.7344 18.0314C19.6988 18.0314 18.8594 18.8709 18.8594 19.9064C18.8594 20.9419 19.6988 21.7814 20.7344 21.7814Z" fill="#A56852"/>
                                                 </svg>
                                              </span>
-                                          </a>
-                                          <a href="{{ url('product-detail/'.$result['slug']) }}">
-                                             <span>
-                                                <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                   <path d="M23.2646 11.8755C23.7781 12.5472 23.7781 13.4539 23.2646 14.1245C21.6471 16.2359 17.7666 20.5833 13.2361 20.5833C8.70564 20.5833 4.82514 16.2359 3.20772 14.1245C2.95789 13.8029 2.82227 13.4072 2.82227 13C2.82227 12.5927 2.95789 12.1971 3.20772 11.8755C4.82514 9.76407 8.70564 5.41666 13.2361 5.41666C17.7666 5.41666 21.6471 9.76407 23.2646 11.8755V11.8755Z" stroke="#A56852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                   <path d="M13.2363 16.25C15.0313 16.25 16.4863 14.7949 16.4863 13C16.4863 11.2051 15.0313 9.75 13.2363 9.75C11.4414 9.75 9.98633 11.2051 9.98633 13C9.98633 14.7949 11.4414 16.25 13.2363 16.25Z" stroke="#A56852" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                             </span>
-                                          </a>
-                                       </div>
-                                       <div class="social-icon cross">
+                                          </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                           <a href="{{ url('delete-wishlist-product/'.$result['wishlistid']) }}" onclick="return confirm('Are you sure? You want to Remove this product.')">
                                              <span>
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="20" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.610188 15.3415C-0.203396 14.528 -0.203396 13.2088 0.610188 12.3953L12.3953 0.610203C13.2089 -0.203401 14.528 -0.203401 15.3416 0.610203C16.1551 1.42379 16.1551 2.74289 15.3416 3.55647L3.55646 15.3415C2.74288 16.1553 1.42379 16.1553 0.610188 15.3415Z" fill="#A56852"/>
                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.610188 0.610188C1.42379 -0.203396 2.74287 -0.203396 3.55648 0.610188L15.3416 12.3952C16.1551 13.209 16.1551 14.5279 15.3416 15.3417C14.5281 16.1552 13.2089 16.1552 12.3954 15.3417L0.610188 3.55648C-0.203396 2.74287 -0.203396 1.42379 0.610188 0.610188Z" fill="#A56852"/>
                                                 </svg>                                             
@@ -88,7 +79,7 @@
                                     </div>
                                     <div class="product-text">
                                        <!-- <span>TERRACOTTA</span> -->
-                                       <a href="{{ url('product-detail/'.$result['slug']) }}">{{ $result['name'] }}</a>
+                                       <h4><a href="{{ url('product-detail/'.$result['slug']) }}">{{ $result['name'] }}</a></h4>
                                        <h5>From 
                                           @if($result['discount_amount']>0)
                                                 <span class="value"><del>{{  \App\Helpers\commonHelper::getPriceByCountry($result['sale_price']) }}</del> ₹ {{  \App\Helpers\commonHelper::getPriceByCountry($result['offer_price']) }}</span>

@@ -374,15 +374,18 @@ function productWishlist() {
             return false;
         }
 
-        if ($(this).hasClass('active')) {
-
+        if ($(this).hasClass('fa-heart')) {
+           
             showMsg('success', 'Product successfully removed from wishlist.');
-            $(this).removeClass('active');
+            $(this).removeClass('fa-heart');
+            $(this).addClass('fa-heart-o');
 
         } else {
 
             showMsg('success', 'Product Wishlisted successfully.');
-            $(this).addClass('active');
+            $(this).addClass('fa-heart');
+            
+            $(this).removeClass('fa-heart-o');
         }
 
         $.ajax({

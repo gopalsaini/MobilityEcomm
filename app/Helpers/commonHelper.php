@@ -930,6 +930,22 @@ class commonHelper{
 		}
 		
 	}
+
+	public static function checkWishlistProduct($id){
+		
+		if(\Session::has('5ferns_result')){
+			$check = \App\Models\Wishlist::where('product_id',$id)->where('user_id',\Session::get('5ferns_result')['id'])->first();
+			if($check){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+		
+		
+	}
 	
 	
 
